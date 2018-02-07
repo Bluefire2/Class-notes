@@ -1,0 +1,159 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Math 3110 homework \#1}
+\author{\name}
+\maketitle
+
+\problem{1.2.1}
+
+\ppart{a}
+Neither. The difference between $a_{n + 1}$ and $a_n$ is $\frac{(-1)^n}{n}$, which is never equal to zero, but can be either positive or negative depending on if $n$ is even or odd.
+
+\ppart{b}
+We can inspect the ratio of two consecutive terms:
+
+\begin{align*}
+  \frac{a_{n + 1}}{a_n} &= \frac{n + 1}{n + 2} \cdot \frac{n + 1}{n} \\
+  &= \frac{(n + 1)^2}{n(n + 2)} \\
+  &= \frac{n^2 + 2n + 1}{n^2 + 2n} = \frac{n^2 + 2n}{n^2 + 2n} + \frac{1}{n^2 + 2n} \\
+  &= 1 + \frac{1}{n^2 + 2n} \geq 1
+\end{align*}
+
+\ppart{c}
+Each term in the sum is a square of a real number, and therefore greater than or equal to zero. Therefore, the difference between two consecutive terms is $\geq 0$, which means that the sequence is increasing, but not strictly.
+
+\ppart{d}
+This time, the difference between two consecutive terms is $-1 \leq a_{n + 1} - a_n \leq 1$, so the sequence is neither increasing nor decreasing.
+
+\ppart{e}
+As $n$ goes from 1 to $\infty$, $\frac{1}{n}$ goes from 1 to 0. From 1 to 0, $\tan x$ is strictly decreasing, and therefore the sequence is strictly decreasing.
+
+\ppart{f}
+
+
+\problem{1.5.1}
+
+\ppart{a}
+It it trivial to show that for all $n$, $\frac{1}{n(n + 1)} = \frac{1}{n} - \frac{1}{n + 1}$. Therefore:
+
+\begin{align*}
+  a_n &= 1 + \frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \frac{3 \cdot 4} + \cdots + \frac{1}{n(n + 1)} \\
+  &= 1 + \frac{1}{1} - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} + \frac{1}{3} - \frac{1}{4} + \cdots - \frac{1}{n} + \frac{1}{n} - \frac{1}{n + 1} \\
+  &= 2 - \frac{1}{n + 1} \leq 2
+\end{align*}
+
+Therefore, $a_n \leq 2 \;\forall\; n \geq 1$.
+
+\ppart{b}
+Consider the difference $a_n - b_n$:
+
+\begin{align*}
+  a_n - b_n &= 1 + \sum_{i = 2}^n \frac{1}{i(i - 1)} - 1 - \sum_{i = 2}^n \frac{1}{i^2} \\
+  &= \sum_{i = 2}^n \left(\frac{1}{i(i - 1)} - \frac{1}{i^2}\right) \\
+  &= \sum_{i = 2}^n \frac{i^2 - i(i - 1)}{i^3(i - 1)} \\
+  &= \sum_{i = 2}^n \frac{i}{i^3(i - 1)} = \sum_{i = 2}^n \frac{1}{i^2(i - 1)}
+\end{align*}
+
+Every term in this difference series is greater than zero, which means it is positive. Since the difference between $a_n$ and $b_n$ is always positive, $a_n > b_n$ and therefore $b_n$ is also bounded above, by the same upper bound.
+
+\problem{1.6.3}
+
+It can be shown that $\{a_n\}$ is strictly decreasing.
+\begin{proof}
+  We know that $a_1 = 2a_0^2 < a_0$, since $\frac{1}{2} > a_0 > 0$, since $\frac{a_1}{a_0} = 2a_0 < 1$. Now, suppose that $a_{n + 1} < a_n \;\forall\; 0 \leq n \leq k$. Consider the ratio $\frac{a_{k + 2}}{a_{k + 1}} = \frac{2a_{k + 1}^2}{a_{k + 1}} = 2a_{k + 1}$. We know from our assumption that $a_{k + 1} < a_k < a_{k - 1} < \cdots < a_0 < \frac{1}{2}$. Therefore, $\frac{a_{k + 2}}{a_{k + 1}} < = 1$. Thus, by strong induction, $a_{n + 1} < a_n \;\forall\; 0 \leq n$, and so the sequence is strictly decreasing.
+\end{proof}
+
+We can also show that the sequence is bounded below.
+\begin{proof}
+  We know that $a_0 > 0$. Now suppose that for some $k$, $a_k > 0$: this would imply that $a_{k + 1} = 2a_k^2 > 0$. Thus, by weak induction, $a_n > 0 \;\forall\; n \geq 0$, and so the sequence is bounded below by $P = 0$.
+\end{proof}
+
+\problem{1-1}
+
+\ppart{a}
+Suppose that $a_0 \leq 1$.
+\begin{proof}
+  Let $P(k)$ be the statement that $a_{k + 1} \geq a_k$ \textbf{and} that $a_{k + 1} \leq 1$. To show the first part of $P(0)$, consider the difference between the first two terms:
+
+  \begin{align*}
+    a_1 - a_0 &= \frac{a_0 + 1}{2} - a_0 \\
+    &= \frac{1 - a_0}{2} \geq 0
+  \end{align*}
+
+  since $a_0 \leq 1 \iff 1 - a_0 \geq 0$. For the second part, note that $a_0 \leq 1 \iff a_0 + 1 \leq 2 \iff a_1 = \frac{a_0 + 1}{2} \leq 1$.
+
+  Assume now that $P(n)$ holds for some $n > 0$. The difference between the next two consecutive terms of this sequence is
+
+  \begin{align*}
+    a_{n + 2} - a_{n + 1} &= \frac{a_{n + 1} + 1}{2} - a_{n + 1} \\
+    &= \frac{1 - a_{n + 1}}{2}
+  \end{align*}
+
+  We know from our assumption that $a_{n + 1} \leq 1$, and therefore as before $\frac{1 - a_{n + 1}}{2} \geq 0$, which means that $a_{n + 2} \geq a_{n + 1}$. Also, since $a_{n + 2} = \frac{a_{n + 1} + 1}{2}$ and $a_{n + 1} \leq 1$, we can see that as before, $a_{n + 2} \leq 1$. Therefore, by strong induction, $a_{n + 1} \geq a_n$ and $a_n \leq 1$ for all $n \geq 0$, i.e. the sequence $\{a_n\}$ is bounded above by $M = 1$ and increasing.
+\end{proof}
+
+This suggests that $\lim_{n \rightarrow \infty} a_n = 1$.
+
+\ppart{b}
+Now suppose that $a_0 \geq 1$. Then, the sequence $\{a_n\}$ is bounded below by $P = 1$, and decreasing.
+
+\begin{proof}
+  Consider again the difference between two consecutive terms:
+
+  \begin{align*}
+    a_{n + 1} - a_n = \frac{1 - a_n}{2}
+  \end{align*}
+
+  Let $P(k)$ be the statement that $a_{k + 1} \leq a_k$ and that $a_{k + 1} \geq 1$. Showing $P(0)$ is once again easy since $a_1 - a_0 = \frac{1 - a_0}{2} \leq 0$, and $a_1 = \frac{a_0 + 1}{2} \geq 1$ since $a_0 \geq 1 \iff a_0 + 1 \geq 2$. Now, assume that $P(n)$ holds for some $n > 0$. We have
+
+  \begin{align*}
+    a_{n + 2} - a_{n + 1} &= \frac{1 - a_{n + 1}}{2}
+  \end{align*}
+
+  We know that $a_{n + 1} \geq 1$ from our assumption, and therefore $a_{n + 2} - a_{n + 1} \leq 0$. This proves the first part of $P(n + 1)$. For the second part, note that $a_{n + 2} = \frac{a_{n + 1} + 1}{2}$ and just as before, we have $a_{n + 1} \geq 1 \iff a_{n + 1} + 1 \geq 2 \iff a_{n + 2} \geq 1$. Therefore by weak induction, $P(k)$ holds for all $k \geq 0$, and so the sequence is decreasing, and bounded below by $P = 1$.
+\end{proof}
+
+It can be intuitively seen that the limit of this sequence is also 1.
+
+\ppart{c}
+The sequence can be interpreted as follows: the subsequent term is the mean average of the current term and $1$. If the terms are plotted on the number line, then the next term is halfway between 1 and the current term. From this it can intuitively be seen that if the initial term is less than or equal to 1, then the sequence approaches 1 from below, and if the initial term is greater than or equal to 1, then the sequence approaches 1 from above.
+
+\problem{1-2}
+First, I will show that $\{a_n\}$ given by
+
+\begin{align*}
+  a_n = \prod_{i = 2}^n \left(1 + \frac{1}{i}\right)
+\end{align*}
+
+for $2 \leq n$ is strictly increasing.
+
+\begin{proof}
+  Consider the ratio between two consecutive terms:
+
+  \begin{align*}
+    \frac{a_{n + 1}}{a_n} = \frac{\prod_{i = 2}^{n + 1} \left(1 + \frac{1}{i}\right)}{\prod_{i = 2}^n \left(1 + \frac{1}{i}\right)} = 1 + \frac{1}{n + 1}
+  \end{align*}
+
+  Since $n \geq 2$, $n + 1 \geq 3$, and so $\frac{1}{n + 1} > 0$. Therefore, the difference between two consecutive terms is $a_{n + 1} - a_n = 1 + \frac{1}{n + 1} > 1$, which means that $a_{n + 1} > a_n$ for all $n$ i.e. the sequence is strictly increasing.
+\end{proof}
+
+Next, I will show that this sequence is not bounded above.
+
+\begin{proof}
+  Consider the $n$th term of the sequence, in its expanded form:
+
+  \begin{align*}
+    a_n &= \prod_{i = 2}^n \left(1 + \frac{1}{i}\right) \\
+    &= \left(1 + \frac{1}{2}\right)\left(1 + \frac{1}{3}\right) \cdots \left(1 + \frac{1}{n}\right)
+  \end{align*}
+
+  Each set of parentheses has two terms: a 1, and a fraction. Consider each fraction: if we were to fully multiply out the parentheses, the fraction would need to be multiplied by all the combinations of 1 term taken from each other set of parentheses. For the moment, imagine just multiplying it by the 1 from each set: the fraction would retain the same value. We would have to do this (and more) for each fraction. If we ignore all the other terms produced by multiplication, we can then make the following inequality:
+
+  \begin{align*}
+    a_n = \left(1 + \frac{1}{2}\right)\left(1 + \frac{1}{3}\right) \cdots \left(1 + \frac{1}{n}\right) > \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{n}
+  \end{align*}
+
+  This is because all the leftover terms are greater than zero, so if we take just the sum of the fractions, then it will be strictly less than the sum of \textbf{all} the terms. But the sum of the fractions is just the Harmonic series starting from $n = 2$, which we know is not bounded above. Since each term $a_n$ is greater than the $n$th Harmonic term, this implies that $\{a_n\}$ is also not bounded above.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,232 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Math 2220 HW \#13}
+\author{\name}
+\maketitle
+
+\problem{1}
+
+\ppart{a}
+We need to find $F(x, y, z)$ that satisfies the following equalities:
+
+\begin{align*}
+  \frac{\partial F}{\partial x} &= \frac{-2x}{(x^2 + y^2 + z^2)^{\frac{3}{2}}} \\
+  \frac{\partial F}{\partial y} &= \frac{-2y}{(x^2 + y^2 + z^2)^{\frac{3}{2}}} \\
+  \frac{\partial F}{\partial z} &= \frac{-2z}{(x^2 + y^2 + z^2)^{\frac{3}{2}}}
+\end{align*}
+
+Integrating with the substitution $u = x^2 + y^2 + z^2$, we get
+
+\begin{align*}
+  F(x, y, z) &= \frac{2}{\sqrt{x^2 + y^2 + z^2}} + g(y, z) \\
+  &= \frac{2}{\sqrt{x^2 + y^2 + z^2}} + h(x, z) \\
+  &= \frac{2}{\sqrt{x^2 + y^2 + z^2}} + i(x, y)
+\end{align*}
+
+for some functions $g, h, i$. Canceling terms gives $g(y, z) = h(x, z) = i(x, y)$; the only way this equality can hold is if all the functions are constant. The simplest case is $g(y, z) = h(x, z) = i(x, y) = 0$, giving $F(x, y, z) = \frac{2}{\sqrt{x^2 + y^2 + z^2}}$.
+
+\ppart{b}
+This time, the equalities for $F$ are:
+
+\begin{align*}
+  \frac{\partial F}{\partial x} &= \frac{3(x + 1)}{((x + 1)^2 + (y - 5)^2 + z^2)^{\frac{3}{2}}} + x^3 \\
+  \frac{\partial F}{\partial y} &= \frac{3(y - 5)}{((x + 1)^2 + (y - 5)^2 + z^2)^{\frac{3}{2}}} - y^6 \\
+  \frac{\partial F}{\partial z} &= \frac{3z}{((x + 1)^2 + (y - 5)^2 + z^2)^{\frac{3}{2}}} + z + y
+\end{align*}
+
+To integrate the first fraction, we first substitute $u = x + 1, \diff u = \diff x$ and then $s = u^2 + (y - 5)^2 + z^2, \diff s = 2u \diff u$:
+
+\begin{align*}
+  \int \frac{3(x + 1)}{((x + 1)^2 + (y - 5)^2 + z^2)^{\frac{3}{2}}} \diff x &= \int \frac{3u}{(u^2 + (y - 5)^2 + z^2)^{\frac{3}{2}}} \diff u \\
+  &= \int \frac{3}{2} \frac{1}{s^{\frac{3}{2}}} \diff s \\
+  &= -\frac{3}{\sqrt{s}} + C \\
+  &= -\frac{3}{\sqrt{(x + 1)^2 + (y - 5)^2 + z^2}} + C
+\end{align*}
+
+Similarly for the second and third, we get
+
+\begin{align*}
+  \int \frac{3(y - 5)}{((x + 1)^2 + (y - 5)^2 + z^2)^{\frac{3}{2}}} \diff y &= -\frac{3}{\sqrt{(x + 1)^2 + (y - 5)^2 + z^2}} + C \\
+  \int \frac{3z}{((x + 1)^2 + (y - 5)^2 + z^2)^{\frac{3}{2}}} \diff z &= -\frac{3}{\sqrt{(x + 1)^2 + (y - 5)^2 + z^2}} + C
+\end{align*}
+
+Note that these are equal. Therefore, we have:
+
+\begin{align*}
+  F(x, y, z) &= -\frac{3}{\sqrt{(x + 1)^2 + (y - 5)^2 + z^2}} + \frac{x^4}{4} + g(y, z) \\
+  &= -\frac{3}{\sqrt{(x + 1)^2 + (y - 5)^2 + z^2}} - \frac{y^7}{7} + h(x, z) \\
+  &= -\frac{3}{\sqrt{(x + 1)^2 + (y - 5)^2 + z^2}} + \frac{z^2}{2} + yz + i(x, y)
+\end{align*}
+
+Canceling terms gives $\frac{x^4}{4} + g(y, z) = -\frac{y^7}{7} + h(x, z) = \frac{z^2}{2} + yz + i(x, y)$. There is no solution to this because I am a massive idiot and should have checked that the curl was 0 first. The curl is not 0, so this vector field is not conservative and has no potential function.
+
+\problem{2}
+
+\ppart{a}
+The parametrisation here is $\mathbf{r}(t) = (\cos t, \sin t, t)$, so $\mathbf{r}^{\prime}(t) = (-\sin t, \cos t, 1)$. Suppose $D$ is the region of $\mathbf{r}$ from $(1, 0, 0)$ to $(1, 0, 2\pi)$ (i.e. $0 \leq t \leq 2\pi$). To rewrite $\mathbf{F}$ as a function of $t$, note that $x = \cos t$, $y = \sin t$ and $z = t$, so $\mathbf{F}(x, y, z) = (a \sin t + b \cos t \sin^2 t, 2 \cos^2 t \sin t, \cos^2 t - t^2)$. Then
+
+\begin{align*}
+  \int_D \mathbf{F} \cdot \mathbf{t} \diff \sigma &= \int_0^{2\pi} (a \sin t + b \cos t \sin^2 t, 2 \cos^2 t \sin t, \cos^2 t - t^2) \cdot \mathbf{r}^{\prime}(t) \diff t \\
+  &= \int_0^{2\pi} (-a \sin^2 t - b \cos t \sin^3 t + 2 \cos^3 t \sin t + \cos^2 t - t^2) \diff t
+\end{align*}
+
+Using a variety of u-substitutions, we arrive at
+
+\begin{align*}
+  \int_0^{2\pi} (-a \sin^2 t - b \cos t \sin^3 t + 2 \cos^3 t \sin t + \cos^2 t - t^2) \diff t = \frac{-6at + 3a\sin(2t) - 2b\sin^4 t - 4t^3 + 6t + 3\sin(2t) - 6\cos^4 t}{12}\Big|_0^{2\pi} \\
+  &= \frac{-12a\pi - 32\pi^3 + 12\pi - 6}{12} - \frac{-6}{12} = \frac{-12a\pi - 32\pi^3 + 12\pi}{12}
+\end{align*}
+
+\ppart{b}
+The curl is equal to
+
+\begin{align*}
+  \nabla \times \mathbf{F} = \left(\frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z}, \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x}, \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}\right)
+\end{align*}
+
+For this $\mathbf{F}$, the derivatives are:
+
+\begin{align*}
+  \frac{\partial F_x}{\partial y} &= 2bxy \\
+  \frac{\partial F_x}{\partial z} &= a\cos z \\
+  \frac{\partial F_y}{\partial x} &= 4xy \\
+  \frac{\partial F_y}{\partial z} &= 0 \\
+  \frac{\partial F_z}{\partial x} &= \cos z \\
+  \frac{\partial F_z}{\partial y} &= 0
+\end{align*}
+
+so
+
+\begin{align*}
+  \nabla \times \mathbf{F} &= (0 - 0, a\cos z - \cos z, 4xy - 2bxy) \\
+  &= (0, \cos z(a - 1), 2xy(2 - b))
+\end{align*}
+
+For $\mathbf{F}$ to be conservative, i.e. for its curl to be 0, we need $a - 1 = 0 \implies a = 1$ and $2 - b = 0 \implies b = 2$.
+
+\ppart{c}
+Suppose $\mathbf{F} = \nabla G$. Then
+
+\begin{align*}
+  \frac{\partial G}{\partial x} &= \sin z + 2xy^2 \\
+  \frac{\partial G}{\partial y} &= 2x^2y \\
+  \frac{\partial G}{\partial z} &= x \cos z - z^2
+\end{align*}
+
+Therefore
+
+\begin{align*}
+  G(x, y, z) &= x\sin z + x^2y^2 + h(y, z) \\
+  &= x^2y^2 + i(x, z) \\
+  &= x\sin z - \frac{z^3}{3} + j(x, y) \\
+\end{align*}
+
+One solution for this is $G(x, y, z) = x\sin z + x^2y^2 - \frac{z^3}{3} = \cos t \sin t + \cos^2 t \sin^2 t - \frac{t^3}{3}$. By the Fundamental Theorem of Calculus, the integral from before is equal to $G(2\pi) - G(0) = -\frac{8\pi^3}{3})$, which is exactly the same as the value calculated above when $a = 1$.
+
+\problem{3}
+
+\ppart{a}
+By the Fundamental Theorem of Calculus, $\int_{\partial D} f \diff y = \int_D f_x \diff x \diff y$, and $\int_{\partial D} f \diff x = -\int_D f_y \diff x \diff y$. Therefore
+
+\begin{align*}
+  \int_{\partial D} x \diff y &= \int_D 1 \diff x \diff y \\
+  \int_{\partial D} y \diff x &= -\int_D 1 \diff x \diff y
+\end{align*}
+
+Also, $\int_D 1 \diff x \diff y$ is simply the area of region $D$, by definition.
+
+\ppart{b}
+If $\mathbf{F}(x, y) = (x, 0)$, then $\nabla \cdot \mathbf{F}(x, y) = \frac{\partial}{\partial x} x + \frac{\partial}{\partial y} 0 = 1$.
+
+\ppart{c}
+The area of a polygon mapped by set $D$ is by definition $\int_D 1 \diff x \diff y$. Suppose $\mathbf{F}(x, y) = (x, 0)$. Then, by the divergence theorem, $\int_D 1 \diff x \diff y = \int_D \nabla \cdot \mathbf{F} \diff x \diff y = \int_{\partial D} \mathbf{F} \cdot \mathbf{\hat{n}} \diff \sigma$. In this case, $\partial D$ is the piecewise curve enclosing the polygon. Here, we can parametrise one ``face'' $C$ of the polygon (going from $(a, b)$ to $(c, d)$) as $\mathbf{r}(t) = (a + t(c - a), b + t(d - b)), 0 \leq t \leq 1$. $\mathbf{r}^{\prime}(t) = (c - a, d - b)$, and so the normal vector is $\mathbf{hat{n}} = (d - b, a - c)$. Therefore
+
+\begin{align*}
+  \int_C \mathbf{F} \cdot \mathbf{\hat{n}} \diff \sigma &= \int_0^1 (a + t(c - a), 0) \cdot (d - b, a - c) \diff t \\
+  &= \int_0^1 (a + t(c - a))(d - b) \diff t \\
+  &= \int_0^1 (a(d - b) + t(c - a)(d - b)) \diff t \\
+  &= a(d - b) + \frac{(c - a)(d - b)}{2}
+\end{align*}
+
+Therefore, the total area is the sum of these terms for all pairs of adjacent vertices $(a, b)$ and $(c, d)$.
+
+\problem{4}
+
+The parametrisation of a circle with radius $r$ is $\mathbf{s}(t) = r(\cos t, \sin t), \mathbf{s}^{\prime}(t) = r(-\sin t, \cos t)$. On this circle, $\mathbf{F}(x, y) = \left(\frac{-y}{x^2 + y^2}, \frac{x}{x^2 + y^2}\right) = (-\sin t, \cos t)$. Therefore
+
+\begin{align*}
+  \int_C \mathbf{F} \cdot \mathbf{t} \diff \sigma &= \int_0^{2\pi} (-\sin t, \cos t) \cdot r(-\sin t, \cos t) \diff t \\
+  &= \int_0^{2\pi} r(\sin^2 t + \cos^2 t) \diff t = \int_0^{2\pi} r \diff t = 2\pi r
+\end{align*}
+
+\problem{5}
+
+Assume that $X$ is indeed a closed curve. Then, we can apply the divergence theorem, like so:
+
+\begin{align*}
+  \iint_C \nabla \cdot \mathbf{F} \diff A &= \int_X \mathbf{F} \cdot \mathbf{\hat{n}} \diff \sigma \\
+  &= \int_X \mathbf{F}(X) \cdot (y', -x') \diff t \\
+  &= \int_X (x', y') \cdot (y', -x') \diff t \\
+  &= \int_X (x'y' - y'x') \diff t = 0
+\end{align*}
+
+where $C$ is the region bounded by $X$. If $\nabla \cdot \mathbf{F} > 0$ everywhere on $C$, then $\iint_C \nabla \cdot \mathbf{F} \diff A > 0$, and so $X$ cannot possibly be a closed (periodic) curve.
+
+\problem{6}
+
+\ppart{a}
+As in (4), parametrise the circle $C$ as $\mathbf{r}(t) = 4(\cos t, \sin t), \mathbf{r}^{\prime}(t) = 4(-\sin t, \cos t)$, and convert $\mathbf{F}(x, y) = (3x + 4y, 2x - 3y) = (3\cos t + 4\sin t, 2\cos t - 3\sin t)$:
+
+\begin{align*}
+  \int_C \mathbf{F} \cdot \mathbf{t} \diff \sigma &= \int_0^{2\pi} (3\cos t + 4\sin t, 2\cos t - 3\sin t) \cdot 4(-\sin t, \cos t) \diff t \\
+  &= \int_0^{2\pi} (-12\sin t \cos t -16\sin^2 t + 8\cos^2 t - 12\sin t \cos t) \diff t \\
+  &= \int_0^{2\pi} (8\cos^2 t - 16\sin^2t - 24\sin t \cos t) \diff t \\
+  &= (6(\sin(2t) + \cos(2t)) - 4t)\Big|_0^{2\pi} \\
+  &= (6 - 8\pi) - (6 - 0) = -8\pi
+\end{align*}
+
+\ppart{b}
+Suppose $D$ is the region enclosed by $C$. The area of $D$ is $\iint_D 1 \diff A$. Given $F$ such that $\nabla \times \mathbf{F} = 1$, this is equal to $\iint_D \nabla \times \mathbf{F} \diff A = \int_C \mathbf{F} \cdot \mathbf{t} \diff \sigma$. For example, $\mathbf{F}(x, y) = (x, 0)$ satisfies this property. On $C$, $F(x, y) = (2\sin t, 0)$, therefore
+
+\begin{align*}
+  \int_C \mathbf{F} \cdot \mathbf{t} \diff \sigma &= \int_0^{2\pi} (2\sin t, 0) \cdot (2\sin t, \sin t) \diff t \\
+  &= \int_0^{2\pi} 4\sin^2 t \diff t = 4\pi
+\end{align*}
+
+\ppart{c}
+By Green's Theorem, $\int{\partial D} \mathbf{F} \cdot \mathbf{t} \diff \sigma = \iint_D \nabla \times \mathbf{F} \diff A$. Suppose $D$ is the unit disk and $\mathbf{F}(x, y) = (-y^3 + \log(2 + \sin x), x^3 + \arctan y)$; then
+
+\begin{align*}
+  \int_C \mathbf{F} \cdot \mathbf{t} \diff \sigma = \iint_D \nabla \times \mathbf{F} \diff A \\
+  &= \iint_D (3x^2 - (-3y^2)) \diff A = 3\iint_D (x^2 + y^2) \diff A
+\end{align*}
+
+Transforming to polar co-ordinates, we get $x = r\cos\theta$, $y = r\sin\theta$ and $D: 0 \leq r \leq 1, 0 \leq \theta \leq 2\pi$.
+
+\begin{align*}
+  3\iint_D (x^2 + y^2) \diff A &= 3 \int_0^{2\pi} \int_0^1 r^3 \diff r \diff \theta \\
+  &= 3 \int_0^{2\pi} \frac{1}{4} \diff \theta = \frac{3\pi}{2}
+\end{align*}
+
+\problem{7}
+
+\ppart{a}
+\begin{align*}
+  \int_D \nabla \cdot \mathbf{F} \diff A &= \int_D 0 \diff A = 0 \\
+  &= \int_{\partial D} \mathbf{F} \cdot \mathbf{\hat{n}} \diff \sigma \\
+  &= \int_{\partial D} (1, 0, 0) \cdot (n_1, n_2, n_3) \diff \sigma \\
+  &= \int_{\partial D} n_1 \diff \sigma
+\end{align*}
+
+\ppart{b}
+Set $\mathbf{G} = (0, 1, 0), \mathbf{H} = (0, 0, 1)$. As above, $\int_D \nabla \cdot \mathbf{G} \diff A = \int_D \nabla \cdot \mathbf{H} \diff A = 0$. However, the dot product is $n_2$ for $\mathbf{G}$ and $n_3$ for $\mathbf{H}$. Therefore, $\int_{\partial D} n_1 \diff \sigma = \int_{\partial D} n_2 \diff \sigma = \int_{\partial D} n_3 \diff \sigma = 0$, and so $\int_{\partial D} \mathbf{\hat{n}} \diff \sigma = 0$.
+
+\ppart{c}
+Suppose $C \subseteq \partial D$ is some face of $D$; then, its area is $\int_C 1 \diff s$. The sum of the areas of all the faces is just $\int_{\partial D} 1 \diff \sigma$. Therefore
+
+\begin{align*}
+  \sum \mathrm{Area(face)} \mathbf{\hat{n}} \diff \sigma &= \int_{\partial D} 1 \mathbf{\hat{n}} \diff \sigma \\
+  &= 0
+\end{align*}
+
+\end{document}

@@ -1,0 +1,178 @@
+\documentclass[11pt]{amsart}
+
+\usepackage{amssymb,amsmath,bm}
+\usepackage{mathtools}
+\usepackage{framed}
+\usepackage{esvect}
+\usepackage{amsthm}
+\usepackage{centernot}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+
+%%%%%%%%%%%%%%% FILL THIS IN FOR EACH ASSIGNMENT
+\newcommand{\name}{Kirill Chernyshov}
+\newcommand{\sectionnum}{203}
+\newcommand{\hwnumber}{7}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator{\detm}{det}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[margin=1in, letterpaper]{geometry}
+\newcommand{\problem}[1]{\bigskip\noindent\textbf{Problem #1}}
+\newcommand{\ppart}[1]{\bigskip\textbf{(#1)}}
+\begin{document}
+\title{Math 2220 section \sectionnum\\ HW \#\hwnumber}
+\author{\name}
+\maketitle
+
+%%%%%%%%%%%%%%%%%% BEGIN TYPING SOLUTIONS HERE
+
+\problem{1}
+
+\ppart{a}
+$f(1, 2) = \left(1 + \frac{1}{2}, \frac{1}{1} + 2\right) = (1.5, 3)$
+
+\ppart{b}
+By definition, we know that
+$$
+\bf{D}f =
+\begin{bmatrix}
+	\frac{\partial f_1}{\partial x} & \frac{\partial f_1}{\partial y} \\
+	\frac{\partial f_2}{\partial x} & \frac{\partial f_2}{\partial y}
+\end{bmatrix}
+=
+\begin{bmatrix}
+	1  & -y^{-2} \\
+	-x^{-2} & 1
+\end{bmatrix}
+$$
+
+$\detm \bf{D}f = 1 - \frac{1}{x^2y^2}$. This matrix is invertible (the determinant is nonzero) at all points $(x, y)$ where $x^2 \neq \frac{1}{y^2}$.
+
+\ppart{c}
+By the inverse function theorem, $\bf{D}f^{-1}(f(a, b)) = (\bf{D}f(a, b))^{-1}$. The linear approximation for $f^{-1}(x, y)$ near a point $(a, b)$ is $L(x, y) = f^{-1}(a, b) + \bf{D}f^{-1}(a, b) \begin{bmatrix}(x - a) \\ (y - b)\end{bmatrix} = f^{-1}(a, b) + (\bf{D}f(f^{-1}(a, b))) \begin{bmatrix}(x - a) \\ (y - b)\end{bmatrix}$. In this case, $(a, b) = (1.5, 3)$ and $f^{-1}(a, b) = (1, 2)$, so:
+
+$$
+\bf{D}f^{-1}(1.5, 3) = (\bf{D}(1, 2))^{-1} =
+\left(\begin{bmatrix}
+	1 & -0.25 \\
+	-1 & 1
+\end{bmatrix}\right)^{-1}
+=
+\frac{1}{0.75}
+\begin{bmatrix}
+	1 & 0.25 \\
+	1 & 1
+\end{bmatrix}
+$$
+
+So $L(1.49, 2.9) = f^{-1}(1.5, 3) + \bf{D}f^{-1}(f(1.5, 3)) \begin{bmatrix}0.01 \\ 0.1\end{bmatrix} = (1, 2) + (0.04667, 0.1467) = (1.04667, 2.1467)$.
+
+\problem{2}
+
+\ppart{a}
+No. This would be the case if the determinant of the derivative matrix of the function with respect to the vector consisting solely of its third variable, at $(1, 2, -3)$. However, since $\nabla f(1, 2, -3) = (0, 0, 0)$, this derivative matrix is just $(0)$, so its determinant is zero.
+
+\ppart{b}
+$\nabla f(1, 0, 3) = (0, 1, 0)$, so the derivative matrix of $f$ with respect to the vector consisting solely of its second variable if $(1)$. This matrix has a nonzero determinant, so it is possible to find a function $g(x, z)$ such that around $(1, 0, 3)$, $f(x, y, z) = f(x, g(x, z), z)$.
+
+\ppart{c}
+By similar reasoning, at $(1, 2, 3)$ the derivative matrix of $f$ with regards to the vector consisting solely of $y$ is just $(1)$, so a similar $g(x, z)$ also exists in this case.
+
+\ppart{d}
+
+
+\ppart{e}
+In this case, we cannot guarantee the existence of such function $g(y, z)$ such that $f(x, y, z) = f(g(y, z), y, z)$, since at $(1, 0, 3)$ the derivative of $f$ with respect to $x$ is $0$. This means that the relevant matrix is not invertible.
+
+\problem{3}
+
+\ppart{a}
+$f(2, -2, 2) = (2 - 2 + 2, -4 + 4 - 4) = (2, -4)$.
+
+\ppart{b}
+$$
+\bf{D}f =
+\begin{bmatrix}
+	1 & 1 & 1 \\
+	v + w & u + w & u + v
+\end{bmatrix}
+$$
+
+$$
+\bf{D}f(2, -2, 2) =
+\begin{bmatrix}
+	1 & 1 & 1 \\
+	0 & 4 & 0
+\end{bmatrix}
+$$
+
+\ppart{c}
+We want to check the invertibility of the derivative matrix of $f$ with respect to the vector $(v, w)$. This matrix is $\begin{bmatrix}1 & 1 \\4 & 0\end{bmatrix}$; its determinant is $-4 \neq 0$, so we know it is invertible. Therefore, the implicit function theorem guarantees the existence of a function $g(v, w)$ such that near $(2, -2, 2)$ we have $f(u, v, w) = f(g(v, w), v, w)$. Therefore, we can solve for $v$ and $w$ in terms of $u$.
+
+\ppart{d}
+By similar reasoning, this time we exclude $w$ from the vector, so the relevant matrix is $\begin{bmatrix}1 & 1 \\0 & 4\end{bmatrix}$. This matrix has determinant $4$ so once again we have $g$. Therefore we can solve for $u$ and $v$ in terms of $w$ near $(2, -2, 2)$.
+
+\problem{4}
+\ppart{a}
+The vector $(x, y)$ must be on the unit circle, since $x^2 + y^2 = 1$. $(u, v)$ is tangent to the unit circle, since $(u, v)$ is orthogonal to $(x, y)$ as their dot product is $0$. Therefore, $T$ is the set of vectors tangent to the unit circle.
+
+\ppart{b}
+$f(x, y, u, v) = (x^2 + y^2, ux + vy)$. By definition,
+
+$$
+\bf{D}f =
+\begin{bmatrix}
+	2x & 2y & 0 & 0 \\
+	u & v & x & y
+\end{bmatrix}
+$$
+
+\ppart{c}
+The set of these points is the set of points where the matrix of derivatives of $f$ with respect to $x$ and $u$ is invertible. This matrix is:
+
+$$
+\bf{M} =
+\begin{bmatrix}
+	\frac{\partial f_1}{\partial x} & \frac{\partial f_1}{\partial u} \\
+	\frac{\partial f_2}{\partial x} & \frac{\partial f_2}{\partial u}
+\end{bmatrix}
+=
+\begin{bmatrix}
+	2x & 0 \\
+	u & x
+\end{bmatrix}
+$$
+
+This (and any) matrix is invertible iff its derivative is nonzero. $\detm M = 2x^2$, so wherever $x \neq 0$, this matrix is invertible, and therefore by the implicit function theorem there exists a function $g$ such that $g(x, u) = (y, v)$.
+
+\ppart{d}
+We have $x^2 + y^2 = 1 \implies y = \pm \sqrt{1 - x^2}$, and $ux + vy = 0 \implies v = -\frac{ux}{y} = \mp \frac{ux}{\sqrt{1 - x^2}}$.
+
+\problem{5}
+
+\ppart{a}
+It is given that $f(c(x)) = k$ for all $x \in \mathbb{R}$, where $k \in \mathbb{R}$ is a constant. This means that for all values of $\bf{v} = c(x)$, $f(\bf{v})$ is constant, which means by definition that the image of $c$ is contained in a level set of $f$.
+
+\ppart{b}
+By the chain rule, $\nabla(f \circ c)(t) = \nabla f(c(t)) \cdot \nabla c(t)$. Since $f \circ c$ is constant, $\nabla(f \circ c)(t) = 0$, so $\nabla f(c(t)) \cdot \nabla c(t) = 0$.
+
+\ppart{c}
+In my proof of part (b), I assumed nothing about the dimension of the vectors. The proof holds for any such $c: \mathbb{R} \rightarrow \mathbb{R}^n$ and $f: \mathbb{R}^n \rightarrow \mathbb{R}$ regardless of the value of $n$.
+
+\ppart{d}
+Since the image of $c$ is contained in a level set of $f$, and $\nabla f(c(t))$ is the gradient of $f$ at $c(t)$, which is in a level set of $f$, geometrically this means that the gradient of a function is always perpendicular to the direction of its level set (since their dot product is 0).
+
+\ppart{e}
+
+\end{document}

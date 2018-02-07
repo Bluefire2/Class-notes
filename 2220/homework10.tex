@@ -1,0 +1,163 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Math 2220 HW \#10}
+\author{\name}
+\maketitle
+
+\problem{1}
+
+\ppart{a}
+If we transform to polar co-ordinates, $x^2 + y^2 = r$, so we have $a \leq r \leq b$. The limits for $\theta$ are $0 \leq \theta \leq 2\pi$, since we are integrating across the entire annulus. Therefore, using the substitution $u = -r^2$:
+
+\begin{align*}
+  \int_D e^{-x^2 - y^2} \diff A &= \int_0^{2\pi} \int_a^b r e^{-r^2} \diff r \diff \theta \\
+  &= \int_a^b \int_0^{2\pi} r e^{-r^2} \diff \theta \diff r = 2\pi \int_a^b r e^{-r^2} \diff r \\
+  &= 2\pi \int_{-a^2}^{-b^2} -\frac{e^u}{2} \diff u = \pi \int_{-b^2}^{-a^2} e^u \diff u \\
+  &= \pi (e^{-a^2} - e^{-b^2})
+\end{align*}
+
+\ppart{b}
+This is equal to the integral from above, with $a = 0, b = \infty$:
+
+\begin{align*}
+  \int_{\mathbb{R}^2} e^{-x^2 - y^2} \diff A &= \int_0^{2\pi} \int_0^{\infty} r e^{-r^2} \diff r \diff \theta \\
+  &= \lim_{b \rightarrow \infty} \pi (e^{-0^2} - e^{-b^2}) = \pi
+\end{align*}
+
+\ppart{c}
+By the theorem proved in problem 3 from homework 9, we know that $\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^{-x^2 - y^2} \diff x \diff y = \left(\int_{-\infty}^{\infty} e^{-x^2} \diff x\right) \left(\int_{-\infty}^{\infty} e^{-y^2} \diff y\right) = \left(\int_{-\infty}^{\infty} e^{-x^2} \diff x\right)^2$. Since $\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^{-x^2 - y^2} \diff x \diff y = \int_{\mathbb{R}^2} e^{-x^2 - y^2} \diff A = \pi$, it follows that $\int_{-\infty}^{\infty} e^{-x^2} \diff x = \sqrt{\pi}$.
+
+\problem{2}
+
+The limits of this integral are $0 \leq x \leq 1, 0 \leq y \leq 1 - x, 0 \leq z \leq 1 - x^2$. To solve this problem we must rearrange these inequalities, so that the limits for $z$ and then $y$ are absolute.
+
+We have $0 \leq x \leq 1, 0 \leq z \leq 1 - x^2$, which is equivalent to $0 \leq z \leq 1, 0 \leq x \leq \sqrt{1 - z}$. Therefore, the integral becomes
+
+\begin{align*}
+  \int_0^1 \int_0^{\sqrt{1 - z}} \int_0^{1 - x} f(x, y, z) \diff y \diff x \diff z
+\end{align*}
+
+Similarly, we have $0 \leq x \leq 1, 0 \leq y \leq 1 - x$, which is equivalent to $0 \leq y \leq 1, 0 \leq x \leq 1 - y$, so the integal becomes
+
+\begin{align*}
+  \int_0^1 \int_0^{1 - y} \int_0^{1 - x^2} f(x, y, z) \diff z \diff x \diff y
+\end{align*}
+
+\problem{3}
+
+\ppart{a}
+$\int_D e^{-x} \diff A = \int_0^{\infty} \int_0^1 e^{-x} \diff y \diff x = \int_0^{\infty} e^{-x} \diff x = 1$.
+
+\ppart{b}
+$\int_0^{\infty} e^{-xy} \diff x = -e^{-xy} \Big|_{x = 0}^{x = \infty} = \frac{e^{0} - e^{-\infty}}{y} = \frac{1}{y}$.
+
+\ppart{c}
+$\int_D e^{-xy} \diff A = \int_0^1 \int_0^{\infty} e^{-xy} \diff x \diff y = \int_0^1 \frac{1}{y} \diff y$. $\frac{1}{y}$ is not integrable over any domain that icludes $y = 0$, so $e^{-xy}$ is not integrable over $D$.
+
+\problem{4}
+
+A circle with radius $R$ is defined by the curve $x^2 + y^2 = R^2$. If we transform to polar co-ordinates using $u(x, y) = (r\cos\theta, r\sin\theta)$, we get $r^2 = R^2$, or $r = R$ (there is no need for a minus sign, as $r$ cannot be negative), for $0 \leq \theta \leq 2\pi$. So, the area of the circle is the integral of $r$ (the determinant of $\vv{D}u$) over all points inside the circle ($C: x^2 + y^2 \leq R$):
+
+\begin{align*}
+  \int_C \diff x \diff y = \int_0^{2\pi} \int_0^R r \diff r \diff \theta &= \int_0^{2\pi} \frac{R^2}{2} \diff \theta \\
+  &= 2\pi \frac{R^2}{2} = \pi R^2
+\end{align*}
+
+Similarly, a sphere with radius $R$ is defined by $x^2 + y^2 + z^2 = R^2$. If we transform to spherical co-ordinates using $v(x, y, z) = (\rho \sin\theta \cos\phi, \rho \sin\theta \sin\phi, \rho \cos\theta)$, we have $x^2 + y^2 + z^2 = \rho^2 \sin^2\theta \cos^2\phi + \rho^2 \sin^2\theta \sin^2\phi + \rho^2 \cos^2\theta = \rho^2(\sin^2\theta \cos^2\phi + \sin^2\theta \sin^2\phi + \cos^2\theta) = \rho^2(\sin^2\theta[\cos^2\phi + \sin^2\phi] + \cos^2\theta) = \rho^2(\sin^2\theta + \cos^2\theta) = \rho^2$, and therefore $\rho = R$ (no minus sign for the same reason). The limits for a complete sphere are, therefore, $0 \leq \rho \leq R, 0 \leq \theta \leq \pi, 0 \leq \phi \leq 2\pi$. The Jacobian matrix for $v$ is
+
+\begin{align*}
+  \vv{D}v = \begin{bmatrix}
+    \frac{\partial x}{\partial \rho} & \frac{\partial x}{\partial \theta} & \frac{\partial x}{\partial \phi} \\
+    \frac{\partial y}{\partial \rho} & \frac{\partial y}{\partial \theta} & \frac{\partial y}{\partial \phi} \\
+    \frac{\partial z}{\partial \rho} & \frac{\partial z}{\partial \theta} & \frac{\partial z}{\partial \phi}
+  \end{bmatrix}
+  &=
+  \begin{bmatrix}
+    \sin\theta \cos\phi & \rho \cos\theta \cos\phi & -\rho \sin\theta \sin\phi \\
+    \sin\theta \sin\phi & \rho \cos\theta \sin\phi & \rho \sin\theta \cos\phi \\
+    \cos\theta & -\rho \sin\theta & 0
+  \end{bmatrix}
+\end{align*}
+
+Therefore, $\diff x \diff y \diff z = \detm \vv{D}v \diff \rho \diff \theta \diff \phi = \rho^2 \sin\phi \diff \rho \diff \theta \diff \phi$. To find the volume of the sphere, we need to integrate on the set $S: x^2 + y^2 + z^2$. Using the transformation rules derived above, we have
+
+\begin{align*}
+  \int_S \diff x \diff y \diff z &= \int_0^{\pi} \int_0^{2\pi} \int_0^R \rho^2 \sin\phi \diff \rho \diff \theta \diff \phi \\
+  &= \int_0^{\pi} \int_0^{2\pi} \frac{R^3}{3} \sin\phi \diff \theta \diff \phi \\
+  &= \int_0^{\pi} \frac{2\pi R^3}{3} \sin\phi \diff \phi \\
+  &= \frac{4\pi R^3}{3}
+\end{align*}
+
+\problem{5}
+
+The limits given by the definition of $W$ are $0 \leq z \leq 25 - x^2 - y^2, -\sqrt{4 - x^2} \leq y \leq \sqrt{4 - x^2}, -2 \leq x \leq 2$. Therefore:
+
+\begin{align*}
+  \int_W (x^2 + y^2 + 2z) \diff V &= \int_{-2}^2 \int_{-\sqrt{4 - x^2}}^{\sqrt{4 - x^2}} \int_0^{25 - x^2 - y^2} (x^2 + y^2 + 2z) \diff z \diff y \diff x \\
+  &= \int_{-2}^2 \int_{-\sqrt{4 - x^2}}^{\sqrt{4 - x^2}} (zx^2 + zy^2 + z^2)\Big|_{z = 0}^{z = 25 - x^2 - y^2} \diff y \diff x \\
+  &= \int_{-2}^2 \int_{-\sqrt{4 - x^2}}^{\sqrt{4 - x^2}} x^2(25 - x^2 - y^2) + y^2(25 - x^2 - y^2) + (25 - x^2 - y^2)^2 \diff y \diff x \\
+  &= \int_{-2}^2 \int_{-\sqrt{4 - x^2}}^{\sqrt{4 - x^2}} 25(25 - x^2 - y^2) \diff y \diff x = 25 \int_{-2}^2 \int_{-\sqrt{4 - x^2}}^{\sqrt{4 - x^2}} (25 - x^2 - y^2) \diff y \diff x \\
+  &= 25 \int_{-2}^2 (25y - yx^2 - \frac{y^3}{3}) \Big|_{y = -\sqrt{4 - x^2}}^{y = \sqrt{4 - x^2}} \diff x = -25 \int_{-2}^2 \frac{2}{3}\sqrt{4 - x^2}(2x^2 - 71) \diff x \\
+\end{align*}
+
+This somehow evaluates to $2300\pi$.
+
+\problem{6}
+
+Mass can be evaluated as the integral of density with respect to volume. In this case, the cube has side length 2 and density $\rho(x, y, z) = x^2 + y^2$. Assuming the cube is centered at the origin, the limits of integration are $-1 \leq x, y, z \leq 1$. Therefore, the total mass is
+
+\begin{align*}
+  \int_C \rho(x, y, z) \diff V &= \int_{-1}^1 \int_{-1}^1 \int_{-1}^1 (x^2 + y^2) \diff z \diff y \diff x \\
+  &= \int_{-1}^1 \int_{-1}^1 2(x^2 + y^2) \diff y \diff x \\
+  &= \int_{-1}^1 4x^2 + \frac{4}{3} \diff x \\
+  &= \frac{16}{3}
+\end{align*}
+
+If the density is instead $\rho(x, y, z) = x^2 + y^2 + z^2$, then the total mass is
+
+\begin{align*}
+  \int_C \rho(x, y, z) \diff V &= \int_{-1}^1 \int_{-1}^1 \int_{-1}^1 (x^2 + y^2 + z^2) \diff z \diff y \diff x \\
+  &= \int_{-1}^1 \int_{-1}^1 \left(2(x^2 + y^2) + \frac{2}{3}\right) \diff y \diff x \\
+  &= \int_{-1}^1 \left(4x^2 + \frac{8}{3}\right) \diff x \\
+  &= \frac{4}{3} + \frac{8}{3} + \frac{4}{3} + \frac{8}{3} = 8
+\end{align*}
+
+\problem{7}
+To find the volume of a cylinder with radius $r$ and height $h$, we can compute the following integral:
+
+\begin{align*}
+  \int_0^h \int_{-r}^{r} \int_{-\sqrt{r - x^2}}^{\sqrt{r - x^2}} \diff y \diff x \diff z
+\end{align*}
+
+However, in this case we need to find the volume of a part of the cylinder. In this case, there is a variable lower bound on the value of $x$, which varies as a linear function of $z$. When $z = h$, $r \geq x \geq r$, and when $z = 0$, $r \geq x \geq -r$. Therefore, $r \geq x \geq r(\frac{2z}{h} - 1)$, and we need to find the following:
+
+\begin{align*}
+  \int_0^h \int_{r(\frac{2z}{h} - 1)}^{r} \int_{-\sqrt{r - x^2}}^{\sqrt{r - x^2}} \diff y \diff x \diff z
+\end{align*}
+
+Since this function is linear, and since, as mentioned, at $z = h$, $r \geq x \geq r => x = r$, and at $z = 0$, $r \geq x \geq -r$, this integral is equal to half of the integral above, i.e. half of the volume of the cylinder with radius $r$ and height $h$. Its value is therefore $\frac{\pi r^2h}{2}$.
+
+\problem{8}
+
+\ppart{a}
+The unit disk is defined as the set $C: \left\{(x, y) | x^2 + y^2 \leq 1\right\}$. The distance from the centre of a point $(x, y)$ is $\sqrt{x^2 + y^2}$; transforming to polar co-ordinates, we use $u(x, y) = (r\cos\theta, r\sin\theta)$, $\detm \vv{D}u = r$, so:
+
+\begin{align*}
+  \int_{-1}^1 \int_{-\sqrt{1 - x^2}}^{\sqrt{1 - x^2}} \sqrt{x^2 + y^2} \diff y \diff x &= \int_0^{2\pi} \int_0^1 r^2 \diff r \diff \theta \\
+  &= \int_0^{2\pi} \frac{1}{3} \diff \theta = \frac{2\pi}{3}
+\end{align*}
+
+To get the mean value we need to divide by the area, which is $\pi$, so we have $\frac{2}{3}$.
+
+\ppart{b}
+Similarly, the unit sphere is defined as the set $S: \left\{(x, y, z) | x^2 + y^2 + z^2 \leq 1\right\}$. The distance from the centre of $(x, y, z)$ is $\sqrt{x^2 + y^2 + z^2}$. To transform to spherical co-ordinates, use $v(x, y, z) = (\rho \sin\theta \cos\phi, \rho \sin\theta \sin\phi, \rho \cos\theta)$, $\detm \vv{D}v = \rho^2 \sin\phi$; the distance to the centre becomes $\sqrt{x^2 + y^2 + z^2} = \rho$. Therefore, the integral becomes:
+
+\begin{align*}
+  \int_0^{\pi} \int_0^{2\pi} \int_{0^1} \rho^3 \sin\phi \diff \rho \diff \theta \diff \phi \\
+  &= \int_0^{\pi} \int_0^{2\pi} \frac{\sin\phi}{4} \diff \theta \diff \phi \\
+  &= \int_0^{\pi} \frac{\pi \sin\phi}{2} \diff \phi = \pi
+\end{align*}
+
+The volume of the unit sphere is $\frac{4\pi}{3}$, so the average distance is $\frac{3\pi}{4\pi} = \frac{3}{4}$.
+
+\end{document}

@@ -1,0 +1,52 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Bivariate random variables}
+\maketitle
+
+\section{Discrete joint distributions of bivariate random vectors}
+$(X, Y)$ has a joint distribution if:
+
+\begin{itemize}
+\item The set of possible values $(x, y)$ of $(X, Y)$ is countable
+\item The joint probability function of $(X, Y)$, denoted by $f(x, y)$, is given by $f(x, y) = \mathbb{P}(X = x, Y = y)$.
+\end{itemize}
+
+Example: let $X$ be the number of cars in a household ($X \in \left\{1, 2, 3\right\}$) and let $Y$ be the number of TVs in a household ($Y \in \left\{1, 2, 3, 4\right\}$). Then, the set of outcomes of $(X, Y)$ is the cartesian product of the outcome sets of $X$ and $Y$. The distribution of $(X, Y)$ can be described in a \textit{contingency table}: a table of all the possible combinations of the values of $X$ and $Y$ and the probability of each of those outcomes.
+
+For any such discrete joint distribution, we have the following properties, much like for univariate distributions:
+
+\begin{itemize}
+\item $f(a, b) = 0$ iff $(a, b)$ is not a possible value of $(X, Y)$
+\item $\sum f(x, y) = 1$
+\item $\mathbb{P}\left[(X, Y) \in C\right] = \sum_{(x, y) \in C} f(x, y)$
+\end{itemize}
+
+\section{Continuous joint distributions}
+$(X, Y)$ has a continuous joint distribution iff there exists a function $f: \mathbb{R}^2 \rightarrow \mathbb{R}_+$ such that for any $C \subseteq \mathbb{R}$ we can calculate $\mathbb{P}\left[(X, Y) \in C)\right] = \int \int_C f(x, y) \diff x \diff y$. Such a distribution must satisfy $\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) \diff x \diff y = 1$, much like a univariate continuous distribution.
+
+\subsection{Independence and conditional probabilities}
+If $(X, Y)$ has a continuous joint distribution, then $X$ and $Y$ are independent iff $f(x, y) = f_X(x)f_Y(y)$, where $f_X(x)$ and $f_Y(y)$ are the \textit{marginal} p.d.f.s of $X$ and $Y$ respectively. In general, if $f(x, y)$ can be expressed as the product $h_1(x)h_2(y)$, for any functions $h_1$ and $h_2$, then $X$ and $Y$ are independent.
+
+Using the definition for conditional probabilities, we can also work out $\mathbb{P}(a < X < b | Y = y)$ and $\mathbb{P}(a < Y < b | X = x)$. This is because $f(x, y) \equiv f(x | y)f_Y(y) = f(y | x)f_X(x)$. We define $\mathbb{P}(a < X < b | Y = y) = \int_a^b f(x | y) \diff x$.
+
+\section{Transformation of a continuous random variable}
+For some random variable $X$ with p.d.f. $f(x)$, define $Y = r(X)$. We can calculate the p.d.f. and c.d.f. of $Y$ as follows. By definition, the c.d.f. of $Y$ $G(y) = \mathbb{P}(Y \leq y) = \mathbb{P}(r(X) \leq y) = \int_{\left\{x: r(x) \leq y\right\}} f(x) \diff x$. Then, the p.d.f. of $Y$ is $g(y) = \frac{\diff}{\diff y} G(y)$.
+
+\subsubsection{Example}
+Suppose $X \thicksim U[-1, 1]$, and let $Y = X^2$. To find the p.d.f. of $Y$, we must first find its c.d.f.. The range of $Y$ is that of $X^2$, i.e. $0 \leq Y \leq 1$. Then, $G(y) = \mathbb{P}(Y \leq y) = \mathbb{P}(X^2 \leq y) = \mathbb{P}(-\sqrt{y} \leq X \leq \sqrt{y}) = \int_{-\sqrt{y}}^{\sqrt{y}} f(x) \diff x = \int_{-\sqrt{y}}^{\sqrt{y}} \frac{1}{2} \diff x = \sqrt{y}$. Finally, the p.d.f. of $Y$ is $\frac{\diff}{\diff y} \sqrt{y} = \frac{1}{2\sqrt{y}}$, $0 < y < 1$.
+
+\subsection{Deriving the p.d.f. of $Y = r(X)$ where $k$ is injective and differentiable}
+This is a special case of the above. In this case, pushing through the algebra we have $g(y) = f(s(y)) \cdot |s'(y)|$, where $s(y) = k^{-1}(y)$.
+
+\subsubsection{Example}
+Suppose $f(x) = \begin{cases}e^{-x} & x > 0 \\ 0 & x \leq 0\end{cases}$, and let $Y = -2X + 3$. Then, the p.d.f. of $Y$ is $g(y) = \frac{1}{2}f\left(\frac{3 - y}{2}\right) = \begin{cases}\frac{1}{2} e^{-\frac{3 - y}{2}} & y < 3 \\ 0 & y \geq 3\end{cases}$.
+
+\subsection{Transformation of a bivariate vector}
+Suppose $(X_1, X_2) \thicksim f(x_1, x_2)$, $r: \mathbb{R}^2 \rightarrow \mathbb{R}$ and $Y = r(X_1, X_2)$. Then, the c.d.f. of $Y$ is still denoted by $G(y) = \mathbb{P}(Y \leq y) = \int \int_{\left\{(x_1, x_2) \in \mathbb{R}^2 | r(x_1, x_2) \leq y\right\}} f(x_1, x_2) \diff x_1 \diff x_2$.
+
+In particular, if $Y = a_1X_1 + a_2X_2 + b$, then it can be shown that $g(y) = \frac{1}{|a_1|}\int_{-\infty}^{\infty} f\left(\frac{y - b - a_2x_2}{a_1}, x_2\right) \diff x_2$.
+
+\section{The distribution of the maximum of $n$ independent variables}
+Suppose $X_1, X_2 \cdots X_n \thicksim f(x)$, and let $Y_n = \max(X_1, X_2 \cdots X_n)$. 
+
+\end{document}

@@ -1,0 +1,63 @@
+\input{../preamble.tex}
+\begin{document}
+\title{STSCI 3080 HW \#6}
+\author{\name}
+\maketitle
+
+\problem{5.9.6}
+We are given $p_3 = 0.38, p_4 = 0.32$. Therefore, $\E(X_3) = 15 \cdot 0.38 = 5.7, \E(X_4) = 15 \cdot 0.32 = 4.8, \Var(X_3) = 15 \cdot 0.38(1 - 0.38) = 3.534, \Var(X_4) = 15 \cdot 0.32(1 - 0.32) = 3.264$. By definition we know that $\E(X_3 - X_4) = \E(X_3) - \E(X_4) = 0.9$, and $\Var(X_3 - X_4) = \Var(X_3) + \Var(X_4) = 6.798$.
+
+\problem{5.10.2}
+The random variable $(B|a)$, where $a = 80$ is a score on test A is normally distributed. Its parameters are
+
+\begin{align*}
+  \mu &= \mu_B + \rho \sigma_B\left(\frac{a - \mu_A}{\sigma_A}\right) = 90 + 0.8 \cdot 16\left(\frac{80 - 85}{10}\right) = 83.6 \\
+  \sigma^2 &= (1 - \rho^2)\sigma_B^2 = (1 - 0.8^2)16^2 = 92.16
+\end{align*}
+
+The result $(B|80) = 90$ is 6.4 away from the mean; given $\sigma = \sqrt{92.16} = 9.6$, this is $\frac{2}{3}$ standard deviations. Therefore, $\mathbb{P}(B|80 > 90) = 1 - \Phi(0.6667) = 1 - 0.7474 = 0.2525$.
+
+\problem{5.10.5}
+The prediction with the smallest mean standard error is $\E(A|100) = \mu_A + \rho \cdot \sigma_A\left(\frac{100 - \mu_B}{\sigma_B}\right) = 85 + 0.8 \cdot 10\left(\frac{100 - 90}{16}\right) = 90$. The mean standard error is $\Var(A|100) = (1 - \rho^2)\sigma_A^2 = (1 - 0.8^2)10^2 = 36$.
+
+\problem{6.2.6}
+We know that $\E(\mean{X}) = \mu$ and $\Var(\mean{X}) = \frac{\sigma^2}{n}$ where $n$ is the number of observations. Using Chebyshev's inequality, $\mathbb{P}(6 \leq \mean{X} \leq 7) = \mathbb{P}(|\mean{X} - 6.5| \leq 0.5) = 1 - \mathbb{P}(|\mean{X} - 6.5| \geq 0.5) \geq 1 - \frac{\Var{\mean{X}}}{0.5} = 1 - \frac{8}{n} = 0.8$; therefore, the smallest $n$ that satisfies this is $n = 40$.
+
+\problem{6.3.1}
+Let $X$ be the length of rope produced in one minute, in feet, and let $T$ be the total length of rope produced in 60 minutes. Then, $T \thicksim N(60 \cdot 4, 60 \cdot \frac{5^2}{12^2}) = N(240, 10.42)$, and $\mathbb{P}(T \geq 250) = 1 - \Phi\left(\frac{250 - 240}{\sqrt{10.42}}\right) = 1 - \Phi(3.098) = 1 - 0.9990 = 0.001$.
+
+\problem{6.3.5}
+Define $X$ as being 1 if an item is defective and 0 if it is not defective, with $\mu = 0.1, \sigma^2 = 0.1 \cdot 0.9 = 0.09$. Then, $\mean{X}$ is the proportion of defective items out of a total sample of $n$ items. It follows from the central limit theorem that $\mean{X} \thicksim N(\mu, \frac{\sigma^2}{n}) = N(0.1, \frac{0.09}{n})$. We need to find the smallest $n$ such that $\mathbb{P}(\mean{X} < 0.13) \geq 0.99$.
+
+\begin{align*}
+  \mathbb{P}(\mean{X} < 0.13) &= \Phi\left(\frac{0.13 - 0.1}{\frac{0.09}{n}}\right) = \Phi\left(\frac{n}{3}\right) \geq 0.99\\
+  \frac{n}{3} &\geq \Phi^{-1}(0.99) = 2.3264 \\
+  n \geq 6.9792
+\end{align*}
+
+Therefore, the smallest number of samples that satisfies this property is $n = 7$.
+
+\problem{6.4.2}
+We are given that $X \thicksim B(15, 0.3)$. Suppose $Y \thicksim N(4.5, 3.15)$; applying a continuity correction, $\mathbb{P}(X = 4) = \mathbb{P}(3.5 < Y < 4.5) = \mathbb{P}(Y < 4.5) - \mathbb{P}(Y < 3.5) = 0.5 - (1 - \Phi\left(\frac{4.5 - 3.5}{\sqrt{3.15}}\right)) = 0.5 - (1 - \Phi(0.5634)) = 0.5 - (1 - 0.7134) = 0.2134$.
+
+\problem{8.3.6}
+
+\ppart{a}
+The M.L.E. of the standard deviation of the normal distribution has the chi-squared distribution with $n$ degrees of freedom, where $n$ is the sample size. Since
+
+\begin{align*}
+  \mathbb{P}\left(\frac{\sigma^2}{2} \leq \frac{1}{n} \sum_{i = 1}^n(X_i - \mu)^2 \leq 2\sigma^2\right) &= \mathbb{P}\left(\frac{n}{2} \leq \sum_{i = 1}^n\frac{(X_i - \mu)^2}{\sigma^2} \leq 2n\right)
+\end{align*}
+
+use $n = 16$ and the chi-squared distribution with 16 degrees of freedom. $\mathbb{P}(8 \leq \chi^2_{16} \leq 32) = \mathbb{P}(\chi^2_{16} \leq 32) - \mathbb{P}(\chi^2_{16} \leq 8) = 0.990 - 0.0511 = 0.9389$.
+
+\ppart{b}
+The value of $\sum_{i = 1}^n\frac{(X_i - \mean{X}_n)^2}{\sigma^2}$ has the chi-squared distribution with $n - 1$ degrees of freedom. Since
+
+\begin{align*}
+  \mathbb{P}\left(\frac{\sigma^2}{2} \leq \frac{1}{n} \sum_{i = 1}^n(X_i - \mean{X}_n)^2 \leq 2\sigma^2\right) = \mathbb{P}\left(\frac{n}{2} \leq \sum_{i = 1}^n\frac{(X_i - \mean{X}_n)^2}{\sigma^2} \leq 2n\right)
+\end{align*}
+
+use $n = 16$ and the chi-squared distribution with 15 degrees of freedom. $\mathbb{P}(8 \leq \chi^2_{15} \leq 32) = \mathbb{P}(\chi^2_{15} \leq 32) - \mathbb{P}(\chi^2_{15} \leq 8) = 0.994 - 0.0762 = 0.9178$.
+
+\end{document}

@@ -1,5 +1,7 @@
 *.txt
-*.pdf
+*.aux
+*.log
+*.synctex.gz
 *.png
 *.java
 /cs/

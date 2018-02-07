@@ -1,0 +1,109 @@
+\input{../preamble.tex}
+\usepackage{hyperref}
+\begin{document}
+\problem{1}
+
+\ppart{a}
+The four elements of $\left[ \left\{ 1, 2 \right\} \rightarrow \left\{ a, b \right\} \right]$ are: $f: 1 \mapsto a, 2 \mapsto a$, $g: 1 \mapsto a, 2 \mapsto b$, $h: 1 \mapsto b, 2 \mapsto a$ and $i: 1 \mapsto b, 2 \mapsto b$. Two elements of $\left[ \left\{ x, y, z \right\} \rightarrow \left[ \left\{ 1, 2 \right\} \rightarrow \left\{ a, b \right\} \right] \right]$ are $\left\{ x, y, z \right\} \mapsto f$ and $\left\{ x, y, z \right\} \mapsto g$.
+
+\ppart{b}
+This problem can be made significantly easier by re-interpreting the sets $A = \left[X \rightarrow \left[Y \rightarrow Z\right]\right]$ and $B = \left[(X \times Y) \rightarrow Z\right]$.
+
+$B$ can be thought of as the set of functions $h: (x \in X, y \in Y) \rightarrow Z$, simply by using the definition of the cartesian product. The latter is defined as a set of all the possible 2-sets made from one element of $X$ and one element of $Y$; inputting such a 2-set into a function $g$ is equivalent to inputting a 2-vector $(x, y)$. Thus, we have $h(x, y) = z \in Z$.
+
+$A$ can be thought of as the set of functions $f$ that take $x \in X$ and return a function $g: y \in Y \rightarrow z \in Z$. If we look at $t = f(x)(y)$, it is a function that takes two values $x \in X$, $y \in Y$ and returns $z \in Z$. We can interpret this as $t \in A: (x \in X, y \in Y) \rightarrow Z$, and note that this is exactly the same as our definition for $h \in B$! This means $A$ and $B$ represent sets of functions with the same domain and codomain.
+
+\lemma: let $S$ and $T$ be sets of all functions with domain $D$ and codomain $C$. Then, there exists a bijection between $S$ and $T$.
+
+\begin{proof}
+Pick any $s \in S$. Define $F$ as the function that maps a function $a$ to another function $b$ such that $a$ and $b$ both have domain $D$ and codomain $C$, and $a(i) = b(i)$ for all $i \in D$. $F$ is injective, since $s \in S, t \in T, F(s) = F(t)$ means that $f(i) = g(i)$ for all $i$, which means $f = g$. $F$ is also surjective. This is because for any function $t \in T$, there exists a function $s \in S$ such that $s(i) = t(i)$ for all $i$, since $S$ and $T$ are sets of all functions with domain $D$ and codomain $C$; $t \in T$ satisfies this property so an equivalent function must also exist in $S$.
+
+Since $F$ is both injective and surjective, it is a bijection.
+\end{proof}
+\bigskip
+This lemma implies that there must be a bijection between $A$ and $B$. This bijection is given by $F$ defined as the function that maps $a \in A$ to $b \in B$ such that $a(x)(y) = b(\left\{ x, y \right\})$.
+
+\problem{2}
+
+We can apply Cantor's diagonalisation to this in a way similar to his proof that the reals are uncountable. We do this by first assuming there \textit{is} a bijection $f: \mathbb{N} \rightarrow S = \left[ \mathbb{N} \rightarrow \left\{ 0, 1 \right\} \right]$, and then tabulating all possible elements of $S$ as follows. Put every element of $\mathbb{N}$, that is, every natural number $n$, on the ``y-axis'', and put each possible function $g = f(n)$ on the ``x-axis''. Then, each cell value will be either $0$ or $1$, according to which value $g(n)$ is.
+
+\begin{center}
+\begin{tabular}{lccccc}
+$n$ & $f(0)(n)$? & $f(1)(n)$? & $f(2)(n)$? & $f(3)(n)$? & $\cdots$ \\ \hline
+0   & 1 & 0 & 0 & 1 & $\cdots$ \\
+1   & 0 & 0 & 0 & 0 & $\cdots$ \\
+2   & 1 & 1 & 1 & 1 & $\cdots$ \\
+3   & 1 & 0 & 1 & 1 & $\cdots$ \\
+$\vdots$ & & & & $\ddots$ \\
+\end{tabular}
+\end{center}
+
+Then, we can create a function $g_D$ that does not appear in this table. We ensure that by defining $g_D$ as mapping $n$ to $0$ if $f(n)(n) = 1$, and otherwise mapping $n$ to $1$ if $f(n)(n) = 0$. This guarantees that $g_D$ cannot be $f(n)$ for any $n$, as for any such $g = f(n)$, $g_D(n) \neq g(n)$. This shows that $f$ cannot be surjective, and is therefore not a bijection. As there does not exist a bijection $f: \mathbb{N} \rightarrow S$, $S$ is uncountable.
+
+\problem{3}
+
+\lemma: the union of a finite amount of countable sets is countable.
+
+\begin{proof}
+Let $M = \bigcup_{i = 1}^n t_i$, where $n$ is finite. Let $t_{mn}$ be the \textit{m}th element of $t_n$. Then, we can do something similar to the technique used to prove that $\mathbb{Q}$ is countable, by arranging all the elements in a matrix like so:
+
+$$
+\begin{matrix}
+  t_{11} & t_{12} & t_{13} & \cdots \\
+  t_{21} & t_{22} & t_{23} & \cdots \\
+  t_{31} & t_{32} & t_{33} & \cdots \\
+  \vdots & \vdots & \vdots & \ddots
+\end{matrix}
+$$
+
+Using the same diagonal argument, we can create a bijective function $f: 1 \mapsto t_{11}, 2 \mapsto t_{12}, 3 \mapsto t_{21}, 4 \mapsto t_{13}, 5 \mapsto t_{22}$, et cetera, that maps $\mathbb{N}$ to $M$.
+\end{proof}
+
+If $(\mathbb{R} \setminus{\mathbb{Q}})$ is countable, then by the above lemma, $\mathbb{Q} \cup (\mathbb{R} \setminus{\mathbb{Q}}) = \mathbb{R}$ is countable, since $\mathbb{Q}$ is countable. However, $\mathbb{R}$ is uncountable, so the assumption that $(\mathbb{R} \setminus{\mathbb{Q}})$ is countable must be false.
+
+\problem{4}
+
+The first student is correct. The second student is incorrect: Cantor's diagonalisation does not apply in this case. The reason is as follows: since every set in $X$ is finite, for each set there must exist a number $n$ such that $n$ is the largest number in that set. Therefore, after that number, the element's line in the table must become an infinite line of ``no''s. That means, the line for $S_D$ must end with infinite ``yes''s, which means there is no $n$ such that $n$ is the biggest number in $S_D$. Thus, $S_D$ is not finite, and is not in $X$.
+
+\problem{5}
+
+\ppart{a}
+This can be calculated as follows: there are $n$ letters to pick from at first, then $n - 1$, then $n - 2$, et cetera, until $n - m$. Therefore, the total number of words is $\prod_{i = 0}^m (n - i) = \frac{n!}{(n - m)!}$.
+
+\ppart{b}
+This is almost the same as the above problem, except the amount of letters to pick from doesn't decrease after each pick. Therefore, the total number of words is $\prod_{i = 1}^m n = n^m$.
+
+\ppart{c}
+A binary relation between $A$ and $B$ is, by definition, a subset of $A \times B$. Therefore, we want to calculate the cardinality of the power set of $A \times B$. We showed that the cardinality of $A \times B$ is $|A| \cdot |B|$ and that the cardinality of the power set of $S$ is $2^{|S|}$, so the cardinality of the power set of $A \times B$ is $2^{|A| \cdot |B|} = 2^{mn}$.
+
+\ppart{d}
+Any element in $A$ can map to any element in $B$, giving $|B| = n$ combinations. The next element in $A$ can only map to $n - 1$ elements in $B$, since one has already been taken and the function must be injective. The next element can map to $n - 1$ elements in $B$, et cetera until all elements of $A$ have been mapped to something (since we are told the function is a total function). That gives $\prod_{i = 0}^m (n - i) = \frac{n!}{(n - m)!}$.
+
+\ppart{e}
+Each ball out of $m$ balls can go into any of $n$ urns. This means there are $\prod_{i = 1}^m n = n^m$ ways to distribute the balls among the urns.
+
+\ppart{f}
+This is easy to solve by applying the ``stars and bars'' (\href{https://en.wikipedia.org/wiki/Stars_and_bars_(combinatorics)}{link}) method. Imagine the balls (stars) lined up in a row (the order does not matter, as they are indistinguishable). Now imagine representing the urns by putting $n - 1$ lines (bars) in between some of the balls. The balls in between two consecutive bars represent an urn, like so: $\star \star \star | \star \star || \star \star \star \star \star | \star \cdots$.
+
+Therefore, we want to see in how many ways we can arrange a set of $m + n - 1$ objects in a line. Choosing the way the stars are arranged leaves only one arrangement for the bars, as there are $m$ stars, so arranging the stars leaves $n - 1$ spots for $n - 1$ bars. Therefore, the amount of arrangements is $\binom{m + n - 1}{m}$.
+
+\ppart{g}
+Assuming that $n \geq m$ (otherwise the task is impossible), this is equivalent to simply selecting $m$ of the $n$ urns ($\binom{n}{m}$), counting permutations ($m!$), since they are distinguishable. This gives $\binom{n}{m} \cdot m! = \frac{n!m!}{(n - m)!m!} = \frac{n!}{(n - m)!}$ possible selections.
+
+\problem{6}
+
+Using induction, we can treat this problem as follows: let $P(n)$ be the proposition that if there are $n$ blue-eyed people, then all of the blue-eyed people leave by the \textit{n}th night after the Guru speaks. Then, the base case is $P(1)$ (the problem is silly if there are no blue-eyed people), and the inductive step is $P(n) \implies P(n + 1)$.
+
+Proving the base case is easy. Suppose there is one blue-eyed person on the island. The guru says ``I see someone with blue eyes'', and this person immediately knows that he is that person, since he can see nobody else with blue eyes. Thus, on the first night after the guru speaks, this person leaves.
+
+Proving the inductive step is less trivial. Suppose there are $n + 1$ blue-eyed people on the island, and assume that $P(n)$ is true. Each person with blue eyes sees $n$ other people with blue eyes. Thus, this person knows there are two cases: either he has brown eyes, and therefore there are $n$ blue-eyed people on the island, or he has blue eyes, in which case there are $n + 1$ blue-eyed people on the island. He then waits until the \textit{n}th night, and sees that nobody leaves, since everyone else is just as uncertain as he is. Since nobody leaves on the \textit{n}th night, and $P(n)$ states that if there are $n$ blue-eyed people on the island they will all leave by the \textit{n}th night, he and every other blue-eyed person immediately realise that there \textit{cannot} be $n$ blue-eyed people on the island, only $n + 1$, and therefore each of them realises that he has blue eyes. They then all leave on the next night, the \textit{n + 1}th night. Therefore, $P(n + 1)$ holds given $P(n)$. Combining this and the fact that the base case $P(1)$ holds, we infer that, indeed, if there are $n$ blue-eyed people, then all of the blue-eyed people leave by the \textit{n}th night after the Guru speaks.
+
+\problem{7}
+
+\ppart{a}
+Imagine a graph where two points are connected by a line between them, and another three points are connected in a triangle. This is a two-ended graph, as exactly two vertices have degree one, and all other vertices have degree two. However, it is not a line graph, since there is no connection between the two structures in the graph (the line and the triangle), and thus no way to list all the vertices in a sequence of consecutively connected vertices.
+
+\ppart{b}
+This ``proof'' proves that any two-ended graph that is constructed inductively, that is, by adding an extra vertex and connecting it to one of the edges a certain number of times ($n$), is a line graph. This does not, however, prove that any two-ended graph \textit{period} is a line graph, as not every two-ended graph can be constructed inductively that way. For example, the graph in the counterexample above cannot be constructed in this way, since in the intermediate steps it would not be a two-ended graph. Therefore, the proof does not extend to all two-ended graphs, but only to a specific subset thereof.
+
+\end{document}

@@ -1,0 +1,241 @@
+\input{../preamble.tex}
+\newcommand{\hwnumber}{9}
+\begin{document}
+\title{Math 2220 section \sectionnum\\ HW \#\hwnumber}
+\author{\name}
+\maketitle
+
+%%%%%%%%%%%%%%%%%% BEGIN TYPING SOLUTIONS HERE
+
+\problem{1}
+
+\ppart{a}
+We can calculate this integral by applying the domain boundaries for D: $1 \leq x \leq 2$ and $0 \leq y \leq \log x$:
+
+\begin{align*}
+  \int_D \diff A &= \int_0^1 \int_0^{\log x} \diff y \diff x \\
+  &= \int_0^1 \log x \diff x \\
+  &= (x \log x - x) \Big|_0^1 \\
+  &= (\log 1 - 1) - (0 - 0) \\
+  &= -1
+\end{align*}
+
+This represents the volume of the region of points $(x, y)$ where $1 \leq x \leq 2$ and $0 \leq y \leq \log x$.
+
+\ppart{b}
+Similarly:
+
+\begin{align*}
+  \int_D x \diff A &= \int_0^3 \int_{-1}^1 x \diff y \diff x \\
+  &= \int_0^3 2x \diff x \\
+  &= x^2 \Big|_0^3 \\
+  &= 9
+\end{align*}
+
+This represents the volume of a triangular prism, with length 2, and with its cross-section being the isosceles right-angled triangle with catheti of length 3, i.e. half of the cuboid with sides 2, 3 and 3.
+
+\ppart{c}
+Here, $D$ is the unit disk in $\mathbb{R}^2$, that is, $D = \left\{(x, y) | x^2 + y^2 \leq 1\right\}$. We can express the domain boundaries as $0 \leq y^2 \leq 1 - x^2 \implies -\sqrt{1 - x^2} \leq y \leq \sqrt{1 - x^2}$, and $0 \leq x^2 \leq 1 \implies -1 \leq x \leq 1$; this is because the square of a number can never be less than $0$. Therefore:
+
+\begin{align*}
+  \int_D \sqrt{1 - x^2 - y^2} \diff A &= \int_{-1}^1 \int_{-\sqrt{1 - x^2}}^{\sqrt{1 - x^2}} \sqrt{1 - x^2 - y^2} \diff y \diff x
+\end{align*}
+
+To compute the first integral we can apply the substitution $y = \sqrt{1 - x^2}\sin\theta$. Then $\diff y = \sqrt{1 - x^2}\cos\theta \diff \theta$, and $\sqrt{1 - x^2 - y^2} = \sqrt{1 - x^2 - (1 - x^2)\sin^2\theta} = \sqrt{(1 - x^2)(1 - \sin^2\theta)} = \sqrt{(1 - x^2)(\cos^2\theta)} = \cos\theta\sqrt{(1 - x^2)}$. Adjusting the bounds, we have $y = \sqrt{1 - x^2} = \sqrt{1 - x^2}\sin\theta \implies \sin\theta = 1 \implies \theta = \frac{\pi}{2}$; similarly, $y = -\sqrt{1 - x^2} \implies \theta = -\frac{\pi}{2}$. So:
+
+\begin{align*}
+  \int_{-\sqrt{1 - x^2}}^{\sqrt{1 - x^2}} \sqrt{1 - x^2 - y^2} \diff y &= \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \cos^2\theta\sqrt{(1 - x^2)}\sqrt{1 - x^2} \diff \theta \\
+  &= \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \cos^2\theta(1 - x^2) \diff \theta \\
+  &= (1 - x^2) \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac{\cos(2\theta) + 1}{2} \diff \theta \\
+  &= (1 - x^2) \left(\frac{\sin(2\theta)}{4} + \frac{\theta}{2}\right) \Big|_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \\
+  &= \frac{\pi}{2}(1 - x^2)
+\end{align*}
+
+Substituting that back in, we get
+
+\begin{align*}
+  \int_{-1}^1 \int_{-\sqrt{1 - x^2}}^{\sqrt{1 - x^2}} \sqrt{1 - x^2 - y^2} \diff y \diff x &= \frac{\pi}{2} \int_{-1}^1 (1 - x^2) \diff x \\
+  &= \frac{\pi}{2} \left(x - \frac{x^3}{3}\right)\Big|_{-1}^1 \\
+  &= \frac{\pi}{2} \frac{4}{3} \\
+  &= \frac{2\pi}{3}
+\end{align*}
+
+This represents the volume of one unit hemisphere.
+
+\ppart{d}
+Once again we need to express our constraints. We are given that $z \geq 0 \implies z^2 \geq 0$, and $x^2 + y^2 + z^2 \leq 1$. We have $0 \leq z \leq 1$. Then, fixing $z$, we get $y^2 \leq 1 - z^2$ and fixing $y$, $x^2 \leq 1 - y^2 - z^2$. Then, using the result from (c):
+
+\begin{align*}
+  \int_H 2 \diff V &= \int_0^1 \int_{-\sqrt{1 - z^2}}^{\sqrt{1 - z^2}} \int_{-\sqrt{1 - y^2 - z^2}}^{\sqrt{1 - y^2 - z^2}} 2 \diff x \diff y \diff z \\
+  &= \int_0^1 \int_{-\sqrt{1 - z^2}}^{\sqrt{1 - z^2}} 4\sqrt{1 - y^2 - z^2} \diff y \diff z \\
+  &= 4 \frac{2\pi}{3} \frac{1}{2} = \frac{4\pi}{3}
+\end{align*}
+
+The last step comes from the fact that $\int_0^1 \int_{-\sqrt{1 - z^2}}^{\sqrt{1 - z^2}} \sqrt{1 - y^2 - z^2} \diff y \diff z = \frac{1}{2} \int_{-1}^1 \int_{-\sqrt{1 - x^2}}^{\sqrt{1 - x^2}} \sqrt{1 - x^2 - y^2} \diff y \diff x$. This is equal to twice the volume of the unit sphere.
+
+\problem{2}
+Using the linearity of the integral, we know this is equal to $\int_D y^5 \diff A - \int_D xy \diff A + \int_D 3 \diff A$. Since $f(y) = y^5$ is an odd function, we know that $\int_{-a}^a y^5 \diff y = 0$. Therefore
+
+\begin{align*}
+  \int_D y^5 \diff A &= \int_{-1}^1 \int_{-\sqrt{1 - x^2}}^{\sqrt{1 - x^2}} y^5 \diff y \diff x \\
+  &= \int_{-1}^1 0 \diff x \\
+  &= 0
+\end{align*}
+
+The same argument can be made for $\int_D -xy \diff A$. this is because, once again, $f(x) = x$ is an odd function, and therefore $-\int_{-1}^1 y\int_{-\sqrt{1 - x^2}}^{\sqrt{1 - x^2}} x \diff x \diff y = -\int_{-1}^1 0y \diff y = 0$.
+
+Finally, since $D$ is the unit disk, $\int_D \diff A$ is the volume of the unit cylinder ($h = r = 1$), $\pi$, and $\int_D 3 \diff A = 3\int_D \diff A = 3\pi$. Therefore, $\int_D (y^5 - xy + 3) \diff A = 3\pi$.
+
+\problem{3}
+By definition, we can calculate the integrals as follows:
+
+\begin{align*}
+  \int_a^b f(x) \diff x &= \lim_{\Delta x \rightarrow 0} \sum_{\Delta x} f(x_i) \Delta x \\
+  \int_a^b g(y) \diff y &= \lim_{\Delta y \rightarrow 0} \sum_{\Delta y} g(y_j) \Delta y
+\end{align*}
+
+Therefore, multiplying the integrals, we get, using the properties of limits and linear sums:
+
+\begin{align*}
+  \int_a^b f(x) \diff x \cdot \int_a^b g(y) \diff y &= \left(\lim_{\Delta x \rightarrow 0} \sum_{\Delta x} f(x_i) \Delta x\right)\left(\lim_{\Delta y \rightarrow 0} \sum_{\Delta y} g(y_j) \Delta y\right) \\
+  &= \lim_{(\Delta x, \Delta y) \rightarrow (0, 0)} \left(\sum_{\Delta x} f(x_i) \Delta x\right)\left(\sum_{\Delta y} g(y_j) \Delta y\right) \\
+  &= \lim_{(\Delta x, \Delta y) \rightarrow (0, 0)} \sum_{\Delta x}\sum_{\Delta y} f(x_i) g(y_j) \Delta x \Delta y \\
+  &= \int_a^b \int_c^d f(x)g(y) \diff A
+\end{align*}
+
+This is because, by definition, $\diff A$ is the infinitesimal change in the area of the ``square'', that is, $\lim_{(\Delta x, \Delta y) \rightarrow (0, 0)} \Delta x \Delta y$.
+
+\problem{4}
+
+\ppart{a}
+The constraint for $x$ is given as $0 \leq x \leq 1$. Since $y \in D \iff x^2 \leq y \leq x^4$, this gives the constraint for $y$. This means that
+
+\begin{align*}
+  \int_D f(x, y) \diff A = \int_0^1 \int_{x^2}^{x^4} f(x, y) \diff y \diff x
+\end{align*}
+
+To write this integral in another way, we need to make it so that the constraint for $y$ is absolute, and not relative to $x$:
+
+\begin{align*}
+  \int_D f(x, y) \diff A = \int_0^1 \int_{sqrt{y}}^{\sqrt[4]{y}} f(x, y) \diff x \diff y
+\end{align*}
+
+\ppart{b}
+An example is any the region between the graphs $y = x^2$ and $y = x^4$, but for all $x$. In this case, the integral would have to be split into several regions, if integrating first with respect to $x$ and then with respect to $y$. This is because in the region $0 \leq x \leq 1$, we are guaranteed that $x^2 \geq x^4$, so that can be expressed as a single condition. However, if we look at the entire range of the two functions, then in areas where $|x| > 1$ we have $x^4 > x^2$. Therefore, the integral would have to be done separately over several areas to accomodate this.
+
+\problem{5}
+Since the bounding functions are lines, the bounded region is a triangle, with vertices $(1, 1)$, $(2, 2)$ and $(3, 1)$. We can split this into two disjoint regions: the set $A \subseteq D: 1 \leq x \leq 2$ and the set $B \subseteq D: 2 < x \leq 3$. $A$ is the space between $y = 1$ and $x = y$, while $B$ is the space between $x = 4 - y$. This is because in $A$, $x \geq 4 - x$, and in $B$, $x < 4 - x$, and the upper bound is the smaller of the two functions. So:
+
+\begin{align*}
+  \int_D e^{x + y} \diff x \diff y &= \int_A e^{x + y} \diff x \diff y + \int_B e^{x + y} \diff x \diff y \\
+  &= \int_1^2 \int_1^x e^{x + y} \diff y \diff x + \int_2^3 \int_{4 - x}^1 e^{x + y} \diff y \diff x \\
+  &= \int_1^2 e^{x + y}\Big|_{y = 1}^{y = x} \diff x + \int_2^3 e^{x + y}\Big|_{y = 4 - x}^{y = 1} \diff x \\
+  &= \int_1^2 (e^{2x} - e^{x + 1}) \diff x + \int_2^3 (e^{x + 1} - e^4) \diff x \\
+  &= (2e^{2x} - e^{x + 1})\Big|_1^2 + (e^{x + 1} - xe^4)\Big|_2^3 \\
+  &= (2e^4 - e^3) - (2e^2 - e^2) + (e^4 - 3e^4) - (e^3 - 2e^4) \\
+  &= -e^2 - 2e^3 + 2e^4
+\end{align*}
+
+\problem{6}
+
+\ppart{a}
+Since $f(x, y) = e^{-xy}$, we have
+
+\begin{align*}
+  \frac{\partial}{\partial y} f(x, y) &= -xe^{-xy} \\
+  \frac{\partial^2}{\partial y^2} f(x, y) &= x^2e^{-xy} \\
+  \frac{\partial^3}{\partial y^3} f(x, y) &= -x^3e^{-xy} \\
+  \cdots \\
+  \frac{\partial^{n - 1}}{\partial y^{n - 1}} f(x, y) &= (-1)^{n - 1}x^{n - 1}e^{-xy} \\
+\end{align*}
+
+\ppart{b}
+This is a simple single-variable integral:
+
+\begin{align*}
+  \int_0^{\infty} f(x, y) \diff x &= \int_0^{\infty} e^{-xy} \diff x \\
+  &= -\frac{e^{-xy}}{y} \Big|_0^{\infty} \\
+  &= 0 - (-\frac{1}{y}) \\
+  &= \frac{1}{y}
+\end{align*}
+
+\ppart{c}
+Taking the result from part (a) and integrating, we get:
+
+\begin{align*}
+  (-1)^{n - 1} \int_0^{\infty} x^{n - 1} e^{-xy} \diff x &= \int_0^{\infty} \frac{\partial^{n - 1}}{\partial y^{n - 1}} e^{-xy} \diff x
+  &= \frac{\diff^{n - 1}}{\diff y^{n - 1}} \int_0^{\infty} e^{-xy} \diff x \\
+  &= \frac{\diff^{n - 1}}{\diff y^{n - 1}} \frac{1}{y} \\
+  &= (-1)^{n - 1} \frac{(n - 1)!}{y^n}
+\end{align*}
+
+Therefore, $(-1)^{n - 1} \int_0^{\infty} x^{n - 1} e^{-xy} \diff x = (-1)^{n - 1} \frac{(n - 1)!}{y^n} \implies \int_0^{\infty} x^{n - 1} e^{-xy} \diff x = \frac{(n - 1)!}{y^n}$. Setting $y = 1$ we get
+
+\begin{align*}
+  \int_0^{\infty} x^{n - 1} e^{-x} \diff x = (n - 1)!
+\end{align*}
+
+\problem{7}
+
+\ppart{a}
+As in (1c), we can use $f(x, y) = \sqrt{1 - x^2 - y^2}$, and the integral will be equal to the volume of one hemisphere. Since the volume of a sphere is twice that of a hemisphere with the same radius, if $f(x, y) = 2\sqrt{1 - x^2 - y^2}$ then $\int_D f(x, y) \diff A$ will be the volume of the unit sphere.
+
+\ppart{b}
+Transforming to polar co-ordinates, $g(x, y) = 2x\sqrt{1 - x^2}$. Then, $\int_0^1 \int_0^{2\pi} g(x, y) \diff y \diff x = \frac{4\pi}{3}$.
+
+\ppart{c}
+If $u(r, \theta) = (r\cos\theta, r\sin\theta)$ then
+
+$$
+\vv{D}u =
+\begin{bmatrix}
+  \cos\theta & -r\sin\theta \\
+  \sin\theta & r\cos\theta
+\end{bmatrix}
+$$
+
+Therefore, $\detm \vv{D}u = r\cos^2\theta + r\sin^2\theta = r(\cos^2\theta + \sin^2\theta) = r$.
+
+\ppart{d}
+Using our previous definitions for $f$ and $g$, we have
+
+\begin{align*}
+  f(r\cos\theta, r\sin\theta) &= 2\sqrt{1 - r^2\cos^2\theta - r^2\sin^2\theta} \\
+  &= 2\sqrt{1 - (r^2\cos^2\theta + r^2\sin^2\theta)} \\
+  &= 2\sqrt{1 - (r^2[\cos^2\theta + \sin^2\theta])}  = 2\sqrt{1 - r^2} \\
+  g(r, \theta) &= 2r\sqrt{1 - r^2}
+\end{align*}
+
+The ratio between them is $r$, which is also the determinant of the derivative matrix of the transformation to polar co-ordinates.
+
+\problem{8}
+There are two possible ways to decompose this function into partial fractions:
+
+\begin{align*}
+  \frac{x - y}{(x + y)^3} &= \frac{2x}{(x + y)^3} - \frac{1}{(x + y)^2} \\
+  &= \frac{1}{(x + y)^2} - \frac{2y}{(x + y)^3}
+\end{align*}
+
+To calculate $\int_0^1 \frac{x - y}{(x + y)^3} \diff y$ I will use the first one, and to calculate $\int_0^1 \frac{x - y}{(x + y)^3} \diff x$ I will use the second one, for reasons that will become obvious. We have:
+
+\begin{align*}
+  \int_0^1 \frac{x - y}{(x + y)^3} \diff y &= \int_0^1 \left(\frac{2x}{(x + y)^3} - \frac{1}{(x + y)^2}\right) \diff y \\
+  = \left(-\frac{2x}{2(x + y)^2} + \frac{1}{x + y}\right)\Big|_{y = 0}^{y = 1} &= \left(\frac{1}{x + y} - \frac{x}{(x + y)^2}\right)\Big|_{y = 0}^{y = 1} \\
+  &= \left(\frac{1}{x + 1} - \frac{x}{(x + 1)^2}\right) - \left(\frac{1}{x} - \frac{x}{(x)^2}\right) \\
+  &= \frac{1}{x + 1} - \frac{x}{(x + 1)^2} - \frac{1}{x} + \frac{1}{x} \\
+  &= \frac{1}{x + 1} - \frac{x}{(x + 1)^2} \\
+  &= \frac{1}{(x + 1)^2}
+\end{align*}
+
+Similarly:
+
+\begin{align*}
+  \int_0^1 \frac{x - y}{(x + y)^3} \diff x &= \int_0^1 \left(\frac{1}{(x + y)^2} - \frac{2y}{(x + y)^3}\right) \diff x \\
+  &= \left(\frac{y}{(x + y)^2} - \frac{1}{x + y}\right)\Big|_{x = 0}^{x = 1} \\
+  &= \left(\frac{y}{(y + 1)^2} - \frac{1}{y + 1}\right) - \left(\frac{y}{y^2} - \frac{1}{y}\right) \\
+  &= \frac{y}{(y + 1)^2} - \frac{1}{y + 1} \\
+  &= -\frac{1}{(y + 1)^2}
+\end{align*}
+
+Therefore, we have $\int_0^1 \int_0^1 \frac{x - y}{(x + y)^3} \diff y \diff x = \int_0^1 \frac{1}{(x + 1)^2} \diff x = -\frac{1}{x + 1} \Big|_0^1 = \frac{1}{1} - \frac{1}{2} = \frac{1}{2}$. Similarly, $\int_0^1 \int_0^1 \frac{x - y}{(x + y)^3} \diff x \diff y = -\int_0^1 \frac{1}{(y + 1)^2} \diff y = \frac{1}{y + 1} \Big|_0^1 = -\frac{1}{2}$. This is interesting, since the two are not equal, but are negatives of each other.
+\end{document}

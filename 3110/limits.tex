@@ -1,0 +1,23 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Math 3110 - Limits}
+\author{\name}
+\maketitle
+
+\section{Limits}
+\subsection{Definition}
+We define an infinite limit of a sequence as follows:
+
+$\lim_{n \rightarrow \infty} a_n = L$ means that $\forall\; \epsilon > 0$, $\exists N \in \mathbb{R}$ such that $\forall\; n \geq N$, $|a_n - L| < \epsilon$.
+
+\subsection{Uniqueness of limits}
+Suppose $\lim_{n \rightarrow \infty} a_n = L$ and $\lim_{n \rightarrow \infty} a_n = M$. Then, $L = M$.
+
+\begin{proof}
+  Suppose that instead, $L \neq M$. Let $\epsilon^{\prime} = \frac{|L - M|}{2} > 0$. $\lim_{n \rightarrow \infty} a_n = L$ means that $|a_n - L| < \epsilon^{\prime}$ for all $n \geq N_1$. Similarly, $\lim_{n \rightarrow \infty} a_n = M$ means that $|a_n - M| < \epsilon^{\prime}$ for all $n \geq N_2$. Combining these inequalities, we can say that $-\epsilon^{\prime} < a_n - L < \epsilon^{\prime}$ \textbf{and} $-\epsilon^{\prime} < a_n - M < \epsilon^{\prime}$ for all $n \geq \mathrm{max}(N_1, N_2)$. Subtracting, we get the largest and smallest values of the difference between the two limits: $-2\epsilon^{\prime} < M - L < 2\epsilon^{\prime}$, that is $|M - L| < 2\epsilon^{\prime}$.
+
+  But, we defined $\epsilon^{\prime}$ as $\frac{|M - L|}{2}$. Substituting, we get the inequality $|M - L| < |M - L|$, which obviously cannot hold. Therefore, the initial premise that $\frac{|L - M|}{2} > 0$, that is, $L \neq M$, cannot be true.
+\end{proof}
+
+
+\end{document}

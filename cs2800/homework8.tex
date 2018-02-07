@@ -1,0 +1,71 @@
+\input{../preamble.tex}
+\begin{document}
+\title{CS 2800 HW \#6}
+\author{\name}
+\maketitle
+
+\problem{1}
+
+\ppart{a}
+Let $D = \{0, 1 \cdots b - 1\}$. Define $n$ as follows: $n(\epsilon) \equiv 0$, $n(ax) \equiv b \cdot n(a) + x$ where $a \in D^*$ and $x \in D$.
+
+\begin{proof}
+  Let $P(k)$ be the statement that $n(k) = (k)_b$. We have the definition of $n$ above, and the definition $(d_j \cdots d_1d_0)_b = \sum_i d_i b^i$.
+
+  Proving the base case, $P(\epsilon)$, is trivial: $n(\epsilon) \equiv 0$, and $(\epsilon)_b \equiv 0$ by our definitions.
+
+  The inductive step is as follows: assume $P(a)$ holds for all $a \in D^*$, and show that as a result $P(ax)$ holds for all $x \in D$. Suppose $a = d_j \cdots d_1d_0$; then, by $P(a)$ and the definition of $n$:
+
+  \begin{align*}
+    n(ax) \equiv b \cdot n(a) + x &= b\sum_i d_i b^i + x \\
+    &= \sum_i d_i b^{i + 1} + x \\
+    &= \sum_i d_i b^{i + 1} + x b^0
+  \end{align*}
+
+  Let $j = i + 1$ $d_i = g_j$ and $x = g_0$. Then, $\sum_i d_i b^{i + 1} + x b^0 = \sum_j g_j b^j$, which is the definition of $(ax)_b$ (since $ax = g_j \cdots g_1 g_0$).
+\end{proof}
+
+\ppart{b}
+
+Let $P(k)$, where $k$ is a string of digits, be the statement that, if $p = (k)_b$, then $k$ is the unique representation of $p$ in base $b$. The base case is $P(\epsilon)$, which is clearly true since $(\epsilon)_b = 0$. Suppose there exists $k$ such that $(k)_b = 0$; then, $k$ can only be $\epsilon$, since $k$ cannot be zero (we assume there are no leading zeros).
+
+The inductive step: assume $P(k)$ holds for some string of digits $k$, and show that $P(kd)$ holds, where $d$ is a single digit. In this case, suppose $l$ is the length of (amount of digits in) $k$; then $p = (kd)_b \equiv d + \sum_{i = 1}^l k_i b^i = d + b\sum_{i = 1}^l k_i b^{i - 1} = d + b\sum_{i = 0}^{l - 1} k_{i - 1} b^i = d + b(k)_b$. By $P(k)$, we know that $(k)_b$ is unique, and by Euclidean division, we know that $d$ is unique, as $p = d + b(k)_b$, i.e. $d$ is the remainder when dividing $p$ by $b$. Therefore, all the digits in $kd$ must take on a certain value and cannot be anything else, i.e. the base $b$ representation of $p$ is unique.
+
+\problem{2}
+
+Suppose $\mathbb{Z}_m$ is the set of all states. Suppose there are $m$ groups of states: $\mathbb{Z}_m = \{[0], [1] \cdots [m - 1]\}$, with the equivalence relation of numbers $\mod m$, that is, there are $m$ equivalence classes for states, and $[ma + b] = [b]$, i.e. it wraps back around. Define $\delta$ as follows: $\delta([a], 0) = [2a]$, and $\delta([a], 1) = [2a + 1]$, and let $[0]$ be the starting and accepting states, with all other states being rejecting.
+
+\begin{proof}
+  We want to prove that the language of $M$ is strings whose value interpreted as binary is $[0]$. Essentially, we want to show that $\hat{\delta}([0], x) = [n(x)] \;\forall\; x \in \Sigma^*$. Let $P(k)$ be the statement that the former holds for some $k \in Sigma^*$.
+
+  The base case is trivial: $P(\epsilon) = [0]$, and $n(\epsilon) = 0$.
+
+  Now, suppose we have $P(k)$; we wish to show $P(ka)$ for some $a \in Sigma$ also holds. By $P(k)$, $\hat{\delta}([0], k) = [n(k)]$, so $\hat{\delta}([0], ka) \equiv \delta(\hat{\delta}([0], k), a) = \delta([n(k)], a)$. From our definition of $\delta$ above, this is equal to $[2n(k) + a]$, since $a$ is either 1 or 0. But, by the definition of $n$, if $k \in Sigma^*, a \in \Sigma$ then $n(ka) = 2n(k) + a$. Therefore, $P(ka)$ holds given $P(k)$ and this is the inductive step.
+
+  This language fits the specification. This is because if $k \in \mathbb{Z}$ (integers not states) is divisible by $m$ then by this definition, $\hat{\delta}([0], k) = [n(k)] = [0]$, so $k$ is accepted, as it should be. Conversely, if $k$ is not divisible by $m$, then $\hat{\delta}([0], k) = [n(k)] \neq [0]$, so $k$ is rejected, as it should be.
+\end{proof}
+
+\problem{3}
+
+\begin{proof}
+  Let $P(n)$ be the statement that $\exists a, b \in \mathbb{Z}$ such that $n = 4a + 5b$. The base cases are $P(12)$, $P(13)$, $P(14)$ and $P(15)$; we know they are true since $12 = 3 \cdot 4$, $13 = 2 \cdot 4 + 1 \cdot 5$, $14 = 1 \cdot 4 + 2 \cdot 5$ and $15 = 3 \cdot 5$. The inductive step is as follows: for any $n > 15$, we know that $P(n - 4)$ holds, since we proved the base cases. Therefore, we know that $n - 4 = 4a + 5b$ for $a, b \in \mathbb{Z}$. Then, $n = 4a + 5b + 4 = 4(a + 1) + 5b$. Let $c = a + 1$; since $a \in \mathbb{Z}$, $c \in \mathbb{Z}$, and we have $n = 4c + 5b$, i.e. $P(n)$ holds. Therefore, $P(n)$ holds for all $n \geq 12$, that is, any postage of 12 cents or more can be formed using just 4- and 5-cent stamps.
+\end{proof}
+
+\problem{4}
+
+Encode the lights like so: red is $0$, orange is $1$, yellow is $2$, green is $3$ and blue is $4$. To cycle a light, we add $1$ to its value, but we are only interested in the answer $\text{mod } 5$ since there are 5 lights and lights wrap back around from blue to red, and we want this value to be $4$, for blue. After button each button $n$ is pressed $b_n$ times, the colours of the lights are as follows:
+
+\begin{center}
+\begin{tabular}{lc}
+Light & Colour \\ \hline
+1  & $0 + b_1 + b_2 + b_4 + b_5 \equiv 4 \mod 5$ \\
+2  & $1 + b_1 + b_2 \equiv 4 \mod 5$ \\
+3  & $2 + b_3 + b_4 + b_5 \equiv 4 \mod 5$ \\
+4  & $3 + b_1 + b_3 + b_4 \equiv 4 \mod 5$ \\
+5  & $4 + b_2 + b_4 + 2b_5 \equiv 4 \mod 5$ \\
+\end{tabular}
+\end{center}
+
+If we push through the algebra, we can solve for $b_3 \equiv 1$, and simplify the above equations down to the following: $b_1 + b_4 \equiv 0$, $b_4 + b_5 \equiv 1$ and $b_2 + b_5 \equiv 4$. These equations are consistent with infinite solutions; that is, any combination satisfying them will work; for instance, $b_1 \equiv 2$, $b_4 \equiv 3$, $b_5 \equiv 3$ and $b_2 \equiv 1$ would satisfy the table above. Therefore, all the lights will turn blue when, for example, you press button 1 twice, button 2 once, button 3 once, button 5 thrice and button 5 thrice.
+
+\end{document}

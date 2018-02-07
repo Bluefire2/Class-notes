@@ -1,0 +1,71 @@
+\documentclass[11pt]{amsart}
+
+\usepackage{amssymb,amsmath}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{framed}
+\usepackage{esvect}
+\usepackage{amsthm}
+\usepackage{centernot}
+\usepackage{ifxetex,ifluatex}
+
+%%%%%%%%%%%%%%% FILL THIS IN FOR EACH ASSIGNMENT
+\newcommand{\name}{Kirill Chernyshov}
+\newcommand{\sectionnum}{203}
+\newcommand{\hwnumber}{7}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator{\detm}{det}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[margin=1in, letterpaper]{geometry}
+\newcommand{\problem}[1]{\bigskip\noindent\textbf{Problem #1}}
+\newcommand{\ppart}[1]{\bigskip\textbf{(#1)}}
+\begin{document}
+\title{Constrained extrema and Lagrange multipliers}
+\author{\name}
+\maketitle
+
+%%%%%%%%%%%%%%%%%% BEGIN TYPING SOLUTIONS HERE
+
+Let $f$ and $g$ be $C^1$ functions $E \subseteq \mathbb{R}^3 \rightarrow \mathbb{R}$. Let $S$ be the level set $g(x, y, z) = c$. Let $\bf{p} \in S$ be a vector such that $\nabla g(\bf{p}) \neq 0$ and $\bf{p}$ is a local extremum of $f$ on $S$. Then, there exists a scalar $\lambda$ such that $\nabla f(\bf{p}) = \lambda \nabla g(\bf{p})$.
+\bigskip
+\begin{proof}
+  Assume that $\nabla g(\bf{p}) \neq 0$. This means there exists a co-ordinate in $\bf{p}$ that is nonzero. Without loss of generality we can assume that $z$ is that co-ordinate. By the implicit function theorem, in an open set around $\bf{p}$ we can solve for $z$ in terms of $x$ and $y$. That is, there exists $\phi: U \subseteq \mathbb{R}^2 \rightarrow \mathbb{R}$ such that $g(x, y, \phi(x, y)) = c$ and $\phi(p_1, p_2) = p_3$.
+
+  Define $h(x, y) = f(x, y, \phi(x, y))$. $(p_1, p_2)$ is a local extremum of $h$, since $\bf{p}$ is an extremum of $f$. Therefore, $h_x(p_1, p_2) = 0$, which is equal to, using the chain rule, $\frac{\partial f}{\partial x}\bf{p} + \frac{\partial f}{\partial z} \cdot \frac{\partial \phi}{\partial x}(p_1, p_2)$. The same steps can be applied to $h_y$.
+
+  We know that $g(x, y, \phi(x, y)) = c$, so $g_x(x, y, \phi(x, y)) = \frac{\partial g}{\partial x}(\bf{p}) + \frac{\partial g}{\partial z}(\bf{p}) \cdot \frac{\partial \phi}{\partial x}(p_1, p_2) = 0$, which in turn means that $\frac{\partial \phi}{\partial x}(p_1, p_2) = -\frac{\partial g}{\partial x}(\bf{p}) \cdot \left(\frac{\partial g}{\partial z}(\bf{p})\right)^{-1}$.
+
+  Using the equation from before, we can plug in the value for $\frac{\partial \phi}{\partial x}(p_1, p_2)$, we have $\frac{\partial f}{\partial x}(\bf{p}) = \frac{\frac{\partial f}{\partial z}(\bf{p})}{\frac{\partial g}{\partial z}(\bf{p})} \cdot \frac{\partial g}{\partial x}(\bf{p})$. This gives $\lambda = \frac{\frac{\partial f}{\partial z}(\bf{p})}{\frac{\partial g}{\partial z}(\bf{p})}$.
+\end{proof}
+\bigskip
+We can use this to find constrained extrema. For example, say we are given an ellipsoid in $\mathbb{R}^3$, and we want to find the box with the greatest volume that is inscribed in the ellipsoid. This is an example of constrained optimisation.
+
+Let $3x^2 + 5y^2 + 7z^2 = 1$ be the level set that describes the ellipsoid. If one vertex of the box is $(a, b, c)$ then all the other vertices will be of the form $(\pm a, \pm b, \pm c)$. Therefore, the volume of this box will be $(2a)(2b)(2c) = 8abc$. Therefore we have $f(x, y, z) = 8xyz$ as the function that describes the volume, and $g(x, y, z) = 3x^2 + 5y^2 + 7z^2 = 1$ as the level set constraint.
+
+$\nabla f = (8yz, 8xz, 8xy)$ and $\nabla g = (6x, 10y, 14z)$. We need to find $\bf{p}$ such that $\nabla f(\bf{p}) = \lambda_p \nabla f(\bf{p})$:
+
+$$
+\begin{array}{lcl}
+  3x^2 + 5y^2 + 7z^2 = 1 \\
+  8yz = 6 \lambda_p x \\
+  8xz = 10 \lambda_p y \\
+  8xy = 14 \lambda_p z
+\end{array}
+$$
+
+These four equations are in four variables, so they can be solved for $x$, $y$, $z$ and $\lambda_p$ (we can assume $x, y, z > 0$, and therefore $\lambda_p \neq 0$).
+
+Dividing equation 2 by equation 3, we get $\frac{y}{x} = \frac{3x}{5y} \implies 5y^2 = 3x^2 \implies y = \sqrt{\frac{3x}{5}}$. Dividing equation 3 by equation 4, we get $\frac{z}{y} = \frac{5y}{7z} \implies 5y^2 = 7z^2 \implies z = \sqrt{\frac{5y}{7}} = \sqrt{\frac{3x}{7}}$. We can put this into the first equation to get $3x^2 + 3x^2 + 3x^2 = 1 \implies x = \frac{1}{3}, y = \frac{1}{\sqrt{15}}, z = \frac{1}{\sqrt{21}}$, and the volume is $8xyz = \frac{8}{9\sqrt{35}}$.
+
+\end{document}

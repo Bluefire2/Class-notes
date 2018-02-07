@@ -1,0 +1,53 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Math 3110 - Sequences}
+\author{\name}
+\maketitle
+
+\section{Sequences}
+
+\subsection{Definition}
+A \textbf{sequence} is an ordered collection of rational or real numbers $\{a_n\}_{n = 1}^{\infty}$. Essentially, it is a map $a: \mathbb{N} \rightarrow \mathbb{Q}$ or $\mathbb{R}$, that is, $n \mapsto a_n$.
+
+\ex
+The set of numbers $1, \frac{1}{4}, \frac{1}{9}, \frac{1}{16} \cdots$, i.e. $a_n = \frac{1}{n^2}$ is a sequence.
+
+\ex
+Another example of a sequence is $1, 1 + \frac{1}{2}, 1 + \frac{1}{2} + \frac{1}{3} \cdots$, where $b_n = 1 + \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{n} = \sum_{k = 1}^n \frac{1}{k}$.
+
+Any sequence that can be expressed in the form
+
+\begin{align*}
+  b_n = \sum_{k = 1}^n s_k
+\end{align*}
+
+is called a \textbf{series}.
+
+\subsection{Increasing sequences}
+A sequence $\{a_n\}$ is \textbf{increasing} iff $a_{n + 1} \geq a_n \;\forall\; n$. Note that by this definition, $a_n = 1$ is an increasing sequence, since the inequality is not strict. Therefore, we can also define a sequence as \textbf{strictly increasing} iff $a_{n + 1} > a_n \;\forall\; n$. An example of a strictly increasing sequence is the sequence $b_n = \sum_{k = 1}^n \frac{1}{k}$ from above, since $b_{n + 1} - b_n = \frac{1}{n + 1} > 0$. We can also define \textbf{decreasing} and \textbf{strictly decreasing} sequences in a similar way. A sequence that is either increasing \textbf{or} decreasing is called a \textbf{monotonic} sequence.
+
+\subsection{Bounded sequences}
+A sequence $\{a_n\}$ is \textbf{bounded above} iff there exists $M \in \mathbb{R}$ such that $a_n \leq M \;\forall\; n$. An example of a bounded sequence is $a_n = \frac{1}{n^2}$ from earlier, since $a_n \leq 1 \;\forall\; n$. Note that $M$ does not necessarily have to be the \textit{best} upper bound, but simply \textit{an} upper bound; for example, setting $M = 100$ would also be sufficient to show that this sequence is bounded above.
+
+Similarly, a sequence $\{a_n\}$ is \textbf{bounded below} iff there exists $P \in \mathbb{R}$ such that  $a_n \geq P \;\forall\; n$. Finally, a sequence is \textbf{bounded above and below} iff it is bounded above and bounded below.
+
+\ex
+Once again examine the sequence $b_n = \sum_{k = 1}^n \frac{1}{k}$. This sequence is bounded below, but not bounded above
+
+\begin{proof}
+  Trivially, $b_1 \geq 1$. We know that the sequence is increasing, that is, $b_{n + 1} > b_n \;\forall\; n$. Therefore, $b_n > b_1 \geq 1$, so the sequence is bounded below with $P = 1$.
+
+  Proving that it is not bounded above is harder. Take any $M \in \mathbb{R}$. It can be seen by analysing the series that for $k > 2M$, $b_{2^k} > 1 + \frac{k}{2} > 1 + \frac{2M}{2} = 1 + M > M$. Therefore, the sequence is not bounded above by any $M$.
+\end{proof}
+
+\section{Convergence (an imprecise definition)}
+We say a sequence $\{a_n\}$ \textbf{converges to $L$} iff for all integers $k \geq 0$, there exists an integer $N$, such that for all $n \geq N$, $a_n$ and $L$ are equal up to $k$ decimal places.
+
+\ex
+Consider the sequence $a_1 = 1, a_2 = 1.1, a_3 = 1.11 \cdots $. This sequence is bounded by $L = 1.\overline{1} = \frac{10}{9}$.
+
+\begin{proof}
+
+\end{proof}
+
+\end{document}

@@ -1,0 +1,109 @@
+\input{../preamble.tex}
+\begin{document}
+\title{STSCI 3080 HW \#5}
+\author{\name}
+\maketitle
+
+\problem{4.6.12}
+
+By the rules of variance, $\Var(2X - 3Y + 8) = 4\Var(X) + 9\Var(Y)$. The means of $X$ and $Y$ are
+
+\begin{align*}
+  \E(X) = \int_0^1 x \int_0^2 f(x, y) \diff y \diff x &= \frac{1}{3} \int_0^1 x \int_0^2 (x + y) \diff y \diff x \\
+  &= \frac{1}{3} \int_0^1 x (2x + 2) \diff x = \frac{2}{3} \int_0^1 (x^2 + x) \diff x \\
+  &= \frac{2}{3} (\frac{1}{3} + \frac{1}{2}) = \frac{5}{9}
+\end{align*}
+
+and similarly
+
+\begin{align*}
+  \E(Y) = \int_0^2 y \int_0^1 f(x, y) \diff x \diff y &= \frac{11}{9}
+\end{align*}
+
+We also need $\E(X^2)$ and $\E(Y^2)$:
+
+\begin{align*}
+  \E(X^2) &= \int_0^1 x^2 \int_0^2 f(x, y) \diff y \diff x = \frac{7}{18} \\
+  \E(Y^2) &= \int_0^2 y^2 \int_0^1 f(x, y) \diff x \diff y = \frac{16}{9}
+\end{align*}
+
+So, we have $\Var(X) = E(X^2) - E(X)^2 = \frac{13}{162}$ and similarly $\Var(Y) = \frac{23}{81}$. So, $\Var(2X - 3Y + 8) = 2.877$.
+
+\problem{4.6.18}
+By definition, $\Cov(X, Y) = \E(XY) - \E(X)\E(Y)$. This distribution is symmetric, so we know that $\E(X) = \E(Y)$, which is
+
+\begin{align*}
+  \E(X) = \int_0^1 x \int_0^1 (x + y) \diff y \diff x &= \int_0^1 x(x + \frac{1}{2}) \diff x \\
+  &= \int_0^1 (x^2 + \frac{x}{2}) \diff x = \frac{1}{3} + \frac{1}{4} = \frac{7}{12}
+\end{align*}
+
+Similarly,
+
+\begin{align*}
+  \E(XY) = \int_0^1 \int_0^1 (xy)(x + y) \diff y \diff x &= \int_0^1 \int_0^1 (x^2y + xy^2) \diff y \diff x \\
+  &= \int_0^1 \left(\frac{x^2}{2} + \frac{x}{3}\right) \diff x \\
+  &= \frac{1}{6} + \frac{1}{6} = \frac{1}{3}
+\end{align*}
+
+Therefore, the covariance of $X$ and $Y$ is $\Cov(X, Y) = \frac{1}{3} - \frac{7}{12}\frac{7}{12} = -\frac{1}{144}$.
+
+\problem{4.7.7}
+
+First we need to find the conditional probability density function of $y$ $g_2(y|x)$, which is defined as $\frac{f(x, y)}{f_1(x)}$, where $f_1$ is the marginal p.d.f. of $X$:
+
+\begin{align*}
+  f_1(x) = \int_0^1 f(x, y) \diff y &= \int_0^1 (x + y) \diff y \\
+  &= x + \frac{1}{2}
+\end{align*}
+
+Therefore, $g_2(y|x) = \frac{x + y}{x + \frac{1}{2}}$. By definition,
+
+\begin{align*}
+  \E(Y|x) = \int_0^1 y g_2(y|x) \diff y &= \int_0^1 \frac{y(x + y)}{x + \frac{1}{2}} \diff y \\
+  &= \frac{1}{x + \frac{1}{2}} \frac{3x + 2}{6} \\
+  &= \frac{3x + 2}{6x + 3}
+\end{align*}
+
+and therefore, $\E(Y|X) = \frac{3X + 2}{6X + 3}$. Also by definition, $\Var(Y|X) = \E(Y^2|X) - \E(Y|X)^2$.
+
+\begin{align*}
+  \E(Y^2|X) = \int_0^1 y^2 g_2(y|x) \diff y &= \int_0^1 \frac{y^2(x + y)}{x + \frac{1}{2}} \diff y \\
+  &= \frac{4x + 3}{12x + 6}
+\end{align*}
+
+So, $\Var(Y|X) = \E(Y^2|X) - \E(Y|X)^2 = \frac{4x + 3}{12x + 6} - \left(\frac{3x + 2}{6x + 3}\right)^2 = \frac{6x^2 + 6x + 1}{18(2x + 1)^2}$.
+
+\problem{5.2.6}
+
+Let $A$ be the number of times the target is hit by person A, and ditto for $B$ and $C$. Since these are all sums of Bernoulli trials, they all have binomial distributions $B(3, 0.125)$, $B(5, 0.25)$ and $B(2, 0.5)$ respectively. We want to find $\E(A + B + C) = \E(A) + \E(B) + \E(C)$, so we can use the fact that the expected value of $B(n, p)$ is simply $np$, therefore $\E(A + B + C) = \E(A) + \E(B) + \E(C) = \frac{3}{8} + \frac{5}{4} + \frac{2}{2} = 2.625$.
+
+\problem{5.2.8}
+
+Let $X$ be the number of components that has failed; then, $X \thicksim B(10, 0.2)$. We want to work out $\mathbb{P}(X \geq 2 | X \geq 1)$, which by definition is equal to $\frac{\mathbb{P}(X \geq 2 \cap X \geq 1)}{\mathbb{P}(X \geq 1)}$. Since $(X \geq 2) \subseteq (X \geq 1)$, $\mathbb{P}(X \geq 2 \cap X \geq 1) = \mathbb{P}(X \geq 2)$, and so $\mathbb{P}(X \geq 2 | X \geq 1) = \frac{\mathbb{P}(X \geq 2)}{\mathbb{P}(X \geq 1)}$. $\mathbb{P}(X \geq 2) = 1 - \mathbb{P}(X < 2) = 1 - \mathbb{P}(X = 1) + \mathbb{P}(X = 0) = 1 - (10 \cdot 0.2^1 0.8^9 + 0.8^{10}) = 0.6242$, and $\mathbb{P}(X \geq 1) = 1 - \mathbb{P}(X = 0) = 1 - 0.8^{10} = 0.8926$, so $\mathbb{P}(X \geq 2 | X \geq 1) = \frac{0.6242}{0.8926} = 0.699$.
+
+\problem{5.3.2}
+
+Let $R$ be the amount of red balls drawn; then, $\mathbb{P}(R = r) = \frac{\binom{5}{r} \binom{10}{7 - r}}{\binom{15}{7}}$ for $0 \leq r \leq 5$. $\mathbb{P}(R \geq 3) = 1 - \mathbb{P}(R < 3) = 1 - (\mathbb{P}(R = 0) + \mathbb{P}(R = 1) + \mathbb{P}(R = 2)) = 1 - (0.01865 + 0.1632 + 0.3916) = 0.4266$.
+
+\problem{5.4.3}
+
+Suppose $X$ represents the amount of defects found in five bolts of cloth. Then, $X \thicksim Po(2)$. $\mathbb{P}(X \geq 6) = 1 - \mathbb{P}(X \leq 5) = 1 - \sum_{i = 0}^5 \mathbb{P}(X = 0) = 1 - e^{-2}\sum_{i = 0}^5\frac{2^i}{i!} = 1 - 0.9834 = 0.0166$.
+
+\problem{5.6.10}
+
+Suppose $X \thicksim N(\mu, 2^2)$. If $\bar{X}$ represents the average value of $X$ from 25 samples, then $\bar{X} \thicksim N(\mu, \frac{4}{25})$. In this case, $\sigma = \frac{2}{5}$ and so $1 = \frac{5}{2}\sigma$. Using a lookup table, the probability of the sample mean lying within $2.5$ standard deviations of $\mu$ is $\Phi(2.5) - \Phi(-2.5) = 0.9938 - 0.0062 = 0.9876$.
+
+\problem{5.7.8}
+
+We are given that $X_i$ has p.d.f. $f_i(x) = \beta_i e^{-\beta_i x}$, and c.d.f. $F_i(x) = \int_0^{x} f(t) \diff t = 1 - e^{-\beta_i x}$. Suppose $Y = \text{min}(X_1, X_2 \cdots X_k)$; then the c.d.f. of $Y$ is
+
+\begin{align*}
+  G(y) = \mathbb{P}(Y \leq y) &= 1 - \mathbb{P}(Y \geq y) \\
+  &= 1 - \mathbb{P}(\bigcup_{i = 0}^k X_i \geq y) = 1 - \prod_{i = 0}^k\mathbb{P}(X_i \geq y) \\
+  &= 1 - \prod_{i = 0}^k(1 - \mathbb{P}(X_i \leq y)) = 1 - \prod_{i = 0}^k(1 - F_i(y)) \\
+  &= 1 - \prod_{i = 0}^k(e^{-\beta_i y}) = 1 - e^{-y\sum_{i = 0}^k \beta_i}
+\end{align*}
+
+Let $\lambda = \sum_{i = 0}^k \beta_i$. By definition, $f(y) = \frac{\diff}{\diff y} G(y) = \frac{\diff}{\diff y} (1 - e^{-\lambda y}) = \lambda e^{-\lambda y}$.
+
+\end{document}

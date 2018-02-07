@@ -1,0 +1,150 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Math 2220 HW \#14}
+\author{\name}
+\maketitle
+
+\problem{2}
+
+This can be simplified a lot by converting to cylindrical co-ordinates. The transformation maps $(x, y, z)$ to $(r \cos\theta, r \sin\theta, z)$, with $0 \leq r \leq 1$, $0 r^2 \leq z \leq 1$ and $0 \leq \theta \leq 2\pi$. Therefore:
+
+\begin{align*}
+  \int_{\partial D} r(r \sin\theta, r \cos\theta, z^2) \cdot \mathbf{\hat{n}} \diff \sigma &= \int_D \nabla \cdot r(r \sin\theta, r \cos\theta, z^2) \diff V \\
+  &= \int_D 2r(\sin t + z) \diff V = \int_0^{2\pi} \int_0^1 \int_{r^2}^1 2r(\sin t + z) \diff z \diff r \diff \theta \\
+  &= \frac{2\pi}{3}
+\end{align*}
+
+\problem{3}
+
+This maps to $(\cos u \cos\theta, \cos u \sin\theta, \sin 2u)$. The normal vector is the cross-product of the two derivative vectors:
+
+\begin{align*}
+  (-\sin u \cos\theta, -\sin u \sin\theta, 2\cos 2u) \times (-\cos u \sin\theta, \cos u \cos\theta, 0) \\
+  = (2\cos u \cos 2u \cos\theta, 2 \cos u \cos 2u \sin\theta, \cos u \sin u)
+\end{align*}
+
+Suppose we have a function $\mathbf{F}$ such that $\nabla \cdot \mathbf{F} = 1$. Then, by the divergence theorem, $\int_S \mathbf{F} \cdot \mathbf{\hat{n}} \diff S$ is the area inside $S$. I will use $\mathbf{F}(x, y, z) = (0, 0, 1) = (0, 0, \sin 2u)$; this is because the third co-ordinate of my normal vector is the least horrible one, and the one I want to keep after the dot product.
+
+\begin{align*}
+  \int_S \mathbf{F} \cdot \mathbf{\hat{n}} \diff S &= \int_S (0, 0, \sin 2u) \cdot (2\cos u \cos 2u \cos\theta, 2 \cos u \cos 2u \sin\theta, \cos u \sin u) \diff S \\
+  &= \int_0^{2\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \sin 2u \sin u \cos u \diff u \diff \theta \\
+  &= \int_0^{2\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} 2 \sin u \sin u \cos \cos u \diff u \diff \theta = 2 \int_0^{2\pi} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \sin^2 u \cos^2 u \diff u \diff \theta \\
+  &= \frac{\pi^2}{2}
+\end{align*}
+
+\problem{4}
+
+Once again, cylindrical coordinates come in useful: transform $(x, y, z)$ to $(r\cos\theta, r\sin\theta, z)$. Since $x^2 + y^2 = (2 - z)^2$ on the boundary, we get $r^2 = (2 - z)^2$, so we can replace $z$ and get a parametrisation of the $\partial E$ as $\mathbf{d}(r, \theta) = (r\cos\theta, r\sin\theta, 2 - r)$.
+
+The cone has three faces: the bottom circle, the top circle, and the curved part. As before, use $\mathbf{F}(x, y, z) = (0, 0, z) = (0, 0, 2 - r)$. The top circle has $z = 1$, so there this vector is $(0, 0, 1)$, and the bottom circle has $z = 0$, so the value is $(0, 0, 0)$. The normal vectors are $(0, 0, 1)$ for the top circle, and $(0, 0, -1)$ for the bottom circle; this is because we need the vectors to point outwards. The derivative vectors of $\mathbf{d}$ are $\mathbf{d}_r = (\cos\theta, \sin\theta, -1), \mathbf{d}_{\theta} = (-r \sin\theta, r \cos\theta, 0)$, and $\mathbf{d}_r \times \mathbf{d}_{\theta} = (r\cos\theta, r\sin\theta, r)$, which is the normal vector for the rest of the surface.
+
+The hardest integral is over the curved part:
+
+\begin{align*}
+  \int \mathbf{F} \cdot \mathbf{\hat{n}} \diff S &= \int_0^{2\pi} \int_1^2 r(0, 0, 2 - r) \cdot (r\cos\theta, r\sin\theta, r) \diff r \diff \theta \\
+  &= \int_0^{2\pi} \int_1^2 2r - r^2 \diff r \diff \theta \\
+  &= \frac{4\pi}{3}
+\end{align*}
+
+The easiest is over the bottom circle, as it is 0 since $\mathbf{F}(x, y, z) = (0, 0, 0)$.
+
+Finally, the top circle:
+
+\begin{align*}
+  \int \mathbf{F} \cdot \mathbf{\hat{n}} \diff S = \int_0^{2\pi} \int_1^2 1 \diff r \diff \theta = \pi
+\end{align*}
+
+The volume is the sum of these values, $\frac{7\pi}{3}$.
+
+\problem{5}
+
+\ppart{a}
+This question left me with PTSD.
+
+Suppose $X = (X_1, X_2, X_3), F = (f_1, f_2, f_3)$. First, evaluate all the ``pieces'' of the equality.
+
+Left-hand side:
+
+\begin{align*}
+  \nabla \times F &= \detm \begin{bmatrix}\mathrm{\hat{i}} & \mathrm{\hat{j}} & \mathrm{\hat{k}} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ f_1 & f_2 & f_3 \end{bmatrix} \\
+  &= (f_{3y} - f_{2z}, f_{1z} - f_{3x}, f_{2x} - f_{1y}) \\
+  \mathbf{X}_u \times \mathbf{X}_v &= (X_{1u}, X_{2u}, X_{3u}) \times (X_{1v}, X_{2v}, X_{3v}) \\
+  &= (X_{2u}X_{3v} - X_{2v}X_{3u}, X_{3u}X_{1v} - X_{3v}X_{1u}, X_{1u}X_{2v} - X_{1v}X_{2u}) \\
+  \nabla \times \mathbf{F}(\mathbf{X}(u, v)) \cdot (\mathbf{X}_u \times \mathbf{X}_v) &= (f_{3y} - f_{2z})(X_{2u}X_{3v} - X_{2v}X_{3u}) \\
+  &+ (f_{1z} - f_{3x})(X_{3u}X_{1v} - X_{3v}X_{1u}) + (f_{2x} - f_{1y})(X_{1u}X_{2v} - X_{1v}X_{2u}) \\
+\end{align*}
+
+Right-hand side:
+
+\begin{align*}
+  \mathbf{F}(\mathbf{X}(u, v))_u \cdot X_v &= (F_x \cdot X_u, F_y \cdot X_u, F_z \cdot X_u) \cdot (X_{1v}, X_{2v}, X_{3v}) \\
+  &= X_u \cdot (X_{1v}F_x + X_{2v}F_y + X_{3v}F_z) \\
+  &= X_{1u}(X_{1v}f_{1x} + X_{2v}f_{1y} + X_{3v}f_{1z}) + X_{2u}(X_{1v}f_{2x} + X_{2v}f_{2y} + X_{3v}f_{2z}) \\
+  &+ X_{3u}(X_{1v}f_{3x} + X_{2v}f_{3y} + X_{3v}f_{3z}) \\
+  \mathbf{F}(\mathbf{X}(u, v))_v \cdot X_u &= (F_x \cdot X_v, F_y \cdot X_v, F_z \cdot X_v) \cdot (X_{1u}, X_{2u}, X_{3u}) \\
+  &= X_v \cdot (X_{1u}F_x + X_{2u}F_y + X_{3u}F_z) \\
+  &= X_{1v}(X_{1u}f_{1x} + X_{2u}f_{1y} + X_{3u}f_{1z})
+  \\ &+ X_{2v}(X_{1u}f_{2x} + X_{2u}f_{2y} + X_{3u}f_{2z}) + X_{3v}(X_{1u}f_{3x} + X_{2u}f_{3y} + X_{3u}f_{3z}) \\
+\end{align*}
+
+All the terms on the left are present on the right. Canceling terms, we are left with 0 on the left, and on the right, $X_{1u}X_{1v}f_{1x} - X_{1u}X_{1v}f_{1x} + X_{2u}X_{2v}f_{2y} - X_{2u}X_{2v}f_{2y} + X_{3u}X_{3v}f_{3z} - X_{3u}X_{3v}f_{3z} = 0$.
+
+\ppart{b}
+Using the product rule:
+
+\begin{align*}
+  G_{1v} &= \mathbf{F}(\mathbf{X})_v \cdot \mathbf{X}_u + \mathbf{F}(\mathbf{X}) \cdot \mathbf{X}_{uv} \\
+  G_{2u} &= \mathbf{F}(\mathbf{X})_u \cdot \mathbf{X}_v + \mathbf{F}(\mathbf{X}) \cdot \mathbf{X}_{uv} \\
+  \nabla \times \mathbf{G} &= G_{1v} - G_{2u} = \mathbf{F}(\mathbf{X})_v \cdot \mathbf{X}_u + \mathbf{F}(\mathbf{X}) \cdot \mathbf{X}_{uv} - \mathbf{F}(\mathbf{X})_u \cdot \mathbf{X}_v - \mathbf{F}(\mathbf{X}) \cdot \mathbf{X}_{uv} \\
+  &= \mathbf{F}(\mathbf{X})_v \cdot \mathbf{X}_u - \mathbf{F}(\mathbf{X})_u \cdot \mathbf{X}_v \\
+  &= \nabla \times \mathbf{F}(\mathbf{X}(u, v)) \cdot (\mathbf{X}_u \times \mathbf{X}_v)
+\end{align*}
+
+\ppart{c}
+By definition, for any function $\mathbf{A}(x, y, z)$, we have
+
+\begin{align*}
+  \int_S \mathrm{A} \cdot \mathbf{\hat{n}} \diff \sigma = \int_D \mathbf{A}(\mathbf{X}) \cdot (\mathbf{X}_u \times \mathbf{X}_v) \diff u \diff v \\
+\end{align*}
+
+Let $\mathbf{A} = \nabla \times \mathbf{F}$. Then, $\mathbf{A}(\mathbf{X}) \cdot (\mathbf{X}_u \times \mathbf{X}_v) = (\nabla \times \mathbf{F})(\mathbf{X}) \cdot (\mathbf{X}_u \times \mathbf{X}_v) = \nabla \times \mathbf{G}$. Therefore,
+
+\begin{align*}
+  \int_S \nabla \times \mathbf{F} \cdot \mathbf{\hat{n}} \diff \sigma = \int_D \nabla \times \mathbf{G} \diff u \diff v \\
+\end{align*}
+
+\ppart{d}
+We can parametrise $\partial D$ using $\mathbf{r}(t) = (u(t), v(t))$, for $a \leq t \leq b$, since it is regular. The parametrisation of $\partial S$ is, therefore, $\mathbf{X}(\mathbf{r}(t))$. Starting from the left, and plugging in the definition of $\mathbf{G}$:
+
+\begin{align*}
+  \int_{\partial D} \mathbf{G} \cdot \mathbf{t} \diff S &= \int_a^b \mathbf{G}(\mathbf{r}(t)) \cdot \mathbf{r}^{\prime}(t) \diff t \\
+  &= \int_a^b (\mathbf{F}(\mathbf{X}(\mathbf{r}(t))) \cdot \mathbf{X}_u(\mathbf{r}(t))), \mathbf{F}(\mathbf{X}(\mathbf{r}(t))) \cdot \mathbf{X}_v(\mathbf{r}(t)))) \cdot \mathbf{r}^{\prime}(t) \diff t \\
+  &= \int_a^b (f_1X_{1u} + f_2X_{2u} + f_3X_{3u}, f_1X_{1v} + f_2X_{2v} + f_3X_{3v}) \cdot \mathbf{r}^{\prime}(t) \diff t \\
+  &= \int_a^b (u^{\prime}(f_1X_{1u} + f_2X_{2u} + f_3X_{3u}), v^{\prime}(f_1X_{1v} + f_2X_{2v} + f_3X_{3v})) \diff t
+\end{align*}
+
+The coefficient on $f_1$, for example, comes out as $(X_{1u}u^{\prime} + X_{1v}v^{\prime})\diff t = (\frac{\partial X_1}{\partial u}\frac{\diff u}{\diff t} + \frac{\partial X_1}{\partial v}\frac{\diff v}{\diff t})\diff t = \diff X_1$. Similarly, the coefficients on $f_2$ and $f_3$ are $\diff X_2$ and $\diff X_3$, respectively. Therefore, this integral comes out to $\int_{\partial S} f_1 \diff X_1 + f_2 \diff X_2 + f_3 \diff X_3 = \int_{\partial S} \mathbf{F} \cdot \mathbf{t} \diff S$.
+
+\ppart{e}
+By Green's theorem, $\int_D \nabla \times \mathbf{G} \diff u \diff v = \int_{\partial D} \mathbf{G} \cdot \mathbf{t} \diff S$. Therefore
+
+\begin{align*}
+  \int_S \nabla \times \mathbf{F} \cdot \mathbf{\hat{n}} \diff \sigma = \int_D \nabla \times \mathbf{G} \diff u \diff v \\
+  &= \int_{\partial D} \mathbf{G} \cdot \mathbf{t} \diff S \int_{\partial S} \mathbf{F} \cdot \mathbf{t} \diff S
+\end{align*}
+
+\ppart{f}
+A piecewise smooth surface $R$ is a union of surfaces $S_i$ like in the questions above. It is clear that the sum of the integrals of any function over the areas all $S_i$ is equal to the integral of that function over all of $R$, by the properties of integrals. Similarly, the sum of integrals over the boundaries of $S_i$ is equal to the integral over the total boundary of $R$. This is because the union of the boundaries of $S_i$ is the boundary of $R$, plus the areas where the boundaries of $S_i$ intersect. However, if we integrate with the same orientation, then each of those areas gets integrated over twice, in opposite directions. These integrals therefore cancel out, and we are left with the integral over the external boundary of the union of all $S_i$, i.e. the boundary of $R$.
+
+\problem{7}
+From above, $C$ looks like a circle; that is, if we look at its $x$ and $y$ components, it satisfies $x^2 + y^2 = 1$. Therefore, $D$, a region bounded by $C$, satisfies $x^2 + y^2 \leq 1$. To get the $z$ component, notice that $z = \sin 2t = 2\sin t \cos t = 2xy$. Therefore, $D$ is parametrised by $\mathrm{r}(s, t) = (s, t, 2st)$ for $s^2 + t^2 \leq 1$. Applying Stokes' theorem:
+
+\begin{align*}
+  \int_C (2xz + y, 2yz + 3x, x^2 + y^2 + 5) \cdot \mathrm{t} \diff S &= \int_D \nabla \times (2xz + y, 2yz + 3x, x^2 + y^2 + 5) \cdot \mathrm{\hat{n}} \diff \sigma \\
+  &= \int_D (0, 0, 2) \cdot (\mathrm{r}_s \times \mathrm{r}_t) \diff \sigma \\
+  &= \int_D (0, 0, 2) \cdot ((1, 0, 2t) \times (0, 1, 2s)) \diff \sigma \\
+  &= \int_D (0, 0, 2) \cdot (-2s, -2t, 1) \diff \sigma = \int_D 2 \diff \sigma \\
+  &= 2\pi
+\end{align*}
+
+\end{document}

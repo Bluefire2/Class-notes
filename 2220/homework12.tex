@@ -1,0 +1,193 @@
+\input{../preamble.tex}
+\usepackage{esint}
+\begin{document}
+\title{Math 2220 HW \#12}
+\author{\name}
+\maketitle
+
+\problem{1}
+
+First we need to parametrise each of the planes in the form $(x, y, z) = \mathbf{r}(s, t)$, and then, to find the area, evaluate the integral $\iint_S \diff \sigma = \iint_D \norm{\mathbf{r}_s \times \mathbf{r}_t} \diff s \diff t$.
+
+For $S_1$, we have the boundaries $y, z \in [0, 1]$. We can set $y = s, z = t$, keeping the same boundaries, and then solve for $x = \frac{7}{2}\left(10 - \frac{3y}{4} - \frac{6z}{7}\right) = \frac{7}{2}\left(10 - \frac{3s}{4} - \frac{6t}{7}\right)$. Then, $\mathbf{r}_s = (x_s, y_s, z_s) = (-\frac{21}{8}, 1, 0)$ and $\mathbf{r}_t = (x_t, y_t, z_t) = (-3, 0, 1)$. Then
+
+\begin{align*}
+  A(S_1) = \iint_{S_1} \diff \sigma &= \iint_D \norm{\mathbf{r}_s \times \mathbf{r}_t} \diff s \diff t \\
+  &= \iint_D \norm{(-\frac{21}{8}, 1, 0) \times (-3, 0, 1)} \diff s \diff t \\
+  &= \iint_D \norm{(1, \frac{21}{8}, 3)} \diff s \diff t \\
+  &= \iint_D \frac{\sqrt{1081}}{8} \diff s \diff t = \frac{\sqrt{1081}}{8} \int_0^1 \int_0^1 \diff s \diff t = \frac{\sqrt{1081}}{8}
+\end{align*}
+
+The process is similar for $S_2$ and $S_3$. $S_2$ has the bounds $x, z \in [0, 1]$, so to parametrise it we set $x = s, z = t$, then solve for $y = \frac{4}{3}\left(10 - \frac{2x}{7} - \frac{6z}{7}\right) = \frac{4}{3}\left(10 - \frac{2s}{7} - \frac{6t}{7}\right)$. $\mathbf{r}_s = (1, -\frac{8}{21}, 0)$ and $\mathbf{r}_t = (0, -\frac{8}{7}, 1)$. $\norm{\mathbf{r}_s \times \mathbf{r}_t} = \norm{(-\frac{8}{21}, -1, -\frac{8}{7})} = \frac{\sqrt{1081}}{21}$. Since there is nothing else in the integrand, the surface area is simply $\frac{\sqrt{1081}}{21}$.
+
+For $S_3$, we have $x, y \in [0, 1]$, so set $x = s, y = t$ and solve for $z = \frac{7}{6}\left(10 - \frac{2s}{7} - \frac{3t}{4}\right)$. $\mathbf{r}_s = (1, 0, -\frac{1}{3})$ and $\mathbf{r}_t = (0, 1, -\frac{7}{8})$, and $\norm{\mathbf{r}_s \times \mathbf{r}_t} = \norm{(\frac{1}{3}, \frac{7}{8}, 1)} = \frac{\sqrt{1081}}{24}$, which is also the surface area.
+
+Actually, I am so dumb. The two derivative vectors completely form the parallelogram, so the area is simply the norm of their cross-product, no need to integrate in the first place.
+
+\problem{2}
+
+\ppart{a}
+The surface of a sphere with radius $R$ is the set of points $(x, y, z)$ such that $x^2 + y^2 + z^2 = R$. The cap of this sphere with height $h$ is, as defined, the subset of this set subject to the additional constraint $R - h \leq z \leq R$.
+
+To parametrise this former set, we can use spherical co-ordinates, with $\rho = R$. Set $\mathbf{r}(\theta, \phi) = (R \sin\phi \cos\theta, R \sin\phi \sin\theta, R \cos\phi)$, for $0 \leq \theta \leq 2\pi, 0 \leq \phi \leq \pi$. However, we need to incorporate the additional constraint, that is, $R - h \leq R \cos\phi \leq R$. The upper bound is already satisfied as the maximum value of $\cos\phi$ is 1. Let $n = \arccos\left(\frac{R - h}{R}\right)$. For the lower bound, we have $\frac{R - h}{R} \leq \cos\phi \implies \phi \leq \arccos \left(\frac{R - h}{R}\right)$. So, our bounds for $\phi$ are $0 \leq \phi \leq n$.
+
+Now we just integrate using spherical co-ordinates:
+
+\begin{align*}
+  A = \iint_D R^2 \sin\phi \diff \phi \diff \theta &= R^2 \int_0^{2\pi} \int_0^n \sin\phi \diff \phi \diff \theta \\
+  &= R^2 \int_0^{2\pi} (1 - \cos n) \diff \theta \\
+  &= -2\pi R^2 (\cos n - 1) = -2\pi R^2 \left(\frac{R - h}{R} - 1\right) = 2\pi R^2 \frac{h}{R} = 2\pi Rh
+\end{align*}
+
+\ppart{b}
+The surface area of a cylinder with radius $R$ and height $h$ (not counting the top and bottom) is simply the area of the rectangle around it, with sides equal to the height ($h$) and the circumference of the base circle ($2\pi R$); evaluating to $2\pi Rh$.
+
+\ppart{c}
+Suppose the slice starts at $z = z_0$. Then, its endpoints in the $z$-axis are $z_0$ and $z_0 + h$. This gives us the range of $\phi$: $\arccos \frac{z_0 + h}{R} \leq \phi \leq \arccos \frac{z_0}{R}$. Denote these bounds as $a$ and $b$, respectively. This time, we compute the same integral but with these bounds:
+
+\begin{align*}
+  A = \iint_D R^2 \sin\phi \diff \phi \diff \theta &= R^2 \int_0^{2\pi} \int_a^b \sin\phi \diff \phi \diff \theta \\
+  &= \int_0^{2\pi} (\cos a - \cos b) \diff \theta = \int_0^{2\pi} \left(\frac{z_0 + h}{R} - \frac{z_0}{R}\right) \diff \theta \\
+  &= \int_0^{2\pi} \frac{h}{R} \diff \theta
+\end{align*}
+
+This last integral is independent of $z_0$, and so it does not matter where the slice is: as long as its height is $h$, its surface area will be constant.
+
+\problem{3}
+
+\ppart{a}
+This is just the surface area of the unit sphere, $4\pi$.
+
+\ppart{b}
+Let $U$ be the upper hemisphere of $S$ (where $z \geq 0$) and $L$ be the lower hemisphere (where $z \leq 0$). Then, $\int_S z \diff \sigma = \int_{U \cup L} z \diff \sigma = \int_U z \diff \sigma + \int_L z \diff \sigma = \int_U z \diff \sigma - \int_L -z \diff \sigma$. Because the values of $z$ are opposite in the two hemispheres, $\int_L -z \diff \sigma = \int_U z \diff \sigma$, so $\int_U z \diff \sigma - \int_L -z \diff \sigma = 0$.
+
+\ppart{c}
+Any vector $\mathbf{x}$ on the unit sphere by definition satisfies the property $\norm{\mathbf{x}} = 1$. Therefore, $\int_S \norm{\mathbf{x}}^2 \diff \sigma = \int_S \diff \sigma = 4\pi$.
+
+\ppart{d}
+The unit sphere is symmetric along every axis going through the origin, which includes the $x$-, $y$- and $z$-axis. This means that $x$, $y$ and $z$ can be used interchangeably, that is, $\int_S x^2 \diff \sigma = \int_S y^2 \diff \sigma = \int_S z^2 \diff \sigma$. Moreover, $\int_S \norm{\mathbf{x}}^2 \diff \sigma = \int_S (x^2 + y^2 + z^2) \diff \sigma = \int_S x^2 \diff \sigma + \int_S y^2 \diff \sigma + \int_S z^2 \diff \sigma = 4\pi$. Since the three are equal, we have $\int_S x^2 \diff \sigma = \int_S y^2 \diff \sigma = \int_S z^2 \diff \sigma = \frac{4\pi}{3}$.
+
+\problem{4}
+
+S can be thought of as the union of the following: $A$, a plane along the $x$- and $z$-axes, with $0 \leq x \leq 2, 0 \leq z \leq 2$, $B$, a plane along the $x$- and $y$-axes, with $0 \leq x \leq 2, 0 \leq y \leq 2$ and $C$, a plane along $y = 2$, with $0 \leq x \leq 2, 0 \leq z \leq 1$.
+
+\ppart{a}
+$(0, 1, 0)$ is orthogonal to $A$ and $C$ and lies in $B$. Therefore, its flux over $B$ is 0. $A$ is oriented opposite to $B$, so the vector's flux over them will have opposing signs; however, $A$ has a larger area, so $A$'s flux outweighs that of $C$, and the total flux is negative.
+
+\ppart{b}
+The flux across $A$ is 0, since on any point in $A$ the vector $(0, 3y, 0) = (0, 0, 0)$. The vector lies in $B$ so once again the flux with $B$ is 0, and on $C$ it is equal to $(0, 6, 0)$ and it is orthogonal, in the direction of $C$, so the flux with $C$, and the total flux, is positive.
+
+\ppart{c}
+The flux across $A$ is 0 since the vector $(1, 0, 0)$ on $A$ will lie in $A$. The vector has zero $z$-component, so it will also lie in $B$. On $C$ the vector is $(1, 6, 0)$, and does not lie within $C$, so the flux is positive (since it points in the direction of $C$). The total flux is positive.
+
+\ppart{d}
+This vector has zero $y$-component, so its flux on both $A$ and $C$ is zero. On $B$, it faces ``upwards'', since $x^2 > 0 \;\forall\; x \in \mathbb{R}$ and $5 > 0$. $B$ faces ``downwards'', so its flux on $B$, and therefore the total flux, is negative.
+
+\problem{5}
+
+A unit cylinder with arbitrary height lying along the $x$-axis is defined as the set of points $(x, y, z)$ such that $y^2 + z^2 \leq 1$, and a unit cylinder lying along the $y$-axis is the set of points where $x^2 + z^2 \leq 1$. Their intersection is where both of these constraints are met.
+
+We are concerned with the boundary of their intersection. Solving for $y$ and $z$ in terms of $x$ we get $D: y = \pm x, z = \pm\sqrt{1 - x^2}$. The surface area is, therefore
+
+\begin{align*}
+  \int_D y \sqrt{\left(\frac{\diff y}{\diff x}\right)^2 + \left(\frac{\diff z}{\diff x}\right)^2} \diff z \\ &= \int_D x \frac{1}{\sqrt{1 - x^2}} \diff x \\
+  &= \int_D \frac{x}{\sqrt{1 - x^2}} \diff z
+\end{align*}
+
+for one quarter of one of the four faces. We can integrate this from $0$ to $1$ to get the surface area of a quarter of one of the faces, and then multiply by 16 to get the total surface area:
+
+\begin{align*}
+  \frac{A}{16} = \int_0^1 \frac{x}{\sqrt{1 - x^2}} \diff x = -\sqrt{1 - x^2} \Big|_0^1 = 1
+\end{align*}
+
+So the total surface area is 16.
+
+For the volume, we can take a different approach, using Calc II. If we take a slice through the solid along the $z$-axis, we get a square, with side length $2\sqrt{1 - x^2}$. Its volume is, therefore the integral of the area of this square over the full range of $x$, which is $-1 \leq x \leq 1$:
+
+\begin{align*}
+  V = \int_{-1}^1 (2\sqrt{1 - x^2})^2 \diff x &= 4 \int_{-1}^1 (1 - x^2) \diff x \\
+  &= 4(x - \frac{x^3}{3}) \Big|_{-1}^1 = \frac{16}{3}
+\end{align*}
+
+\problem{6}
+
+\ppart{a}
+A smooth surface is a surface whose defining functions have infinitely many derivatives. We are given that the surface parametrised by $X(u, v)$ is smooth; that is, if we denote $X(u, v) = (f_1(u, v), f_2(u, v), f_3(u, v))$, then each $f_i$ is $C^{\infty}$. $T$ is defined as being parametrised by $kX(u, v) = (kf_1(u, v), kf_2(u, v), kf_3(u, v))$. If $f_i$ is $C^{\infty}$ then $kf_i$ where $k \in \mathbb{R}$ is also $C^{\infty}$: all of its derivatives are the corresponding derivatives of $f_i$, multiplied by $k$. Thus, $T$ parametrised by $Y(u, v) = kX(u, v)$ is smooth.
+
+\ppart{b}
+The area of $S$ can be calculated by surface integration:
+
+\begin{align*}
+  A_S = \iint_S \mathbf{n} \diff \sigma = \iint_D \norm{\frac{\partial X}{\partial u} \times \frac{\partial X}{\partial v}} \diff u \diff v
+\end{align*}
+
+Similarly, we can calculate the area of $T$, using the properties of the cross product:
+
+\begin{align*}
+  A_T = \iint_T \mathbf{n} \diff \sigma &= \iint_D \norm{\frac{\partial Y}{\partial u} \times \frac{\partial Y}{\partial v}} \diff u \diff v \\
+  &= \iint_D \norm{\frac{\partial kX}{\partial u} \times \frac{\partial kX}{\partial v}} \diff u \diff v \\
+  &= \iint_D \norm{k\frac{\partial X}{\partial u} \times k\frac{\partial X}{\partial v}} \diff u \diff v \\
+  &= \iint_D k^2 \norm{\frac{\partial X}{\partial u} \times \frac{\partial X}{\partial v}} \diff u \diff v \\
+  &= k^2 \iint_D \norm{\frac{\partial X}{\partial u} \times \frac{\partial X}{\partial v}} \diff u \diff v = k^2 A_S\\
+\end{align*}
+
+\ppart{c}
+By definition, the flux of $\mathbf{F}$ through $S$ is $\iint_S \mathbf{F} \cdot \mathbf{\hat{n}} \diff \sigma$. We have $\frac{\partial \mathbf{X}}{\partial u} = (1, 0, 0)$ and $\frac{\partial \mathbf{X}}{\partial v} = (0, 1, 0)$, and $\frac{\partial \mathbf{X}}{\partial u} \times \frac{\partial \mathbf{X}}{\partial v} = (0, 0, 1)$. Thus:
+
+\begin{align*}
+  \iint_S \mathbf{F} \cdot \mathbf{\hat{n}} \diff \sigma &= \iint_D \mathbf{F}(\mathbf{X}(u, v)) \cdot (0, 0, 1) \diff u \diff v \\
+  &= \iint_D (u, v, 1) \cdot (0, 0, 1) \diff u \diff v = \iint_D 1 \diff u \diff v \\
+  &= \pi
+\end{align*}
+
+since $\iint_D 1 \diff u \diff v$ is simply the area of the unit disk. If we repeat the same calculation for $T$, the only difference is that the vector product of the partial derivatives is now $(0, 0, k^2)$, and so the integral at the end is instead $\iint_D k^2 \diff u \diff v = k^2 \iint_D \diff u \diff v = k^2\pi$.
+
+\ppart{d}
+
+\problem{7}
+
+\ppart{a}
+We know that the total flux through the entire cube is $0$, since the vector field is conservative and the cube is symmetric. Suppose the cube is aligned with the $x$-, $y$- and $z$-axes, in the positive octant (?) with one of its vertices at the origin. Then, we can form normal vectors to each of its faces, all of which have $\pm 1$ as one of the components, and 0 as the other two. Therefore, the flux through each face will plus/minus be one of the components of $\mathbf{c} = (c_1, c_2, c_3)$, integrated between two of $x, y, z \in [0, 1]$, which will simply multiply it by $1$. Therefore, the fluxes are $\pm c_1$, $\pm c_2$ and $\pm c_3$.
+
+\ppart{b}
+This time, we are integrating the dot product of the normal vector and $(c_1 + x, c_2 + y, c_3 + z)$. For example, in the case of the face for which the normal vector is $(1, 0, 0)$:
+
+\begin{align*}
+  \int_S (c_1 + x, c_2 + y, c_3 + z) \cdot \mathbf{\hat{n}} \diff A &= \int_0^1 \int_0^1 (c_1 + x) \diff y \diff z \\
+  &= c_1 + x
+\end{align*}
+
+The others are similar, with the variables of integration changing depending on the face. For example, for the vector $(1, 0, 0)$, since the $x$-component is 1 and the others are 0, we know that this plane lies along the $y$- and $z$-axes, so we integrate $\diff y \diff z$, and ditto for the other 5 faces. For all 6 faces, we have fluxes $\pm(c_1 + x)$, $\pm(c_2 + y)$ and $\pm(c_3 + z)$.
+
+\ppart{c}
+Again, I will illustrate using an example with $\mathbf{\hat{n}} = (1, 0, 0)$:
+
+\begin{align*}
+  \int_S (c_1y, c_2z, c_3x) \cdot \mathbf{\hat{n}} \diff A &= \int_0^1 \int_0^1 c_1y \diff y \diff z \\
+  &= \frac{c_1}{2}
+\end{align*}
+
+Similarly, we have fluxes $\pm\frac{c_i}{2}$ for $i = 1, 2, 3$.
+
+\problem{8}
+
+\ppart{a}
+The boundary is a rectangle (a square) and so it can be thought of as having four distinct components, for each of its four sides. The components are $x = 0, y \in [0, 1]$, $x = 1, y \in [0, 1]$, $y = 0, x \in [0, 1]$ and $y = 1, x \in [0, 1]$. Each component has a constant normal vector, oriented outwards: $(-1, 0)$, $(1, 0)$, $(0, -1)$ and $(0, 1)$, respectively. Therefore, we can split the integral up into these four distinct parts:
+
+\begin{align*}
+  \int_{\partial D} \mathbf{f} \cdot \mathbf{\hat{n}} \diff S &= \int_0^1 f(0, y) \cdot (-1, 0) \diff y + \int_0^1 f(1, y) \cdot (1, 0) \diff y \\
+  &+ \int_0^1 f(x, 0) \cdot (0, -1) \diff x + \int_0^1 f(x, 1) \cdot (0, 1) \diff x \\
+  &= \int_0^1 -f_1(0, y) \diff y + \int_0^1 f_1(1, y) \diff y + \int_0^1 -f_2(x, 0) \diff x + \int_0^1 f_2(x, 1) \diff x \\
+  &= \int_0^1 (f_1(1, y) - f_1(0, y)) \diff y + \int_0^1 (f_2(x, 1) - f_2(x, 0)) \diff x
+\end{align*}
+
+\ppart{b}
+From the fundamental theorem of calculus, we know that $\int_a^b f_x(x) \diff x = f(b) - f(a)$, where $f_x = \frac{\diff}{\diff x}f$. Therefore, $f_1(1, y) - f_1(0, y) = \int_0^1 \frac{\partial}{\partial x} f_1(x, y) \diff x$, and similarly $f_2(x, 1) - f_2(x, 0) = \int_0^1 \frac{\partial}{\partial y} f_2(x, y) \diff y$. Therefore
+
+\begin{align*}
+  \int_{\partial D} \mathbf{f} \cdot \mathbf{\hat{n}} \diff S &= \int_0^1 \int_0^1 \frac{\partial}{\partial x} f_1(x, y) \diff x \diff y + \int_0^1 \int_0^1 \frac{\partial}{\partial y} f_2(x, y) \diff y \diff x \\
+  &= \int_D \frac{\partial}{\partial x} f_1(x, y) \diff A + \int_D \frac{\partial}{\partial y} f_2(x, y) \diff A \\
+  &= \int_D \left(\frac{\partial}{\partial x} f_1(x, y) + \frac{\partial}{\partial y} f_2(x, y)\right) \diff A
+\end{align*}
+
+\end{document}

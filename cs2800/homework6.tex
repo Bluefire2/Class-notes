@@ -1,0 +1,109 @@
+\input{../preamble.tex}
+\begin{document}
+\title{CS 2800 HW 6}
+\author{\name}
+\maketitle
+
+\problem{1}
+
+\ppart{a}
+$n(Z D_1 D_1 D_0) = 2n(Z D_1 D_1) = 2(2n(Z D_1) + 1) = 2(2(2n(Z) + 1) + 1) = 2(2(1) + 1) = 2(2 + 1) = 2(3) = 6$.
+
+\ppart{b}
+Define $\text{incr}: B \rightarrow B$ such that $\text{incr}: Z \mapsto Z D_1, b D_0 \mapsto b D_1, b D_1 \mapsto \text{incr}(b) D_0$.
+
+\ppart{c}
+Let $P(a)$ be the statement that $n(\text{incr}(a)) = n(a) + 1$. The base case is $P(Z)$, which is trivial to prove: $n(\text{incr}(Z)) = n(Z D_1) = 2n(Z) + 1 = 1 = n(Z) + 1$. For the inductive step, we need to assume $P(b)$ holds, and show that this implies $P(b D_0)$ and $P(b D_1)$.
+
+\begin{proof}
+For the first case, $n(\text{incr}(b D_0)) = n(b D_1) = 2n(b) + 1 = n(b D_0) + 1$. For the second case, $n(\text{incr}(b D_1)) = n(\text{incr}(b) D_0) = 2n(\text{incr}(b)) = 2(n(b) + 1) = 2n(b) + 2$. Since $n(b D_1) \equiv 2n(b) + 1$, we have $n(b) = \frac{n(b D_1) - 1}{2} \implies 2n(b) + 2 = n(b D_1) - 1 + 2 = n(b D_1) + 1$. Therefore, $P(b) \implies P(b D_0), P(b D_1)$.
+\end{proof}
+
+Therefore, this statement is true.
+
+\ppart{d}
+Define $\text{add}: B \times B \rightarrow B$ as a symmetric function ($\text{add}(a, b) = \text{add}(b, a) \;\forall\; a, b \in B$), with values as follows:
+
+\begin{center}
+\begin{tabular}{lcc}
+$a$ & $b$ & $\text{add}(a, b)$ \\ \hline
+$Z$ & $b$ & $b$ \\
+$a D_0$ & $b D_0$ & $\text{add}(a, b) D_0$ \\
+$a D_0$ & $b D_1$ & $\text{add}(a, b) D_1$ \\
+$a D_1$ & $b D_1$ & $\text{incr}(\text{add}(a, b)) D_0$
+\end{tabular}
+\end{center}
+
+\ppart{e}
+We can prove the distinct cases one by one. Firstly, $n(\text{add}(Z, b)) = n(b) = n(b) + 0 = n(b) + n(Z)$.
+
+Then, let $P(p, q)$ be the statement that $n(\text{add}(p, q)) = n(p) + n(q)$. The base cases are: $P(Z, b)$ and $P(b, Z)$, which we know to be true per case 1. The inductive step is showing that $P(p, q) \implies P(p D_0, q), P(p, q D_0), P(p D_1, q), P(p, q D_1), P(p D_0, q D_0), P(p D_0, q D_1), P(p D_1, q D_0), P(p D_1, q D_1)$. $P(p D_0, q) \iff P(p, q D_0)$ and $P(p D_1, q) \iff P(p, q D_1)$ because the $\text{add}$ function is symmetric, as is the function $a, b \mapsto n(a) + n(b)$. Also, $P(Z, b), P(a D_0, b D_0), P(a D_0, b D_1) \implies P(a D_0, b)$ since $b$ must either be $Z$ or of the form $k D_0$ or $k D_1$ for some $k \in B$, which means $P(a D_0, b) \iff P(a D_0, k D_0), P(a D_0, k D_1)$. Similarly, $P(Z, b), P(a D_1, b D_0), P(a D_1, b D_1) \implies P(a D_1, b)$. Therefore, the only other cases we need to prove are $P(a D_0, b D_0)$, $P(a D_0, b D_1)$ and $P(a D_1, b D_1)$, with the assumption of $P(a, b)$.
+
+\begin{proof}
+$P(a D_0, b D_0)$: $n(\text{add}(a D_0, b D_0)) = n(\text{add}(a, b) D_0) = 2n(\text{add}(a, b)) = 2(n(a) + n(b)) = 2\left(\frac{n(a D_0)}{2} + \frac{n(b D_0)}{2}\right) = n(a D_0) + n(b D_0)$.
+
+$P(a D_0, b D_1)$: $n(\text{add}(a D_0, b D_1)) = n(\text{add}(a, b) D_1) = 2n(\text{add}(a, b)) + 1 = n(a D_0) + n(b D_0) + 1 = n(a D_0) + (n(b D_1) - 1) + 1 = n(a D_0) + n(b D_1)$.
+
+Finally, $P(a D_1, b D_1)$: $n(\text{add}(a D_1, b D_1)) = n(\text{incr}(\text{add}(a, b)) D_0) = 2n(\text{incr}(\text{add}(a, b)))$. Since $n(\text{add}(a, b)) = n(a) + n(b)$ by $P(a, b)$, and $n(\text{incr}(k)) = n(k) + 1 \;\forall\; k \in B$, we have $n(\text{incr}(\text{add}(a, b))) = n(a) + n(b) + 1$, and therefore $2n(\text{incr}(\text{add}(a, b))) = 2(n(a) + n(b) + 1) = 2n(a) + 2n(b) + 2 = (2n(a) + 1) + (2n(b) + 1) = n(a D_1) + n(b D_1)$.
+\end{proof}
+
+Therefore, $P(a, b)$ is true for all $a \in B, b \in B$.
+
+\problem{2}
+The alphabet for all three machines is $\Sigma = \left\{0, 1\right\}$. Assume $q_0$ is always the starting state.
+
+\ppart{a}
+For this we need five states: $q_0, q_1, q_2, q_3, q_4$. The accepting states are $q_i: 0 \leq i \leq 3$. The transition function $\delta$ is as follows:
+
+\begin{center}
+\begin{tabular}{lcc}
+$q$ & $\sigma$ & $\delta(q, \sigma)$ \\ \hline
+$q_0$ & $0$ & $q_1$ \\
+$q_1$ & $0$ & $q_2$ \\
+$q_2$ & $0$ & $q_3$ \\
+$q_3$ & $0$ & $q_4$ \\
+\end{tabular}
+\end{center}
+
+with $\delta(q_i, 1) = q_i \;\forall\; i$ and $\delta(q_4, i) = q_4 \;\forall\; i$.
+
+In this case, a string with no $0$s will end up where it started, in state $q_0$. A string with one $0$ will end up in $q_1$, a string with two zeroes will end up in $q_2$ and one with three will end up in $q_3$. All of these are accepting states. A further $0$ will push a string into $q_4$ where it will stay from then on regardless of further letters, because any string with more than three $0$s is to be rejected no matter what. The transition function does not change state in case of a $1$, since $1$s have no effect on whether a string has more or less than three $0$s.
+
+\ppart{b}
+For this we need five states: $q_0, q_1, q_2, q_3, q_4$. The accepting state is $q_3$. The transition function $\delta$ is as follows:
+\begin{center}
+\begin{tabular}{lcc}
+$q$ & $\sigma$ & $\delta(q, \sigma)$ \\ \hline
+$q_0$ & $0$ & $q_1$ \\
+$q_0$ & $1$ & $q_3$ \\
+$q_1$ & $0$ & $q_3$ \\
+$q_1$ & $1$ & $q_2$ \\
+$q_2$ & $0$ & $q_3$ \\
+$q_2$ & $1$ & $q_3$ \\
+\end{tabular}
+\end{center}
+
+Furthermore, $\delta(q_3, i) = q_4, \delta(q_4, i) = q_4 \;\forall\; i$.
+
+A string will start out in $q_0$, where it does not satisfy the condition yet. If a $1$ is received, then the string now satisfies the condition as it is $1$, one of the four accepted strings, so it goes to $q_3$ where it is accepted. If a $0$ is received, the string goes to $q_1$. Then, if there is a $0$ the string goes to $q_3$, as it is now $00$, one of the four accepted strings. If however the next letter is $1$ the string goes to $q_2$. In $q_2$, whatever letter is received next the string goes to $q_3$, as $010$ and $011$ are both accepted strings.
+
+If a string is in $q_3$ and any other letter is received, it goes to $q_4$, where it stays, since a string in $q_4$ will stay there regardless of further letters. This is because appending either $0$ or $1$ to any of the four accepted strings makes it a non-accepted string, such that no further additions could make it accepted. Appending to $010$ and $011$ would make a 4 letter string, all of which are rejected. Appending to $1$ means the string must always be rejected, as no accepted string with more than one letter starts with a $1$. Finally, for the same reason appending anything to $00$ means the string must always be rejected. Thus, any accepted string that receives another letter must be rejected with no possibility of further acceptance.
+
+\ppart{c}
+For this we need three states: $q_0, q_1, q_2$. The accepting state is the starting state $q_0$. The transition function $\delta$ is as follows:
+
+\begin{center}
+\begin{tabular}{lcc}
+$q$ & $\sigma$ & $\delta(q, \sigma)$ \\ \hline
+$q_0$ & $0$ & $q_0$ \\
+$q_0$ & $1$ & $q_1$ \\
+$q_1$ & $0$ & $q_0$ \\
+$q_1$ & $1$ & $q_1$ \\
+$q_2$ & $0$ & $q_2$ \\
+$q_2$ & $1$ & $q_2$ \\
+\end{tabular}
+\end{center}
+
+A string will start out in $q_0$, which is an accepting state. This is because the empty string satisfies the condition. Any $0$s will keep the string in $q_0$ as it would still satisfy the condition. If there is a $1$ it moves to $q_1$, and it does not satisfy the condition anymore. If the next letter is also $1$ then the string will move to $q_2$ where it will stay regardless of further letters, since it has already broken the condition of any $1$s being followed by $0$s. However if the next letter is a $0$, the string once again satisfies the condition, and returns to $q_0$.
+
+\end{document}

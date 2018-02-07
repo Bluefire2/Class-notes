@@ -1,0 +1,125 @@
+\input{../preamble.tex}
+\begin{document}
+\title{The expectation of a random variable}
+\maketitle
+
+\section{The expectation function}
+The expectation function $\E$ gives the mean value of a random variable. It follows the following rules:
+
+\begin{itemize}
+  \item $\E(aX + b) = a\E(X) + b$
+  \item $\E(X + Y) = \E(X) + \E(Y)$
+  \item $\E(XY) = \E(X)\E(Y)$ iff $X$ and $Y$ are independent
+\end{itemize}
+
+\section{The expectation of a discrete random variable}
+Suppose we have a variable $X$ such that $X: S \rightarrow D$ for some sample space $S$. As a result of the application of the formula for the expectation, we have
+
+\begin{align*}
+  \E(X) = \sum_D x f(x)
+\end{align*}
+
+\ex
+Suppose we define $X$ such that $\mathbb{P}(X = x) = \frac{1}{x(x + 1)}$ for $x \in \mathbb{Z}^+$. This is a valid probability distribution, since $\sum_{i = 1}^{\infty} \mathbb{P}(X = i) = 1$. Using the formula above, we have
+
+\begin{align*}
+  \E(X) = \sum_{i = 1}^{\infty} \frac{i}{i(i + 1)} = \sum_{i = 1}^{\infty} \frac{1}{i + 1} = \infty
+\end{align*}
+
+\ex
+To calculate the expected value of a binomially distributed variable, represent it as follows. Suppose there are $n$ Bernoulli distributed variables $X_i$ such that $\mathbb{P}(X = 1) = p$ and $\mathbb{P}(X = 0) = 1 - p$. Then, $X = \sum_{i = 0}^n X_i$ is binomially distributed with $X \thicksim B(n, p)$, since it is the sum of successes from $n$ trials with probability of success $p$. Using the rules listed above, we have
+
+\begin{align*}
+  \E(X) = \E \left(\sum_{i = 0}^n X_i\right) = \sum_{i = 0}^n \E(X_i) = np
+\end{align*}
+
+\section{The expectation of a continuous random variable}
+
+\begin{align*}
+  \E(X) = \int_{-\infty}^{\infty} x f(x) \diff x
+\end{align*}
+
+if at least one of $\int_{-\infty}^{0} x f(x) \diff x$ and $\int_{0}^{\infty} x f(x) \diff x$ is finite.
+
+\ex
+Suppose we have a device that will fail after a certain period of time, and that the time until the device fails is modelled by $X \thicksim f(x)$ where
+
+\begin{align*}
+  f(x) =
+  \begin{cases}
+    2x & 0 < x < 1 \\
+    0 & \text{otherwise}
+  \end{cases}
+\end{align*}
+
+In this case, $\E(X) = \int_0^1 (x \cdot 2x) \diff x = 2 \int_0^1 x^2 \diff x = 2 \frac{x^3}{3} \Big|_0^1 = \frac{2}{3}$.
+
+\ex
+An example of a pathological case is the Cauchy distribution: a special kind of continuous distribution whose p.d.f. is defined as $f(x) = \frac{1}{\pi(1 + x^2)}$. Suppose we have $X \thicksim f(x)$. We know that
+
+\begin{align*}
+  \int_{-\infty}^{0} \frac{x}{\pi(1 + x^2)} &= -\infty \\
+  \int_0^{\infty} \frac{x}{\pi(1 + x^2)} &= \infty
+\end{align*}
+
+Therefore, $\E(X) = -\infty + \infty$, which is undefined, so this distribution \textit{does not have a mean}!.
+
+\section{The expectation of a function of random variables}
+
+\subsection{Theorem}
+Let $X$ be a random variable, and let $Y = r(X)$ for $r: A \subseteq \mathbb{R} \rightarrow B \subseteq \mathbb{R}$. We have
+
+\begin{align*}
+  \E(Y) = \sum_B r(x) f(x)
+\end{align*}
+
+if $X$ is discrete, and
+
+\begin{align*}
+  \E(Y) = \int_{-\infty}^{\infty} r(x) f(x) \diff x
+\end{align*}
+
+if $X$ is continuous. These results follow directly from the \textit{Law of the Unconscious Statistician}.
+
+\ex
+Let $X$ represent the rate of failure of a certain machine per year, and let $Y = \frac{1}{X}$ be the time taken to fail. Suppose $X \thicksim f(x)$ where
+
+\begin{align*}
+  f(x) =
+  \begin{cases}
+    3x^2 & 0 < x < 1 \\
+    0 & \text{otherwise}
+  \end{cases}
+\end{align*}
+
+In order to find the expected amount of time until the first failure, we calculate
+
+\begin{align*}
+  \E(Y) = \int_0^1 \frac{1}{x} \cdot 3x^2 \diff x = 3 \int_0^1 x \diff x = 3 \frac{x^2}{2} \Bigg|_0^1 = \frac{3}{2}
+\end{align*}
+
+\subsection{Theorem}
+Let $(X_1, X_2) \thicksim f(x_1, x_2)$, and let $Y = r(X_1, X_2)$ for $r: A \subseteq \mathbb{R}^2 \rightarrow B \subseteq \mathbb{R}^2$. Then, for continuous $X$
+
+\begin{align*}
+  \E(Y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} r(x_1, x_2) f(x_1, x_2) \diff x_1 \diff x_2
+\end{align*}
+
+\ex
+Let $(X, Y) \thicksim f(x, y)$ where, for some $S \subseteq \mathbb{R}^2$
+
+\begin{align*}
+  f(x, y) =
+  \begin{cases}
+    1 & (x, y) \in S \\
+    0 & \text{otherwise}
+  \end{cases}
+\end{align*}
+
+Let $Z = X^2 + Y^2$, i.e. the squared distance of $(X, Y)$ from the origin. Suppose $S = \left\{(x, y) | 0 < x < 1, 0 < y < 1\right\}$. To calculate the mean squared distance of a point within $S$ from the origin, we use
+
+\begin{align*}
+  \E(Z) = \int_0^1 \int_0^1 (x^2 + y^2) f(x, y) \diff x \diff y = \int_0^1 \int_0^1 (x^2 + y^2) \diff x \diff y = \frac{2}{3}
+\end{align*}
+
+\end{document}

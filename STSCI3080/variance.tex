@@ -1,0 +1,59 @@
+\input{../preamble.tex}
+\begin{document}
+\title{The variance of a random variable}
+\maketitle
+
+\section{Motivation}
+Let $X \thicksim f(x)$ where
+
+\begin{align*}
+  f(x) =
+  \begin{cases}
+    2x & 0 \leq x \leq 1 \\
+    0 & \text{otherwise}
+  \end{cases}
+\end{align*}
+
+Then, we have $\E(X) = \int_0^1 2x^2 \diff x = \frac{2}{3}$. Now, let $Y \thicksim g(y) = \frac{2}{3} \;\forall\; y \in \mathbb{R}$. $\E(X) = \E(Y)$, but clearly $X$ and $Y$ are very different, since $X$ can vary whereas $Y$ can only take on its expected value, and therefore does so with 100\% probability. This demonstrates that the expected value \textbf{alone} is not a good way to describe a random variable.
+
+\section{Defining variance}
+We want to have a measure of how much a random variable $X$ can deviate from its expected value. We can define this deviation as $X - \E(X)$. However, it doesn't matter in which direction this difference is; that is, we want to treat positive and negative values of this the same. We can fix this by instead looking at $[X - \E(X)]^2$. We want to measure what value this is expected to take, that is, its \textit{expected value}. With this in mind, let us define
+
+\begin{align*}
+  \Var(X) &= \E([X - \E(X)]^2) \\
+  &= \E(X^2 + \E(X)^2 - 2X\E(X)) \\
+  &= \E(X^2) + \E(X)^2 - \E(2X\E(X)) \\
+  &= \E(X^2) + \E(X)^2 - 2\E(X)^2 \\
+  &= \E(X^2) - \E(X)^2
+\end{align*}
+
+\subsection{Calculating variance}
+To calculate this we can just apply the formula for the expected value of a variable. Let $\mu = \E(X)$. Then, for a discrete random variable,
+
+\begin{align*}
+  \sum_x x^2 f(x) - \mu^2
+\end{align*}
+
+and for a continuous random variable,
+
+\begin{align*}
+  \Var(X) = \int_{-\infty}^{\infty} x^2 f(x) \diff x - \mu^2
+\end{align*}
+
+\subsection{The standard deviation}
+Since the variance is defined as the expected value of the \textit{square} of the deviation, its units are the units of the random variable squared. For practical purposes, we may want a measure that comes in the same units as our random variable. For this we can define the \textbf{standard deviation} $\sigma$ as $\sqrt{\Var(X)}$. This is valid since the variance is always positive.
+
+\section{Properties of the variance}
+From its definition, we can derive properties of the variance function:
+
+\begin{itemize}
+  \item $\Var(X) \geq 0$ for all $X$
+  \item Iff $X$ is constant, that is $\mathbb{P}(X = c) = 1$ for some $c$, then $\Var(X) = 0$
+  \item $\Var(aX + b) = a^2\Var(X)$
+  \item $\Var\left(\sum_{i = 1}^n a_iX_i\right) = \sum_{i = 1}^n a_i^2\Var(X_i)$ iff all the variables $X_i$ are independent
+\end{itemize}
+
+\subsection{Jensen's inequality}
+From the properties of the variance we can derive the following property: if $g$ is a given \textit{convex} function, then $\E(g(X)) \geq g(\E(X))$. This comes from the fact that $\Var(X) = \E(X^2) - \E(X)^2 \geq 0$, defining $g(x) = x^2$. This holds for all convex functions, not just $g: x \mapsto x^2$.
+
+\end{document}

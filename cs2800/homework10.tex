@@ -1,0 +1,84 @@
+\input{../preamble.tex}
+\usepackage{proof}
+\usepackage{turnstile}
+\begin{document}
+\title{CS 2800 HW \#10}
+\author{\name}
+\maketitle
+
+Key: as. = assumption, abs. = reductio ad absurdum, e. m. = excluded middle.
+
+\problem{1}
+
+\ppart{a}
+Suppose $\neg P$. $Q$ can either evaluate to $T$ or $F$:
+
+\begin{center}
+\begin{tabular}{lcccc}
+$\neg P$ & $P$ & $Q$ & $P \land Q$ & $\neg(P \land Q)$ \\ \hline
+T & F & T & F & T \\
+T & F & F & F & T
+\end{tabular}
+\end{center}
+
+Therefore, $\neg P \models \neg (P \land Q)$.
+
+\ppart{b}
+
+\infer[\lor\; elim]{\neg P \vdash \neg(P \land Q)}{
+  \infer[e.\; m.]{\vdash (P \land Q) \lor \neg(P \land Q)}{}
+  &
+  \infer[abs.]{\neg P, P \land Q \vdash \neg(P \land Q)}{
+    \infer[\land\; elim]{P \land Q \vdash P}{
+      \infer[as.]{P \land Q \vdash P \land Q}{}
+    }
+    &
+    \infer[as.]{\neg P \vdash \neg P}{}
+  }
+  &
+  \infer[as.]{\neg(P \land Q) \vdash \neg(P \land Q)}{}
+}
+
+\problem{2}
+
+Inductively assume $P(\phi)$ and $P(\psi)$. $I \models \phi \rightarrow \psi$ means that $\text{eval}(\phi \rightarrow \psi, I) = T$, that is, $I \models \neg\phi$ or $I \models \psi$. If $I \models \neg\phi$ then using our assumption, $I \vdash \neg\phi$, and so $I \vdash \phi \rightarrow \psi$. This can be seen from the following proof tree:
+
+\begin{align*}
+\infer[\rightarrow\; intro]{\neg \phi \vdash \phi \rightarrow \psi}{
+  \infer[abs.]{\neg \phi, \phi \vdash \psi}{
+    \infer[as.]{\phi \vdash \phi}{}
+    &
+    \infer[as.]{\neg \phi \vdash \neg phi}{}
+  }
+}
+\end{align*}
+
+If $I \models \psi$, then using our assumption, $I \vdash \psi$, and once again we have $I \vdash \phi \rightarrow \psi$:
+
+\begin{align*}
+\infer[\rightarrow\; intro]{\psi \vdash \phi \rightarrow \psi}{
+  \infer[as.]{\phi, \psi \vdash \psi}{}
+}
+\end{align*}
+
+Conversely, if $I \not\models \phi \rightarrow \psi$, then $I \models \phi \land \neg \psi$. Using the inductive assumption, we have $I \vdash \phi$ and $I \vdash \neg\psi$. Therefore:
+
+\begin{align*}
+\infer[\lor\; elim]{\phi, \neg \psi \vdash \neg(\phi \rightarrow \psi)}{
+  \infer[e.\; m.]{\vdash (\phi \rightarrow \psi) \lor \neg(\phi \rightarrow \psi)}{}
+  &
+  \infer[abs.]{\phi, \neg \psi, \phi \rightarrow \psi \vdash \neg(\phi \rightarrow \psi)}{
+    \infer[\rightarrow\; elim]{\phi, \phi \rightarrow \psi \vdash \psi}{
+      \infer[as.]{\phi \vdash \phi}{}
+      &
+      \infer[as.]{\phi \rightarrow \psi \vdash \phi \rightarrow \psi}{}
+    }
+    &
+    \infer[as.]{\neg \psi \vdash \neg \psi}{}
+  }
+  &
+  \infer[as.]{\neg(\phi \rightarrow \psi) \vdash \neg(\phi \rightarrow \psi)}{}
+}
+\end{align*}
+
+\end{document}

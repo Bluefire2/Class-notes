@@ -1,0 +1,78 @@
+\input{../preamble.tex}
+\newcommand{\hwnumber}{8}
+\begin{document}
+\title{Math 2220 section \sectionnum\\ HW \#\hwnumber}
+\author{\name}
+\maketitle
+
+%%%%%%%%%%%%%%%%%% BEGIN TYPING SOLUTIONS HERE
+
+\problem{1}
+The area of a rectangle with sides $x$ and $y$ is $f(x, y) = xy$. Its perimeter is $g(x, y) = 2(x + y)$. To maximise $f$ with the constraint $g(x, y) = p$ we need to solve $\nabla f(x, y) = \lambda \nabla g(x, y)$. $\nabla f(x, y) = (y, x)$, $\nabla g(x, y) = (2, 2)$ so we have $(y, x) = \lambda (2, 2) \implies x = y = 2\lambda$. Our constraint gives us $2(x + y) = 2(4\lambda) = 8\lambda = p$, so $x = y = \frac{p}{4}$, and the area is $f(\frac{p}{4}, \frac{p}{4}) = \left(\frac{p}{4}\right)^2$.
+
+\problem{2}
+We want to find $\vec{x} \in \mathbb{R}^n$ such that the distance between $\vec{a}$ and $\vec{x}$ is as small as possible. This distance is $\norm{\vec{a} - \vec{x}}$. Since the norm is always positive, we can treat this as minimising $f(\vec{x}) = \norm{\vec{a} - \vec{x}}^2 = \sum_{i = 1}^n (a_i - x_i)^2$, under the constraint $g(\vec{x}) = \vec{c} \cdot \vec{x} = 0$, reducing our problem to solving $\nabla f = \lambda \nabla g(\vec{x})$. $\nabla f(\vec{x}) = (-2(a_1 - x_1), -2(a_2 - x_2) \cdots -2(a_n - x_n)) = -2((a_1 - x_1), (a_2 - x_2) \cdots (a_n - x_n)) = -2(\vec{a} - \vec{x})$, and $\nabla g = \vec{c}$, so we have $2(\vec{x} - \vec{a}) = \lambda \vec{c}$. We can use $\lambda$ to encompass any multiplicative constants, so this is equivalent to $\vec{x} - \vec{a} = \lambda \vec{c} \implies \vec{x} = \lambda \vec{c} + \vec{a}$ for some other value of $\lambda$.
+
+Using our constraint $\vec{c} \cdot \vec{x} = 0$, we get $\vec{c} \cdot (\lambda \vec{c} + \vec{a}) \implies \lambda \norm{\vec{c}}^2 + \vec{c} \cdot \vec{a} = 0 \implies \lambda = -\frac{\vec{c} \cdot \vec{a}}{\norm{\vec{c}}^2}$. Plugging this into our equation for $\vec{x}$ we get $\vec{x} = -\frac{\vec{c} \cdot \vec{a}}{\norm{\vec{c}}^2} \vec{c} + \vec{a}$.
+
+\problem{3}
+
+\ppart{a}
+The velocity is $\vec{v}(t) = \nabla \vec{x} = (-r \omega \sin(\omega t), r \omega \cos(\omega t))$. $\vec{x} \cdot \nabla \vec{x} = (r \cos(\omega t))(-r \omega \sin(\omega t)) + (r \sin(\omega t))(r \omega \cos(\omega t)) = r^2\omega(\sin(\omega t)\cos(\omega t) - \sin(\omega t)\cos(\omega t)) = 0$, so the velocity is orthogonal to the displacement. Because, the displacement is orthogonal to the circle, the velocity is tangent to the circle.
+
+\ppart{b}
+The speed is $s = \norm{\vec{v}} = \norm{(-r \omega \sin(\omega t), r \omega \cos(\omega t))} = \sqrt{(-r \omega \sin(\omega t))^2 + (r \omega \cos(\omega t))^2} = \sqrt{r^2 \omega^2(\sin^2(\omega t) + \cos^2(\omega t))} = \sqrt{r^2\omega^2} = r\omega$.
+
+\ppart{c}
+The acceleration is $\vec{a}(t) = \nabla \vec{v} = (-r \omega^2 \cos(\omega t), -r \omega^2 \sin(\omega t)) = -\omega^2(r \cos(\omega t), r \sin(\omega t)) = -\omega^2 \vec{x}(t)$. Since it is a negative multiple of the displacement, which is directed away from the origin, the acceleration must be directed towards the origin.
+
+\ppart{d}
+$\norm{\vec{a}} = \sqrt{(-r \omega^2 \cos(\omega t))^2 + (-r \omega^2 \sin(\omega t))^2} = \sqrt{r\omega^4(\cos^2(\omega t) + \sin^2(\omega t))} = \sqrt{r^2\omega^4} = r\omega^2$.
+
+\ppart{e}
+First, calculate $(x^2 + y^2)^{\frac{3}{2}} = (r^2(\cos^2(\omega t) + \sin^2(\omega t))^\frac{3}{2} = (r^2)^\frac{3}{2} = r^3$. Then, $x'' + \frac{x}{(x^2 + y^2)^{\frac{3}{2}}} = -r \omega^2 \cos(\omega t) + \frac{r\cos(\omega t)}{r^3}$. If $\omega^2r^3 = 1 \implies r^3 = \frac{1}{\omega^2}$, this is equation becomes $-r \omega^2 \cos(\omega t) + r \omega^2 \cos(\omega t) = 0$. In exactly the same way but with $\sin$ instead of $\cos$, we get $y'' + \frac{y}{(x^2 + y^2)^{\frac{3}{2}}} = 0$.
+
+\ppart{f}
+$x'y - xy' = (-r \omega \sin(\omega t))(r \sin(\omega t)) - (r \cos(\omega t))(r \omega \cos(\omega t)) = -r^2 \omega(\sin^2(\omega t) + \cos^2(\omega t)) = -r^2 \omega$.
+
+\problem{4}
+
+\ppart{a}
+Using the definition $\vec{\omega} = (\vec{x}, \vec{y})$, we have $\vec{\omega}'' = (\vec{x}'', \vec{y}'') = \left(\frac{k(\vec{y} - \vec{x})}{m}, -\frac{k(\vec{y} - \vec{x})}{m}\right)$. Therefore, $m\vec{\omega}'' = (k(\vec{x} - \vec{y}), -k(\vec{x} - \vec{y}))$. $\nabla p(\vec{\omega}) = \frac{k}{2} \nabla \norm{\vec{x} - \vec{y}}^2 = \frac{k}{2} \nabla ((x_1 - y_1)^2 + (x_2 - y_2)^2 + (x_3 - y_3)^2) = \frac{k}{2} (2(x_1 - y_1), 2(x_2 - y_2), 2(x_3 - y_3), -2(x_1 - y_1), -2(x_2 - y_2), -2(x_3 - y_3)) = (k(\vec{x} - \vec{y}), -k(\vec{x} - \vec{y})) = -m\vec{\omega}''$.
+
+\ppart{b}
+$\nabla (p(\vec{\omega}(t))) = \nabla p(\vec{\omega}(t)) \cdot \nabla \vec{\omega}(t) = -m\vec{\omega}'' \cdot \vec{\omega}'$, as per the equation derived above.
+
+$\nabla \norm{\vec{\omega}'}^2 = \nabla (x_1'^2 + x_2'^2 + x_3'^2 + y_1'^2 + y_2'^2 + y_3'^2) = (2x_1'x_1'', 2x_2'x_2'', 2x_3'x_3'', 2y_1'y_1'', 2y_2'y_2'', 2y_3'y_3'') = 2 \vec{\omega}' \cdot \vec{\omega}''$
+
+Therefore, $\nabla \left(\frac{m \norm{\vec{\omega}'}^2}{2} + p(\vec{\omega}(t)\right) = m\vec{\omega}' \cdot \vec{\omega}'' - m\vec{\omega}'' \cdot \vec{\omega}' = 0$. This quantity therefore does not change with time.
+
+\problem{5}
+
+\ppart{a}
+The linear approximation for $\vec{x}$ at $t$ is $\vec{x}(t + h) \approx L_x(h) = \vec{x}(t) + \vec{x}'(t)h$, and that of $\vec{y}$ at $t$ is $L_y(h) = \vec{y}(t) + \vec{y}'(t)h$. Therefore, $\vec{u}(t + h) \approx (\vec{x}(t) + \vec{x}'(t)h, \vec{y}(t) + \vec{y}'(t)h)$.
+
+\ppart{b}
+The signed area of the triangle formed by two vectors $(a, b)$ and $(c, d)$, both originating at $0$, is $\frac{bc - ad}{2}$, as this is the determinant of the matrix $\begin{bmatrix}\vec{u} & \vec{v}\end{bmatrix}$. In this case, this is equal to $\frac{x(y + y'h) - y(x + x'h)}{2} = \frac{h}{2}(xy' - yx')$.
+
+\ppart{c}
+If $A$ is the area, the change in area is $\Delta A = \frac{h}{2} (xy' - yx')$, and $\Delta t = h$. The rate of change of the area is $\frac{\diff A}{\diff t} = \lim_{h \rightarrow 0} \frac{\Delta A}{\Delta t} = \lim_{h \rightarrow 0} \frac{1}{2} (xy' - yx') = \frac{1}{2} (xy' - yx')$. If we parametrise like in (3) but for an ellipse instead of a circle, we get $\vec{x}(t) = (ra \cos(\omega t), rb \sin(\omega t))$. From this, if we push through the algebra as in (3c) we get $x'y - xy' = -r^2 a b \omega \implies xy' - x'y = r^2 a b \omega$, which is also constant given fixed $a$, $b$, $r$ and $\omega$. That means $\frac{\diff A}{\diff t} = \frac{r^2 a b \omega}{2}$ is constant, which implies that planet that travels for time $t$ will always sweep out the same area, regardless of where the planet is.
+
+\ppart{d}
+The period is the time taken to sweep out the entire area: $T = \frac{A}{\frac{\diff A}{\diff t}} = \frac{2A}{r^2 a b \omega}$.
+
+\problem{6}
+
+\ppart{a}
+We know that $-p\sqrt{x^2 + y^2} \geq 0$, since $p < -1$ and $\sqrt{n} \geq 0 \;\forall\; n \in \mathbb{R}$. Therefore, the equation only makes sense if the right hand side is also nonnegative: $q - y \geq 0 \implies q \geq y$. However, for motion to occur, we need this to be positive, so we have $y < q$.
+
+\ppart{b}
+As per the equation derived in part (c), this function is the equation for an ellipse.
+
+\ppart{c}
+Rearranging the equation, we get $p^2(x^2 + y^2) = (q - y)^2 \implies p^2x^2 + (p^2 - 1)y^2 + 2qy = q^2 \implies p^2x^2 + (p^2 - 1)\left(y + \frac{q}{p^2 - 1}\right)^2 - \frac{q^2}{p^2 - 1} = q^2 \implies p^2x^2 + (p^2 - 1)\left(y + \frac{q}{p^2 - 1}\right)^2 = \frac{p^2q^2}{p^2 - 1}$. To make this into the traditional equation for an ellipse we divide both sides by the right-hand side, giving $x^2 \frac{p^2 - 1}{q^2} + \left(y + \frac{q}{p^2 - 1}\right)^2 \frac{(p^2 - 1)^2}{p^2q^2} = 1$. This gives the values of the two axes: $r_1 = \frac{q}{\sqrt{p^2 - 1}}$ and $r_2 = \frac{-pq}{p^2 - 1}$. The minus in the second equation comes from the fact that we want $r_2 \geq 0$, but $p < -1$, so we need to invert the value to get the unsigned magnitude.
+
+\ppart{d}
+By Kepler's second law, we know that the time taken to ``sweep'' out the entire ellipse is $T$, the period of the orbit. The total area is $A = \pi r_1 r_2 = \pi \frac{q}{\sqrt{p^2 - 1}} \frac{-pq}{p^2 - 1} = \pi \frac{-pq^2}{(p^2 - 1)^{\frac{3}{2}}}$. We know that $\frac{\diff A}{\diff t}$ is constant and $T = A \frac{\diff A}{\diff t}$, so $T \propto A$, and therefore $T^2 \propto A^2$. $A^2 = \pi^2 \frac{p^2q^4}{(p^2 - 1)^3}$
+
+\end{document}
