@@ -1,0 +1,35 @@
+\documentclass[12pt]{article}
+\usepackage{fancyhdr}     % Enhanced control over headers and footers
+\usepackage[T1]{fontenc}  % Font encoding
+\usepackage{mathptmx}     % Choose Times font
+\usepackage{microtype}    % Improves line breaks
+\usepackage{setspace}     % Makes the document look like horse manure
+\usepackage{lipsum}       % For dummy text
+\usepackage{etoolbox}
+
+\AtBeginEnvironment{quote}{\singlespacing\small}
+
+\newcommand{\name}{Kirill Chernyshov}
+
+\pagestyle{fancy} % Default page style
+\lhead{\name}
+\chead{}
+\rhead{\thepage}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\thispagestyle{empty} %First page style
+
+\setlength\headheight{15pt} %Slight increase to header size
+
+\begin{document}
+\begin{center}
+\begin{tabular}{c}
+\textbf{\name} \\
+\textbf{\today}
+\end{tabular}
+\end{center}
+\doublespacing
