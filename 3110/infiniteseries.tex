@@ -1,0 +1,32 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Math 3110 - Infinite series}
+\author{\name}
+\maketitle
+
+\section{Definition}
+An infinite series is an expression of the form
+
+\begin{align*}
+  \sum_{n = 1}^{\infty} a_n = a_1 + a_2 + \cdots
+\end{align*}
+
+It is better defined as the limit of a sequence $\{s_k\}$ whose terms are given by
+
+\begin{align*}
+  s_k = \sum_{n = 1}^k a_n
+\end{align*}
+
+That is, $\sum_{n = 1}^{\infty} a_n = \lim_{k \rightarrow \infty} s_k = \lim_{k \rightarrow \infty} \sum_{n = 1}^{k} a_n$.
+
+\subsection{Repeating decimals}
+
+A repeating decimal is in fact an infinite series. For example, $0.\overline{9} = 0.999... = 0.9 + 0.09 + 0.009 + \cdots = \sum_{n = 1}^{\infty} \frac{9}{10^n}$. To evaluate this series, express it as the infinite limit of a finite sum:
+
+\begin{align*}
+  \sum_{n = 1}^{\infty} \frac{9}{10^n} &= \lim_{k \rightarrow \infty} \left(\sum_{n = 1}^{k} \frac{9}{10^n}\right) \\
+  &= \lim_{k \rightarrow \infty} \left(1 - \frac{1}{10^k}\right) \\
+  &= 1 - 0 = 1
+\end{align*}
+
+\end{document}
