@@ -1,0 +1,99 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Math 3110 homework \#3}
+\author{\name}
+\maketitle
+
+\problem{3.1.1}
+\ppart{e}
+
+\begin{proof}
+  We begin by examining the difference $|\sqrt{n^2 + 1} - n - 0| = |\sqrt{n^2 + 1} - n|$. Since for $n > 0$, $\sqrt{n^2} = n$ and $n^2 + 1 > n^2$, and since $\sqrt{n}$ increases as $n$ increases, we have $\sqrt{n^2 + 1} > n$ for $n > 0$. Therefore, $|\sqrt{n^2 + 1} - n| = \sqrt{n^2 + 1} - n$, since the quantity is always positive. Now, pick $\epsilon > 0$ and solve the inequality:
+
+  \begin{align*}
+    \sqrt{n^1 + 1} - n &< \epsilon \\
+    \sqrt{n^2 + 1} &< \epsilon + n \\
+    n^2 + 1 &< \epsilon^2 + n^2 + \epsilon n \\
+    \epsilon n &> 1 - \epsilon^2 \\
+    n &> \frac{1}{\epsilon} - \epsilon
+  \end{align*}
+
+  Therefore, given $N > \frac{1}{\epsilon} - \epsilon$, for any $\epsilon$, for all $n \geq N$, $|\sqrt{n^2 + 1} - n| < \epsilon$.
+\end{proof}
+
+\problem{3.1.2}
+Prove that if $\{a_n\}$ is a non-negative sequence, then $\lim_{n \rightarrow \infty} a_n = 0 \implies \lim_{n \rightarrow \infty} \sqrt{a_n} = 0$.
+
+\begin{proof}
+  Pick any $\epsilon > 0$. By definition, $\lim_{n \rightarrow \infty} a_n = 0$ means that, for any $\epsilon^{\prime} > 0$ there exists $N$ such that for all $n \geq N$, $|a_n| < \epsilon^{\prime}$, equivalent to $a_n < \epsilon^{\prime}$ since we are also given that $a_n \geq 0 \;\forall\; n$. $\sqrt{n}$ increases as $n$ increases, so this means that $\sqrt{a_n} < \sqrt{\epsilon^{\prime}}$. Therefore, we can pick $\epsilon^{\prime} = \epsilon^2$, and using the same $N$, we know that $\sqrt{a_n} < \sqrt{\epsilon^{\prime}} = \epsilon$. Therefore, $\lim_{n \rightarrow \infty} \sqrt{a_n} = 0$.
+\end{proof}
+
+\problem{3.2.3}
+
+\ppart{a}
+Show that the sequence
+
+\begin{align*}
+  a_n = \sum_{i = 1}^{n} \frac{1}{n + i}
+\end{align*}
+
+has a limit.
+
+\begin{proof}
+  To show that this sequence has a limit, it suffices to show that it is both increasing and has an upper bound. First, examine the difference between two consecutive terms:
+
+  \begin{align*}
+    a_{n + 1} - a_n &= \sum_{i = 1}^{n + 1} \frac{1}{n + 1 + i} - \sum_{i = 1}^{n} \frac{1}{n + i} \\
+    &= \sum_{i = 2}^{n + 2} \frac{1}{n + i} - \sum_{i = 1}^{n} \frac{1}{n + i} \\
+    &= \frac{1}{2n + 2} + \frac{1}{2n + 1} - \frac{1}{n + 1} \\
+    &> \frac{1}{2n + 2} + \frac{1}{2n + 2} - \frac{1}{n + 1} = \frac{1}{n + 1} - \frac{1}{n + 1} = 0
+  \end{align*}
+
+  Since the difference is strictly greater than $0$, the sequence is strictly increasing. Also, note that $\sum_{i = 1}^{n} \frac{1}{n + i} < \sum_{i = 1}^{n} \frac{1}{n} = \frac{n}{n} = 1$, that is, the sequence is bounded above by $1$. Thus, the sequence must have a limit.
+\end{proof}
+
+The limit is actually $\ln 2$, since the sequence is actually the riemann sum for $\int_0^1 \frac{1}{1 + x} \diff x$
+
+\ppart{b}
+In the last step, the $K-\epsilon$ principle cannot be applied, since it works if and only if $K$ is a constant, and $n$ is not a constant.
+
+\problem{4.3.1}
+The generic recursive formula for Newton's method is
+
+\begin{align*}
+  a_{n + 1} = a_n - \frac{f(a_n)}{f^{\prime}(x_n)}
+\end{align*}
+
+For $f(x) = x^2 - 3$ we have $f^{\prime}(x) = 2x$, and therefore the recursive formula is $a_{n + 1} = a_n - \frac{a_n^2 - 3}{2a_n}$, where $a_n \neq 0$.
+
+\problem{3-1}
+\ppart{a}
+Suppose that $b_n = \frac{\sum_{i = 1}^n a_i}{n}$ for some sequence $\{a_n\}$. Show that if $\lim_{n \rightarrow \infty} a_n = 0$ then $\lim_{n \rightarrow \infty} b_n = 0$.
+
+\begin{proof}
+  By definition, given $\epsilon > 0$, there exists $N$ such that for all $n \geq N$, $|a_n| < \epsilon$. Now examine the value of $|b_n|$:
+
+  \begin{align*}
+    |b_n| &= \Big|\frac{\sum_{i = 1}^n a_i}{n}\Big| \\
+    &= \Big|\frac{\sum_{i = 1}^{\floor{N}} a_i}{n} + \frac{\sum_{i = \floor{N} + 1}^n a_i}{n}\Big| \\
+    &< \frac{\sum_{i = 1}^{\floor{N}} |a_i|}{n} + \frac{\sum_{i = \floor{N} + 1}^n \epsilon}{n} \\
+    &= \frac{\sum_{i = 1}^{\floor{N}} |a_i|}{n} + \frac{(n - \floor{N})\epsilon}{n} \\
+    &< \frac{\sum_{i = 1}^{\floor{N}} a_i}{n} + \frac{n\epsilon}{n} \\
+    &= \frac{\sum_{i = 1}^{\floor{N}} a_i}{n} + \epsilon \\
+  \end{align*}
+
+  Since $a_n$ must be bounded, we know that there exists $k$ such that for all $n$, $|a_n| \leq k$. This means that $\frac{\sum_{i = 1}^{\floor{N}} a_i}{n} \leq \frac{\sum_{i = 1}^{\floor{N}} k}{n} = \frac{k \cdot \floor{N}}{n}$. If we pick $n$ such that $n \geq \max(N, \frac{k \cdot \floor{N}}{\epsilon})$, then $|b_n| < \frac{\sum_{i = 1}^{\floor{N}} a_i}{n} + \epsilon \leq \epsilon + \epsilon = 2\epsilon$. Therefore, by the $K-\epsilon$ principle, $\lim_{n \rightarrow \infty} b_n = 0$.
+\end{proof}
+
+\problem{3-4}
+Prove that a convergent sequence $\{a_n\}$ must be bounded.
+
+\begin{proof}
+  Suppose $\lim_{n \rightarrow \infty} a_n = L$. Then, by definition, for any $\epsilon > 0$, there exists $N$ such that for all $n \geq N$, $|a_n - L| < \epsilon$. For any such $\epsilon$, we know that the sequence $\{a_n\}$ where $n \geq N$ must be bounded, since $|a_n - L| < \epsilon \implies L - \epsilon < a_n < L + \epsilon$. The rest of the sequence (the terms $a_0, a_1 \cdots a_{\floor{N}}$) is a finite set of finite terms, therefore it must also be bounded by some constants $P$ and $M$, such that for all $i: 0 < i \leq \floor{N}$, $P \leq a_i \leq M$. Therefore, we can construct a lower and an upper bound on the entire sequence:
+
+  \begin{align*}
+    \min(P, L - \epsilon) \leq a_n \leq \max(M, L + \epsilon) \;\forall\; n
+  \end{align*}
+\end{proof}
+
+\end{document}

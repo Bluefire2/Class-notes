@@ -1,0 +1,104 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Math 3110 homework \#5}
+\author{\name}
+\maketitle
+
+\problem{6.4.1}
+Prove that every convergent sequence is a Cauchy sequence.
+
+\begin{proof}
+  Suppose $\{a_n\}$ is convergent. Then, there exists $L$ such that $\lim_{n \rightarrow \infty} a_n = L$, that is, for any $\epsilon > 0$, there exists $N$ such that for all $n \geq N$, $|a_n - L| < \epsilon$. Fix $\epsilon$, and pick any $m, n \geq N$. Then:
+
+  \begin{align*}
+    |a_n - a_m| &= |a_n - L - a_m + L| \\
+    &= |a_n - L - (a_m - L)|
+    &\leq |a_n - L| + |a_m - L| \leq 2\epsilon
+  \end{align*}
+
+  Therefore, by the $K-\epsilon$ principle, $\{a_n\}$ is a Cauchy sequence.
+\end{proof}
+
+\problem{6.5.4}
+Let $S$ and $T$ be non-empty subsets of $\mathbb{R}$, such that for all $s \in S, t \in T$, $s \leq t$. Prove that $\sup S \leq \inf T$.
+
+\begin{proof}
+  Fix $s \in S$. Since for any $t \in T$, $s \leq t$, $s$ is a lower bound for $T$. By definition, $\inf T$ is the greatest lower bound of $T$, and so $s \leq \inf T$. Since we made no assumptions about $s$, it follows that for any $s \in S$, $s \leq \inf T$, and therefore $\inf T$ is an upper bound for $S$. Since $\sup S$ is the least upper bound of $S$, $\sup S \leq \inf T$.
+\end{proof}
+
+\problem{6-1}
+
+\ppart{a}
+Show that $\{x_n\}$ is a Cauchy sequence.
+
+\begin{proof}
+We are given that $x_n = \frac{x_{n - 1} + x_{n - 2}}{2}$. Consider the absolute difference between two consecutive terms:
+
+\begin{align*}
+  |x_n - x_{n - 1}| &= \Big|\frac{x_{n - 1} + x_{n - 2}}{2} - x_{n - 1}\Big| \\
+  &= \Big|\frac{x_{n - 2} - x_{n - 1}}{2}\Big| \\
+  &= \frac{1}{2}|x_{n - 2} - x_{n - 1}| = \frac{1}{2}|x_{n - 1} - x_{n - 2}| \\
+  &= \frac{1}{2}\frac{1}{2}|x_{n - 2} - x_{n - 3}| = \cdots = \frac{1}{2^{n - 1}}|x_1 - x_0|
+\end{align*}
+
+Now, consider the difference between two arbitrary terms, $x_m$ and $x_n$, where $m \geq n$:
+
+\begin{align*}
+  |x_m - x_n| &= |(x_m - x_{m - 1}) + (x_{m - 1} - x_{m - 2}) + \cdots + (x_{n + 1} - x_n)| \\
+  &\leq |x_m - x_{m - 1}| + |x_{m - 1} - x_{m - 2}| + \cdots + |x_{n + 1} - x_n| \\
+  &= \frac{1}{2^{m - 1}}|x_1 - x_0| + \frac{1}{2^{m - 2}}|x_1 - x_0| + \cdots + \frac{1}{2^n}|x_1 - x_0| \\
+  &= |x_1 - x_0|\sum_{i = n}^{m - 1} \frac{1}{2^i} \\
+  &= |x_1 - x_0|\frac{1}{2^n}\frac{1 - \frac{1}{2^{m - n}}}{1 - \frac{1}{2}} \\
+  &= |x_1 - x_0|\frac{1}{2^{n - 1}}\left(1 - \frac{1}{2^{m - n}}\right) \\
+  &= |x_1 - x_0|\left(\frac{1}{2^{n - 1}} - \frac{1}{2^{m - 1}}\right) \\
+  &< \frac{1}{2^{n - 1}}|x_1 - x_0|
+\end{align*}
+
+Fix $\epsilon$, and set $N$ such that $\epsilon > \frac{1}{2^{N - 1}}$, i.e. $N > 1 - \log_2 \epsilon$. Then, for all $m \geq n \geq N$, $|x_m - x_n| < \epsilon|x_1 - x_0|$. Since $|x_1 - x_0|$ is a constant, by the $K-\epsilon$ principle, $\{x_n\}$ is a Cauchy sequence.
+\end{proof}
+
+\ppart{b}
+The limit must exist, since $\{x_n\}$ is a Cauchy sequence. As seen in part (a), $x_n - x_{n - 1} = -\frac{1}{2}|x_{n - 1} - x_{n - 2}| = \left(\frac{-1}{2}\right)^{n - 1}(x_1 - x_0) = \left(\frac{-1}{2}\right)^{n - 1}(b - a)$. Now, consider a single term of the sequence:
+
+\begin{align*}
+  x_n &= \sum_{i = 1}^{n} (x_i - x_{i - 1}) + x_0 \\
+  &= \sum_{i = 1}^{n} \left(\frac{-1}{2}\right)^{i - 1}(b - a) + a\\
+  &= (b - a)\sum_{i = 1}^{n} \left(\frac{-1}{2}\right)^{i - 1} + a
+\end{align*}
+
+Therefore, we can calculate the limit:
+
+\begin{align*}
+  \lim_{n \rightarrow \infty} x_n &= \lim_{n \rightarrow \infty} \left[(b - a)\sum_{i = 1}^{n} \left(\frac{-1}{2}\right)^{i - 1} + a\right] \\
+  &= \lim_{n \rightarrow \infty} \left[(b - a)\sum_{i = 1}^{n} \left(\frac{-1}{2}\right)^{i - 1}\right] + \lim_{n \rightarrow \infty} \left[a\right] \\
+  &= \lim_{n \rightarrow \infty} \left[(b - a)\right] \cdot \lim_{n \rightarrow \infty} \left[\sum_{i = 1}^{n} \left(\frac{-1}{2}\right)^{i - 1}\right] + \lim_{n \rightarrow \infty} \left[a\right] \\
+  &= (b - a)\left(\frac{1}{1 + \frac{1}{2}}\right) + a = \frac{2}{3}(b - a) + a
+\end{align*}
+
+\problem{6-2}
+
+\ppart{a}
+Let $S \subseteq \mathbb{R}$ be a bounded non-empty set, and let $\overline{m} = \sup S$. Prove that there exists a sequence $\{a_n\}$ such that for all $n$, $a_n \in S$, and $a_n \rightarrow \overline{m}$.
+
+\begin{proof}
+  Pick any sequence $\{b_n\}$ such that $b_n \rightarrow 0$, and bounded such that $\overline{m} - b_n \in S$ for all $n$. Since $S$ is non-empty, this is always possible. Then, define $\{a_n\}$ as $a_n = \overline{m} - b_n$. Then, $\lim_{n \rightarrow \infty} a_n = \lim_{n \rightarrow \infty} (\overline{m} - b_n) = \lim_{n \rightarrow \infty} \overline{m} - \lim_{n \rightarrow \infty} b_n = \overline{m} - 0 = \overline{m}$.
+\end{proof}
+
+\ppart{b}
+From exercise 6.5.3, we know that $\sup(A + B) \leq \sup A + \sup B$. Therefore, showing that $\sup(A + B) \geq \sup A + \sup B$ will be sufficient to prove that $\sup(A + B) = \sup A + \sup B$.
+
+\begin{proof}
+  By part (a), there exist sequences $\{a_n\} \subseteq A$ and $\{b_n\} \subseteq B$ such that $a_n \rightarrow \sup A$, and $b_n \rightarrow \sup B$. Since $a_n \in A, b_n \in B \;\forall\; n$, $a_n + b_n \in A + B$, and therefore $a_n + b_n \leq \sup(A + B)$. By the limit location theorem, $\lim a_n + b_n \leq \sup(A + B)$. But $\lim a_n + b_n = \lim a_n + \lim b_n = \sup A + \sup B$, and therefore $\sup A + \sup B = \sup(A + B)$.
+\end{proof}
+
+\problem{7.2.1}
+Evaluate $\sum_{i = 0}^{\infty} \frac{1}{(2n + 1)^2}$, given that $\sum_{i = 1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}$.
+
+\begin{align*}
+  \sum_{i = 0}^{\infty} \frac{1}{n^2} &= \sum_{i = 0}^{\infty} \frac{1}{(2n)^2} + \sum_{i = 0}^{\infty} \frac{1}{(2n + 1)^2} \\
+  &= \frac{1}{4}\sum_{i = 0}^{\infty} \frac{1}{n^2} + \sum_{i = 0}^{\infty} \frac{1}{(2n + 1)^2} \\
+\end{align*}
+
+Therefore, $\sum_{i = 0}^{\infty} \frac{1}{(2n + 1)^2} = \frac{3}{4}\sum_{i = 0}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{8}$. Line 1 above works because it is given that that $\sum_{i = 0}^{\infty} \frac{1}{n^2}$ and therefore $\sum_{i = 0}^{\infty} \frac{1}{(2n)^2}$ are both convergent, so $\sum_{i = 0}^{\infty} \frac{1}{(2n + 1)^2}$ must also converge.
+
+\end{document}
