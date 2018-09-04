@@ -6,7 +6,9 @@
 \usepackage{setspace}     % Makes the document look like horse manure
 \usepackage{lipsum}       % For dummy text
 \usepackage{etoolbox}
+\usepackage{hyperref}
 
+\linespread{2}
 \setlength\topmargin{0pt}
 \addtolength\topmargin{-\headheight}
 \addtolength\topmargin{-\headsep}
@@ -19,7 +21,7 @@
 
 \AtBeginEnvironment{quote}{\singlespacing\small}
 
-\newcommand{\name}{Kirill Chernyshov}
+\newcommand{\name}{Kyrylo Chernyshov}
 
 \pagestyle{fancy} % Default page style
 \lhead{\name}
@@ -36,7 +38,7 @@
 \setlength\headheight{15pt} %Slight increase to header size
 
 \begin{document}
-\layout
+% \layout
 \begin{center}
 \begin{tabular}{c}
 \textbf{\name} \\

@@ -1,0 +1,40 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Math 3110 homework \#8}
+\author{\name}
+\maketitle
+
+\problem{1}
+\begin{proof}
+  Construct two sequences: $\{a_n\}: a_n = \frac{\pi}{2} + 2n\pi$, and $\{b_n\}: b_n = 2n\pi$. Clearly, $a_n \rightarrow \infty$ and $b_n \rightarrow \infty$. Suppose there exists $L \in \mathbb{R}$ such that $\lim_{x \rightarrow \infty} \sin x = L$. Then, by the limit form of sequential continuity, $\lim_{n \rightarrow \infty} \sin a_n = \lim_{n \rightarrow \infty} \sin b_n = L$. But $\sin a_n = 1, \sin b_n = -1 \;\forall\; n \implies 1 = -1$. Therefore, by contradiction, $\lim_{x \rightarrow \infty} \sin x$ cannot exist.
+\end{proof}
+
+\problem{2}
+\begin{proof}
+  Suppose that there exists a continuous $f$ such that $f(x) \in \mathbb{Q} \;\forall\; x$. Pick $a, b \in \mathbb{R}, f(a) \neq f(b)$; then we have $f(a), f(b) \in \mathbb{Q}$. By a fundamental theorem, there exists $x: f(a) < x < f(b)$ such that $x \notin \mathbb{Q}$. But by the intermediate value theorem, there must exist $c: a < c < b$ such that $f(c) = x$. Therefore, the condition $f(a) \neq f(b)$ cannot hold, i.e. the value of $f(x)$ is constant for all $x$.
+\end{proof}
+
+\problem{3}
+\begin{proof}
+  Let $f(x) = y^2 \cos x - e^x$ for some $y \geq 1$. $f(0) = y^2 - 1 \geq 0$, and $f\left(\frac{\pi}{2}\right) = -e^{\frac{\pi}{2}} < 0$. Since $f$ changes sign on $\left[0, \frac{\pi}{2}\right]$, by Bolzano's theorem, it must have a zero in $\left[0, \frac{\pi}{2}\right]$. This zero cannot be $\frac{\pi}{2}$, since as above, $f\left(\frac{\pi}{2}\right) < 0$, so the zero must be in $\left[0, \frac{\pi}{2}\right)$.
+\end{proof}
+
+\problem{4}
+
+$k(-4) = -19$, $k(-2) = 13$, $k(0) = -3$, $k(2) = -19$ and $k(4) = 13$. There are, then, at least three intervals on which $k$ changes sign: $[-4, -2]$, $[-2, 0]$ and $[2, 4]$. $k$ is continuous, since it is a linear combination of continuous functions. Therefore, by Bolzano's theorem, it has roots in all three of these intervals. Since $k(-2) \neq 0$, $-2$ is not a root, so the roots in the intervals $[-4, -2]$ and $[-2, 0]$ must be distinct (they cannot both be $-2$), and thus $k(x) = 0$ has at least three roots. But since $k(x) = 0$ is cubic, it can have at most three roots; therefore, $k(x) = 0$ has exactly 3 roots.
+
+\problem{5}
+
+\ppart{a}
+E
+
+\ppart{b}
+C
+
+\ppart{c}
+$[A, C]$ and $[E, I]$, because the function is continuous on both these intervals.
+
+\ppart{d}
+Same as part (c), and $[A, F]$, since on $[A, F]$ $p(x)$ takes all values between $p(A)$ and $p(F)$.
+
+\end{document}

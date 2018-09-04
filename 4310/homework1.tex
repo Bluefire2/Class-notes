@@ -1,0 +1,281 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Math 4310 homework \#1}
+\author{\name}
+\maketitle
+
+\problem{1.2.6}
+
+The doubled inventory will have twice as much of each item. To calculate it, each amount needs to be multiplied by 2. This is equivalent to multiplying the entire matrix by 2, since matrix multiplication by a scalar multiplies each entry by 2.
+
+$2\vv{M} - \vv{A}$ is the difference between the inventories before and after the June sale; the amount of suites sold is the sum of all of the terms in this new matrix (34).
+
+\problem{1.2.10}
+
+\begin{lemma}
+    $f(x) = 0 \;\forall\; x$ and $1$ are the additive and multiplicative identities, respectively.
+\end{lemma}
+
+\begin{proof}
+    For any differentiable function $g$, $(g + f)(x) \equiv g(x) + f(x) = g(x) + 0 = g(x)$; similarly, $(f + g)(x) \equiv f(x) + g(x) = 0 + g(x) = g(x)$. Likewise, $1 \cdot g(x) = g(x)$.
+\end{proof}
+
+\begin{lemma}
+    $V$ is closed under addition and scalar multiplication.
+\end{lemma}
+
+\begin{proof}
+    For any two differentiable functions $f, g \in V$, $\frac{\diff}{\diff x} (f + g)(x) = \frac{\diff}{\diff x} (f(x) + g(x)) = \frac{\diff}{\diff x} f(x) + \frac{\diff}{\diff x} g(x)$. Since $f$ and $g$ are differentiable, so is $f + g$, and therefore $f + g \in V$.
+
+    For any $f \in V$ and $c \in \mathbb{R}$, $\frac{\diff}{\diff x} c \cdot f(x) = c \frac{\diff}{\diff x} f(x)$. Since $f$ is differentiable, so is $c \cdot f(x)$, and therefore $c \cdot f(x) \in V$.
+\end{proof}
+
+\begin{lemma}
+    For every $f \in V$, $\exists g \in V$ such that $(f + g)(x) = 0 \;\forall\; x$. Specifically, $g(x) = -1 \cdot f(x)$.
+\end{lemma}
+
+\begin{proof}
+    $(f + g)(x) = f(x) + g(x) = f(x) + (-1) \cdot f(x)$. Since $f(x) \in \mathbb{R}$, $f(x) + (-1) \cdot f(x) = f(x) - f(x) = 0$.
+\end{proof}
+
+\problem{1.2.11}
+
+\begin{lemma}
+    The additive identity is $0$.
+\end{lemma}
+
+\begin{proof}
+    The only element of $V$ is $0$. By definition, $0 + 0 = 0 + 0 \equiv 0$.
+\end{proof}
+
+\begin{lemma}
+    $V$ is closed under addition and scalar multiplication.
+\end{lemma}
+
+\begin{proof}
+    The only element of $V$ is $0$. By definition, $0 + 0 = 0 + 0 \equiv 0 \in V$.
+
+    For any $c \in \mathbb{R}$, $c0 \equiv 0 \in V$.
+\end{proof}
+
+\begin{lemma}
+    For any $e \in V$, the additive inverse is $0$.
+\end{lemma}
+
+\begin{proof}
+    $e \in V$ must be $0$. By definition, $0 + 0 = 0 + 0 \equiv 0$, which is the additive identity.
+\end{proof}
+
+\problem{1.2.12}
+
+The set of even functions $E$ is closed under scalar multiplication and addition; and the additive identity is $f(x) = 0 \;\forall\; x$. The inverse of $f$ is $g$ such that $g(x) = -f(x) \;\forall\; x$.
+
+\begin{proof}
+    For any $f, g \in E$, $(f + g)(-x) = f(-x) + g(-x) = f(x) + g(x) = (f + g)(x)$, so $f + g \in E$. For any $c \in \mathbb{R}$, $c \cdot f(-x) c \cdot f(x)$, so $c \cdot f \in E$.
+
+    Since the additive identity as described above is in $E$, the proof of 1.2.10 shows that it is indeed an additive identity. Similarly, the proof of 1.2.10 shows that $-f(x)$ is the additive inverse of $f(x)$. Since $-f(-x) = -f(x)$, $-f \in E$.
+\end{proof}
+
+\problem{1.3.15}
+
+This set $C^\prime(\mathbb{R})$ is a subspace of $C(\mathbb{R})$.
+
+\begin{proof}
+    $C^\prime(\mathbb{R}) \subseteq C(\mathbb{R})$. As described above, the additive identity is $f(x) = 0$, which is part of $C^\prime(\mathbb{R})$.
+
+    For any $f, g \in C^\prime(\mathbb{R})$, $f + g \in C^\prime(\mathbb{R})$, since the sum of two differentiable functions is also differentiable. Similarly, $c \cdot f(x)$ is differentiable, and so $c \cdot f \in C^\prime(\mathbb{R})$.
+\end{proof}
+
+\problem{1.3.18}
+
+\begin{proof}
+    The properties that $W \subseteq V$ has to satisfy to be a subspace of $V$ are as follows:
+
+    \begin{itemize}
+        \item $0 \in W$
+        \item $x, y \in W \implies x + y \in W$
+        \item $c \in F, x \in W \implies c \cdot x \in W$
+    \end{itemize}
+
+    Assume these properties hold. Then, let $a = c \cdot b$ for some $c \in F, b \in W$. By property 3, $a \in W$. For any $x \in W$, by property 2, $a + x = c \cdot b + x \in W$.
+
+    Now assume we have that $0 \in W$ and $\forall a, b \in W, c \in F, c \cdot a + b \in W$. Let $x = c \cdot a$. Since $0 \in W$, $x = x + 0 = c \cdot a + 0 = c \cdot a \in W$ (the third property). Therefore, $x + b \in W$ (the second property). The first property holds since it was an assumption.
+\end{proof}
+
+\problem{1.3.19}
+
+Both directions of implication need to be proven.
+
+The first direction: if $W_1 \subseteq W_2$ (without loss of generality), $W_1 \cup W_2$ is a subspace of $V$.
+\begin{proof}
+    If $W_1 \subseteq W_2$, $W_1 \cup W_2 = W_2$. Since $W_2$ is a subspace of $V$, so is $W_1 \cup W_2$.
+\end{proof}
+
+The second direction: if $W_1 \cup W_2$ is a subspace of $V$. then either $W_1 \subseteq W_2$ or $W_2 \subseteq W_1$.
+
+First, we need a helper lemma.
+
+\begin{lemma}
+    If $x \in V$ and $x + y \in V$, and $V$ is a vector space, then $y \in V$.
+\end{lemma}
+
+\begin{proof}
+    $x + y \in V \implies (x + y) + (-x) \in V$, since $-x \in V$. But $(x + y) + (-x) = (x - x) + y = 0 + y = 0$, so $y \in V$.
+\end{proof}
+
+Now we're ready to prove the second direction.
+\begin{proof}
+    Suppose there exist $x \in W_1, x \notin W_2$ and $y \in W_2, y \notin W_1$. Then, since $x, y \in W_1 \cup W_2$, $x + y \in W_1 \cup W_2$, i.e. $x + y \in W_1$ or $x + y \in W_2$. But, according to the above lemma, $x \in W_1, x + y \in W_1 \implies y \in W_1$, and $y \in W_2, x + y \in W_2 \implies x \in W_2$. Since these are both contradictions, such a pair of $x$ and $y$ cannot exist; therefore, either $\forall\; x \in W_1, x \in W_2 \implies W_1 \subseteq W_2$, or $\forall y \in W_2, y \in W_1 \implies W_2 \subseteq W_1$. 
+\end{proof}
+
+\problem{1.4.2}
+
+\ppart{b}
+
+$$
+\begin{cases}
+    3x_1 - 7x_2 + 4x_3 = 10 & (1) \\
+    x_1 - 2x_2 + x_3 = 3 & (2) \\
+    2x_1 - x_2 - 2x_3 = 6 & (3) \\
+\end{cases}
+$$
+
+Set $(1) = (1) - 3 \cdot (2)$ and $(3) = (3) - 2 \cdot (2)$:
+
+$$
+\begin{cases}
+    -x_2 + x_3 = 1 & (1) \\
+    x_1 - 2x_2 + x_3 = 3 & (2) \\
+    3x_2 - 4x_3 = 0 & (3) \\
+\end{cases}
+$$
+
+Set $(2) = (2) - 2 \cdot (1)$ and $(3) = (3) + 3 \cdot (1)$:
+
+$$
+\begin{cases}
+    -x_2 + x_3 = 1 & (1) \\
+    x_1 - x_3 = 1 & (2) \\
+    -x_3 = 3 & (3) \\
+\end{cases}
+$$
+
+Set $(2) = (2) - (3)$ and $(1) = (1) + (3)$:
+
+$$
+\begin{cases}
+    -x_2 = 4 & (1) \\
+    x_1 = -2 & (2) \\
+    -x_3 = 3 & (3) \\
+\end{cases}
+$$
+
+Finally, rearrange and multiply by $-1$ where needed:
+
+$$
+\begin{cases}
+    x_1 = -2 \\
+    x_2 = -4 \\
+    x_3 = -3 \\
+\end{cases}
+$$
+
+\ppart{d}
+
+$$
+\begin{cases}
+    x_1 + 2x_2 + 2x_3 = 2 & (1) \\
+    x_1 + 8x_3 + 5x_4 = -6 & (2) \\
+    x_1 + x_2 + 5x_3 + 5x_4 = 3 & (3) \\
+\end{cases}
+$$
+
+Set $(2) = (2) - (1)$ and $(3) = (3) - (1)$:
+
+$$
+\begin{cases}
+    x_1 + 2x_2 + 2x_3 = 2 & (1) \\
+    -2x_2 + 6x_3 + 5x_4 = -8 & (2) \\
+    -x_2 + 3x_3 + 5x_4 = 1 & (3) \\
+\end{cases}
+$$
+
+Set $(1) = (1) + 2 \cdot (3)$ and $(2) = (2) - 2 \cdot (3)$:
+
+$$
+\begin{cases}
+    x_1 + 8x_3 + 10x_4 = 4 & (1) \\
+    -5x_4 = -10 & (2) \\
+    -x_2 + 3x_3 + 5x_4 = 1 & (3) \\
+\end{cases}
+$$
+
+Set $(1) = (1) + 2 \cdot (2)$ and $(3) = (3) + (2)$:
+
+$$
+\begin{cases}
+    x_1 + 8x_3 = -16 & (1) \\
+    -5x_4 = -10 & (2) \\
+    -x_2 + 3x_3 = -9 & (3) \\
+\end{cases}
+$$
+
+Finally, rearrange and multiply by $-1$ where needed:
+
+$$
+\begin{cases}
+    x_1 + 8x_3 = -16 \\
+    x_2 - 3x_3 = 9 \\
+    x_4 = 2 \\
+\end{cases}
+$$
+
+
+\problem{1.4.3}
+
+\ppart{b}
+Solving the equation 
+
+$$
+\begin{bmatrix}1 \\ 2 \\ -3\end{bmatrix} = a \begin{bmatrix}-3 \\ 2 \\ 1\end{bmatrix} + b \begin{bmatrix}2 \\ -1 \\ -1\end{bmatrix}
+$$
+
+is equivalent to solving the system of equations
+
+$$
+\begin{cases}
+    -3a + 2b &= 1 \\
+    2a - b &= 2 \\
+    a - b &= -3
+\end{cases}
+$$
+
+Giving $a = 5$ and $b = 8$. Therefore, 
+
+$$
+\begin{bmatrix}1 \\ 2 \\ -3\end{bmatrix} = 5 \begin{bmatrix}-3 \\ 2 \\ 1\end{bmatrix} + 8 \begin{bmatrix}2 \\ -1 \\ -1\end{bmatrix}
+$$
+
+\problem{1.4.4}
+
+\ppart{b}
+This is equivalent to solving the equation
+
+$$
+\begin{bmatrix}4 \\ 2 \\ 0 \\ -6\end{bmatrix} = a \begin{bmatrix}1 \\ -2 \\ 4 \\ 1\end{bmatrix} + b \begin{bmatrix}3 \\ -6 \\ 1 \\ 4\end{bmatrix}
+$$
+
+i.e.
+$$
+\begin{cases}
+    a + 3b &= 4 \\
+    -2a - 6b &= 2 \\
+    4a + b &= 0 \\
+    a + 4b &= -6
+\end{cases}
+$$
+
+These equations are inconsistent (no solution), and so the polynomials are independent (one cannot be expressed as a linear combination of the other two).
+
+
+\end{document}

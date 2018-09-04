@@ -1,0 +1,204 @@
+  ---------------------------
+   **[Kyrylo Chernyshov]{}**
+             ****
+  ---------------------------
+
+Racism is a very sensitive issue in the United States. For most people,
+it is quite scary to write any form of extended argument about anything
+to do with this issue, and as a result, most writers are very careful
+with what they say. This issue has, therefore, a dynamic like no other,
+where those who are not afraid to make their point often view their work
+in a more positive light than it actually deserves: so few have talked
+about racism in such depth, the logic goes, that this new discourse must
+be revolutionary, and thus is worth taking seriously. As if the issue
+wasn’t already vastly polarising, this factor further adds to the
+complete lack of consensus on almost anything; it is very common for two
+reputed and educated academics to have no qualms with disagreeing with
+each other on an otherwise simple topic. Such an example is that of
+Ta-Nehisi Coates and Asad Haider.
+
+Seemingly, on the surface, Haider and Coates are mostly in agreement. A
+blind reading - ignoring all mentions of Coates by name - would suggest
+that they both agree that racism is an issue, that it is a serious
+issue, that many people try to mask it with other issues to avoid it,
+and that something needs to be done about it. Coates argues:
+
+> It is often said that Trump has no real ideology, which is not true -
+> his ideology is white supremacy, in all its truculent and
+> sanctimonious power. Trump inaugurated his campaign by casting himself
+> as the defender of white maidenhood against Mexican “rapists,” only to
+> be later alleged by multiple accusers, and by his own proud words, to
+> be a sexual violator himself. White supremacy has always had a
+> perverse sexual tint. [@coates]
+
+Here, he essentially summarises the basis of his argument: white
+supremacy is very real, and yet there is a widespread claim that it is
+not. “It is often said” has a strong implication here. Coates later
+argues that “the scope of Trump’s commitment to whiteness is matched
+only by the depth of popular disbelief in the power of whiteness”. In
+his essay, he argues that, yes, there are outright racists like the KKK,
+but there is another, less obvious problem that is in actuality almost
+as serious if not more so. It lies in the fact that, more often than
+not, people will dismiss the “power of whiteness”, and the issue of
+institutional racism, as blown out of proportion, and Coates would say
+that people who hold these views are just as much of an issue as those
+who burned crosses in the 30s.
+
+Haider, deep down, contrary to what he says about Coates, has absolutely
+no problem with this viewpoint. He too agrees that ignoring the “power
+of whiteness” is a problem in and of itself:
+
+> Coates goes as far as to make the extraordinary claim that before
+> Trump, whiteness lay dormant—when in fact our very first president
+> owned slaves while in office, the first of eight to do so (four more
+> were slaveowners while not in office). [@haider]
+
+Here Haider agrees with Coates, even if he doesn’t realise it. Coates
+does not claim that, as Haider accuses, “before Trump, whiteness lay
+dormant”; in fact, he argues the exact opposite:
+
+> With one immediate exception, Trump’s predecessors made their way to
+> high office through the passive power of whiteness - that bloody
+> heirloom which cannot ensure mastery of all events but can conjure a
+> tailwind for most of them. Land theft and human plunder cleared the
+> grounds for Trump’s forefathers and barred others from it. [@coates]
+
+Haider’s confusion can perhaps be traced to the fact that Coates
+separates Trump from his predecessors: “no such elegant detachment can
+be attributed to Donald Trump”. Here, Haider forgets the importance of
+context, and shows, apparently, an inability to finish the sentence he
+so hastily grabs his point from:
+
+> No such elegant detachment can be attributed to Donald Trump - a
+> president who, more than any other, has made the awful inheritance
+> explicit. [@coates]
+
+Coates here claims not that whiteness had no power before Trump, but
+that Trump has merely made its already existing power more obvious, more
+“explicit”. If Haider told Coates that every single white president
+before Trump was somewhat aided by his being white, Coates would shake
+his hand in agreement.
+
+Where, then, does the disagreement between these two writers source
+from? In order to examine that, one must first take a step back from
+what seems to be the main point of Coates’ article, and look instead at
+its shortcomings, as exemplified by Haider. Haider argues that
+capitalism and racism are explicitly linked, while much of Coates’ essay
+is about how race and class are two separate issues, and should not be
+conflated. Coates argues that, for example, Trump’s support base is much
+better defined by race rather than class:
+
+> Trump’s white support was not determined by income. According to
+> Edison Research, Trump won whites making less than \$50,000 by 20
+> points, whites making \$50,000 to \$99,999 by 28 points, and whites
+> making \$100,000 or more by 14 points. This shows that Trump assembled
+> a broad white coalition that ran the gamut from Joe the Dishwasher to
+> Joe the Plumber to Joe the Banker. [@coates]
+
+Coates’ point here is perfectly valid, and though he does not cite any
+specific sources, his data are backed up by exit polls [@exitpolls]. He
+subsequently uses this distinction as his reasoning for the separation
+of race and class. Haider on the other hand deems this approach very
+shallow, and critiques Coates for ignoring some factors, and
+cherrypicking others:
+
+> We have, then, a series of omissions, elisions, and cherry-picked
+> targets. It is easy to get bogged down in circular debates on
+> particular details while missing the larger question: why does Coates
+> deem it important to undermine the critique of capitalism? Why this
+> target, when since the 17th century the resistance to racial
+> oppression and capitalist exploitation have gone hand in hand? Why
+> this target, when anti-capitalist politics, despite their recent
+> growth, still remain politically marginal, their meekest expressions
+> repressed by the bureaucracy of the Democratic Party? Why this target,
+> when members of every mass socialist organization appear at
+> anti-fascist demonstrations to put their bodies on the line against
+> racism? [@haider]
+
+Coates, then, views race as a one-dimensional issue, whereas Haider
+argues that it is anything but. This is something that Haider criticises
+Coates profusely for. For example, to Haider it is unacceptable that
+Coates (like Mark Lilla) reduces Martin Luther King and the significance
+of his work to that of resistance against racism:
+
+> For Coates, too, King is a mascot - “the bloody heirloom remains
+> potent even now,” he writes, “some five decades after Martin Luther
+> King Jr. was gunned down on a Memphis balcony.” Missing from both
+> accounts is the King who advanced an internationalist and socialist
+> politics, who spoke out forcefully against the Vietnam War and
+> American imperialism, who saw the continuation of the struggle for
+> civil rights in the Poor People’s Campaign and the sanitation workers’
+> strike by AFSCME Local 1733, which he had gone to Memphis to support
+> when he was murdered. [@haider]
+
+Here, Haider summarises his main point. To him, the many issues that
+face modern-day Americans are all connected, and what he says Coates
+views as different forms of oppression - racist and capitalist
+exploitation - are really the same thing. Coates, meanwhile, strives to
+separate the two, and it seems that to him, the issue of race is far
+more significant in the current context:
+
+> Donald Trump arrived in the wake of something more potent - an entire
+> nigger presidency with nigger health care, nigger climate accords, and
+> nigger justice reform, all of which could be targeted for destruction
+> or redemption, thus reifying the idea of being white. [@coates]
+
+Coates suggests that the main driving force behind Trump’s presidency is
+the desire to wipe out the legacy of his predecessor, Barack Obama, a
+black man. To him, this is far more significant for Trump and his
+support base than the actual merits of Obama’s policies, and he thus
+concludes that Trump’s agenda is far more of a racial issue than it is
+one of policy. This goes back to his original idea: “It is often said
+that Trump has no real ideology, which is not true - his ideology is
+white supremacy”. Coates is no stranger to using literary dramatisations
+to emphasise the significance of race to him, such as labelling
+whiteness as a “bloody heirloom”, “awful inheritance”, the use of the
+Biblical term in “America’s founding *sins*”, and his use of “nigger”
+above. This is another area where Haider disagrees with Coates; writing
+that “politics is not a romantic tale of good and evil”, and “there is
+no such thing as magic” [@haider]. He ridicules Coates’ article as an
+“ominous fable”, and he disagrees that Trump’s agenda is to “\[reify\]
+the idea of being white”, and reminds Coates that everything that issues
+of race need to be viewed not as separate from all else, but in the
+context of other issues, such as those of class.
+
+Having said all that, there are deep-running parallels between both
+Haider and Coates’ views, which Haider refuses to see because of his
+seemingly innate desire to disagree with Coates. Their disagreements are
+mostly on minor things such as, as above, Coates’ mystification of
+whiteness. As Noam Chomsky, a linguist known for his political views,
+put it:
+
+> Well, there’s always a class war going on. The United States, to an
+> unusual extent, is a business-run society, more so than others. The
+> business classes are very class-conscious - they’re constantly
+> fighting a bitter class war to improve their power and diminish
+> opposition. Occasionally this is recognized. [@noam]
+
+This should ring some sort of bell in the minds of both writers. Haider
+would have no misgivings agreeing that class is a very important issue
+that cannot be downplayed, which he accuses Coates of doing. Coates, on
+the other hand, would no doubt see the eerily similar rhetoric Chomsky
+is using here: the idea of some elite having power over an oppressed
+group, the idea that this elite seeks to improve its standing relative
+to the oppressed group, oppressing them further, and the idea that
+people need to be more proactive in recognising this reality. What
+whiteness is to Coates is what wealth is to Chomsky (and seems to be to
+Haider). If the two sat down for a lunch together, they would find a
+whole lot more common ground than they would like to think.
+
+[9]{} Coates, Ta-Nehisi. *The First White President*. The Atlantic,
+October 2017,
+<https://www.theatlantic.com/magazine/archive/2017/10/the-first-white-president-ta-nehisi-coates/537909/>.
+
+Haider, Asad. *Idylls of the Liberal: The American Dreams of Mark Lilla
+and Ta-Nehisi Coates*. Viewpoint Magazine, September 11, 2017,
+<https://www.viewpointmag.com/2017/09/11/idylls-of-the-liberal-the-american-dreams-of-mark-lilla-and-ta-nehisi-coates/>.
+
+Huang, Jon; Jacoby, Samuel, et al. *Election 2016: Exit Polls*. The New
+York Times, November 8, 2016.
+<https://www.nytimes.com/interactive/2016/11/08/us/politics/election-exit-polls.html>.
+
+Chomsky, Noam. *Business Elites Are Waging a Brutal Class War in
+America*. Alternet.org, October 13, 2014,
+<https://www.alternet.org/economy/chomsky-business-elites-are-waging-brutal-class-war-america-0>.

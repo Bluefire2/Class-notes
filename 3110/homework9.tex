@@ -1,0 +1,114 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Math 3110 homework \#9}
+\author{\name}
+\maketitle
+
+\problem{14.1.3}
+I will consider the right- and left-hand derivatives of $f$.
+
+\begin{align*}
+  f^{\prime}(0^+) &= \lim_{x \rightarrow 0^+} \frac{f(x) - f(0)}{x - 0} \\
+  &= \lim_{-y \rightarrow 0^+} \frac{f(-y) - f(0)}{-y} & (y = -x) \\
+  &= \lim_{y \rightarrow 0^-} \frac{f(-y) - f(0)}{-y} & (-y \rightarrow 0^+ \iff y \rightarrow 0^-) \\
+  &= -\lim_{y \rightarrow 0^-} \frac{f(y) - f(0)}{y} & (f\textrm{ is even}) \\
+  &= -f^{\prime}(0^-)
+\end{align*}
+
+But $f$ is differentiable, so $f^{\prime}(0^+) = f^{\prime}(0^-)$. Therefore, $f^{\prime}(0) = f^{\prime}(0^+) = f^{\prime}(0^-) = 0$.
+
+\problem{14.1.4}
+\ppart{b}
+
+We have that $|f(x)| \leq x^2$ for $x \approx 0$; that is, there exists $d > 0$ such that for all $|x| < d$, $|f(x)| \leq x^2$. By definition, $f^{\prime}(0) = \lim_{x \rightarrow 0} \frac{f(x) - f(0)}{x}$; I will show that this limit is 0.
+
+\begin{proof}
+  Pick $\epsilon > 0$, let $\delta = \min(d, \epsilon)$, and suppose $|x| < \delta$. Then:
+
+  \begin{align*}
+    \Big|\frac{f(x) - f(0)}{x}\Big| &\leq \frac{|f(x)| + |f(0)|}{x} \\
+    &\leq \frac{x^2}{|x|} & (\textrm{since } |x| < \delta \leq d) \\
+    &= \frac{|x^2|}{|x|} & (\textrm{since } x^2 \geq 0 \;\forall\; x \in \mathbb{R}) \\
+    &= \Big|\frac{x^2}{x}\Big| \\
+    &= |x| < \delta \leq \epsilon
+  \end{align*}
+\end{proof}
+
+\problem{14.2.4}
+
+\ppart{a}
+\begin{proof}
+  \begin{align*}
+    f^{\prime}(-a) &= \lim_{x \rightarrow -a} \frac{f(x) - f(-a)}{x + a} \\
+    &= \lim_{x \rightarrow -a} \frac{f(x) - f(a)}{x + a} & (f\textrm{ is even}) \\
+    &= \lim_{y \rightarrow a} \frac{f(y) - f(a)}{-y + a} & (y = -x, f\textrm{ is even}) \\
+    &= -f^{\prime}(a)
+  \end{align*}
+\end{proof}
+
+\ppart{b}
+\begin{proof}
+  \begin{align*}
+    f^{\prime}(-a) &= \lim_{x \rightarrow -a} \frac{f(x) - f(-a)}{x + a} \\
+    &= \lim_{x \rightarrow -a} \frac{f(x) + f(a)}{x + a} & (f\textrm{ is odd}) \\
+    &= \lim_{y \rightarrow a} \frac{-f(y) + f(a)}{-y + a} & (y = -x, f\textrm{ is odd}) \\
+    &= \lim_{y \rightarrow a} \frac{f(y) - f(a)}{y - a} \\
+    &= f^{\prime}(a)
+  \end{align*}
+\end{proof}
+
+\problem{14-1}
+\ppart{a}
+\begin{align*}
+  \lim_{\Delta x \rightarrow 0} F(\Delta x) &= \lim_{\Delta x \rightarrow 0} \frac{f(a + \Delta x) - f(a - \Delta x)}{2\Delta x} \\
+  &= \lim_{\Delta x \rightarrow 0} \frac{f(a + \Delta x) - f(a) + f(a) - f(a - \Delta x)}{2\Delta x} \\
+  &= \lim_{\Delta x \rightarrow 0} \frac{f(a + \Delta x) - f(a)}{2\Delta x} + \lim_{\Delta x \rightarrow 0} \frac{f(a) - f(a - \Delta x)}{2\Delta x} \\
+  &= \frac{f^{\prime}(a)}{2} + \lim_{\Delta x \rightarrow 0} \frac{f(a) - f(a - \Delta x)}{2\Delta x} \\
+  &= \frac{f^{\prime}(a)}{2} + \lim_{-h \rightarrow 0} \frac{f(a) - f(a + h)}{-2h} & (h = -\Delta x) \\
+  &= \frac{f^{\prime}(a)}{2} + \lim_{-h \rightarrow 0} \frac{f(a + h) - f(a)}{2h} \\
+  &= \frac{f^{\prime}(a)}{2} + \lim_{h \rightarrow 0} \frac{f(a + h) - f(a)}{2h} & (-h \rightarrow 0 \iff h \rightarrow 0) \\
+  &= f^{\prime}(a)
+\end{align*}
+
+\ppart{b}
+Yes, this limit can exist. An example is $f(x) = |x|$. $f$ is left- and right-differentiable at $a = 0$, but it is not differentiable there. However, at $a = 0$, $\frac{f(a + \Delta x) - f(a - \Delta x)}{2\Delta x} = \frac{|\Delta x| - |-\Delta x|}{2\Delta x} = 0$, so the limit exists and is equal to 0, by the limit location theorem.
+
+\ppart{c}
+I will consider separately the right- and left-hand limits (skipping some steps as they are very similar to those in part (a)):
+
+\begin{align*}
+  \lim_{\Delta x \rightarrow 0^+} F(\Delta x) &= \lim_{\Delta x \rightarrow 0^+} \frac{f(a + \Delta x) - f(a)}{2\Delta x} + \lim_{\Delta x \rightarrow 0+} \frac{f(a) - f(a - \Delta x)}{2\Delta x} \\
+  &= \frac{f^{\prime}(a^+)}{2} + \lim_{\Delta x \rightarrow 0^+} \frac{f(a) - f(a - \Delta x)}{2\Delta x} \\
+  &= \frac{f^{\prime}(a^+)}{2} + \lim_{-h \rightarrow 0^+} \frac{f(a) - f(a + h)}{-2h} & (h = -\Delta x) \\
+  &= \frac{f^{\prime}(a^+)}{2} + \lim_{h \rightarrow 0^-} \frac{f(a + h) - f(a)}{2h} & (-h \rightarrow 0^+ \iff h \rightarrow 0^-) \\
+  &= \frac{f^{\prime}(a^+)}{2} + \frac{f^{\prime}(a^-)}{2}
+\end{align*}
+
+The steps for $\lim_{\Delta x \rightarrow 0^-} F(\Delta x)$ are exactly the same as above, except $0^+$ becomes $0^-$ and $0^-$ becomes $0^+$:
+
+\begin{align*}
+  \lim_{\Delta x \rightarrow 0^-} F(\Delta x) &= \lim_{\Delta x \rightarrow 0^-} \frac{f(a + \Delta x) - f(a)}{2\Delta x} + \lim_{\Delta x \rightarrow 0+} \frac{f(a) - f(a - \Delta x)}{2\Delta x} \\
+  &= \frac{f^{\prime}(a^-)}{2} + \lim_{\Delta x \rightarrow 0^-} \frac{f(a) - f(a - \Delta x)}{2\Delta x} \\
+  &= \frac{f^{\prime}(a^-)}{2} + \lim_{-h \rightarrow 0^-} \frac{f(a) - f(a + h)}{-2h} & (h = -\Delta x) \\
+  &= \frac{f^{\prime}(a^-)}{2} + \lim_{h \rightarrow 0^+} \frac{f(a + h) - f(a)}{2h} & (-h \rightarrow 0^- \iff h \rightarrow 0^+) \\
+  &= \frac{f^{\prime}(a^-)}{2} + \frac{f^{\prime}(a^+)}{2}
+\end{align*}
+
+Since both the right- and left-hand limits are equal, $\lim_{\Delta x \rightarrow 0} F(\Delta x) = \frac{f^{\prime}(a^+)}{2} + \frac{f^{\prime}(a^-)}{2}$.
+
+\problem{14-3}
+\begin{proof}
+  First, note that $f(a + 0) = f(a) + f(0)$, and so $f(0) = f(a) - f(a + 0) = f(a) - f(a) = 0$. Then, using the definition of the derivative, $f^{\prime}(0) = \lim_{x \rightarrow 0} \frac{f(x) - f(0)}{x} = \lim_{x \rightarrow 0} \frac{f(x)}{x}$. Now we can calculate $f^{\prime}(x)$ in terms of this:
+
+  \begin{align*}
+    f^{\prime}(x) &= \lim_{h \rightarrow 0} \frac{f(x + h) - f(x)}{h} \\
+    &= \lim_{h \rightarrow 0} \frac{f(x) + f(h) + 2xh - f(x)}{h} \\
+    &= \lim_{h \rightarrow 0} \frac{f(h) + 2xh}{h} \\
+    &= \lim_{h \rightarrow 0} \frac{f(h)}{h} + \lim_{h \rightarrow 0} \frac{2xh}{h} \\
+    &= f^{\prime}(0) + 2x
+  \end{align*}
+\end{proof}
+
+Functions that have this property are of the form $x^2 + kx$ for some $k \in \mathbb{R}$. Two examples are $x^2$ and $x^2 + 5x$.
+
+\end{document}

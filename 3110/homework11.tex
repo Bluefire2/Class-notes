@@ -1,0 +1,119 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Math 3110 homework \#11}
+\author{\name}
+\maketitle
+
+\problem{17.2.4}
+
+\ppart{a} By Rolle's theorem, there exists $c \in [a, b]$ such that $f^{\prime}(c) = 0$. Then, again by Rolle's theorem, there exist $d \in [a, c]$ and $e \in [c, b]$ such that $f^{\prime\prime}(d) = f^{\prime\prime}(e) = 0$. Finally, by Rolle's theorem, there exists $n \in [d, e] \subset [a, b]$ such that $f^{\prime\prime\prime}(n) = 0$.
+
+\ppart{b} Let $f(x) \equiv (x - a)^2(x - b)^2$; $f(a) = f(b) = 0$. $f^{\prime}(x) = 2(x - a)^2(x - b) + 2(x - a)(x - b)^2$, and so $f^{\prime}(a) = f^{\prime}(b) = 0$. Further derivatives are $f^{\prime\prime}(x) = 2(x - a)^2 + 4(x - a)(x - b) + 4(x - a)(x - b) + 2(x - b)^2$, and $f^{\prime\prime\prime}(x) = 4(x - a) + 4(x - a) + 4(x - b) + 4(x - a) + 4(x - b) + 4(x - b) = 12(x - a) + 12(x - b)$. Indeed, $f^{\prime\prime\prime}(x)\left(\frac{a + b}{2}\right)$.
+
+\problem{17.3.4}
+
+If you take the Taylor series for $\cos x$ at 0, the error term is $R_n(x) = \frac{f^{n + 1}(c)x^{n + 1}}{(n + 1)!}$ where $f(x) = \cos x$. Since any derivative of $\cos x$ is $\pm \sin x$ or $\pm \cos x$, $|f^{n + 1}(x)| \leq 1$. Therefore, $|R_n(0.1)| \leq \frac{0.1^{n + 1}}{(n + 1)!}$. Taking the 5th power approximation, $|R_5(0.1)| \leq \frac{0.1^{6}}{(6)!} < 10^{-8}$; this approximation is therefore accurate to at least 7 decimal places.
+
+\begin{align*}
+  \cos 0.1 &\approx 1 + 0 - \frac{0.01}{2} + 0 + \frac{0.0001}{24} + 0 \\
+  &\approx 0.9950042
+\end{align*}
+
+\problem{19.2.1}
+
+By definition:
+
+\begin{align*}
+  \int_0^1 e^{x} \diff x &= \lim_{n \longrightarrow \infty} \sum_{i = 1}^n e^{\frac{i}{n}} \frac{1}{n} \\
+  &= \lim_{n \longrightarrow \infty} \frac{1}{n} e^{\frac{1}{n}} \sum_{i = 1}^{n} (e^{\frac{1}{n}})^{i - 1}
+\end{align*}
+
+The sum is a geometric series, and therefore evaluates to $\frac{1 - (e^{\frac{1}{n}})^{n}}{1 - e^{\frac{1}{n}}} = \frac{1 - e^{\frac{n}{n}}}{1 - e^{\frac{1}{n}}} = \frac{1 - e}{1 - e^{\frac{1}{n}}}$. This gives
+
+\begin{align*}
+  \lim_{n \longrightarrow \infty} \frac{e^{\frac{1}{n}}}{n} \frac{1 - e}{1 - e^{\frac{1}{n}}} &= (1 - e) \lim_{n \longrightarrow \infty} \frac{e^{\frac{1}{n}}}{n\left(1 - e^{\frac{1}{n}}\right)}
+\end{align*}
+
+Making the substitution $u = \frac{1}{n}$ and noting that $n \rightarrow \infty \implies u \rightarrow 0^{+}$, produces
+
+\begin{align*}
+  (1 - e) \lim_{u \longrightarrow 0} \frac{ue^u}{\left(1 - e^u\right)} &= (1 - e) \lim_{u \longrightarrow 0} \frac{u}{\left(e^{-u} - 1\right)} \\
+  &= (1 - e) \lim_{u \longrightarrow 0} \frac{1}{\left(-e^{-u}\right)} = e - 1
+\end{align*}
+
+\problem{19.3.2}
+
+\begin{align*}
+  \lim_{n \rightarrow \infty} \sum_{k = 0}^{2n} \frac{k}{n^2 + k^2} &= \lim_{n \rightarrow \infty} \sum_{k = 0}^{2n} \frac{\frac{k}{n^2}}{1 + \left(\frac{k}{n}\right)^2} \\
+  &= \lim_{n \rightarrow \infty} \sum_{k = 0}^{2n} \frac{\frac{k}{n}}{1 + \left(\frac{k}{n}\right)^2} \frac{1}{n} \\
+\end{align*}
+
+Let $f(x) = \frac{x}{1 + x^2}$. Then:
+
+\begin{align*}
+  \lim_{n \rightarrow \infty} \sum_{k = 0}^{2n} \frac{\frac{k}{n}}{1 + \left(\frac{k}{n}\right)^2} \frac{1}{n} &= \lim_{n \rightarrow \infty} \sum_{k = 0}^{2n} f\left(\frac{k}{n}\right) \frac{1}{n} \\
+  &= \int_0^2 \frac{x}{1 + x^2} \diff x \\
+  &= \int_1^5 \frac{1}{2u} \diff u & (u = 1 + x^2; \diff u = 2x \diff x) \\
+  &= \frac{\ln 5}{2}
+\end{align*}
+
+\problem{20.2.1}
+
+\ppart{a} By the fundamental theorem of calculus, $\int_0^{x^2} f(t) \diff t = F(x^2) - F(0)$. Let $f(x) = \sqrt{1 + x^2}$. Then
+
+\begin{align*}
+  \frac{\diff}{\diff x} \int_0^{x^2} f(t) \diff t &= \frac{\diff}{\diff x} (F(x^2) - F(0)) \\
+  &= 2x F^{\prime}(x^2) - F^{\prime}(0) \\
+  &= \frac{x}{1 - sqrt(x^2)} - \frac{1}{2}
+\end{align*}
+
+\ppart{b} Let $f(x) = e^{-x^2}$:
+
+\begin{align*}
+  \frac{\diff}{\diff x} \int_{x^3}^1 f(t) \diff t &= \frac{\diff}{\diff x} (F(1) - F(x^3)) \\
+  &= F^{\prime}(1) - 3x^2 F^{\prime}(x^3) \\
+  &= -2 e^{-1} + 6x^5 e^{-x^6}
+\end{align*}
+
+\ppart{c} Use the same $f$ as before:
+
+\begin{align*}
+  \frac{\diff}{\diff x} \int_{x^2}^x f(t) \diff t &= \frac{\diff}{\diff x} (F(x) - F(x^2)) \\
+  &= F^{\prime}(x) - 2x F^{\prime}(x^2) \\
+  &= -2x e^{-x^2} + \cdot 4x^3 e^{-x^4}
+\end{align*}
+
+\problem{20.3.1}
+
+\ppart{a} \begin{align*}
+  I_k &= \int_0^{\frac{\pi}{2}} \sin^k\theta \diff \theta \\
+  &= \int_0^{\frac{\pi}{2}} \sin^{k - 1}\theta \sin\theta \diff \theta \\
+  &= -\sin^{k - 1}\theta \cos\theta \Big|_0^{\frac{\pi}{2}} + \int_0^{\frac{\pi}{2}} (k - 1) \sin^{k - 2}\theta \cos^2\theta \diff \theta \\
+  &= 0 + \int_0^{\frac{\pi}{2}} (k - 1) \sin^{k - 2}\theta (1 - \sin^2\theta) \diff \theta \\
+  &= \int_0^{\frac{\pi}{2}} (k - 1) \sin^{k - 2}\theta \diff \theta - \int_0^{\frac{\pi}{2}} (k - 1) \sin^k\theta \diff \theta \\
+  &= (k - 1) \left(\int_0^{\frac{\pi}{2}} \sin^{k - 2}\theta \diff \theta - \int_0^{\frac{\pi}{2}} \sin^k\theta \diff \theta\right) \\
+  &= (k - 1)(I_{k - 2} - I_k)
+\end{align*}
+
+\ppart{b} \begin{proof}
+  Define $P(n)$ as the statement that $I_n = \frac{(n - 1)!!}{n!!}c$ for constant $c$ as described in the question. The inductive base cases are $P(0)$ and $P(1)$, which are trivial because $I_0 = \frac{\pi}{2}$ and $I_1 = 1$. There are two cases for the inductive step. Suppose $k = 2m + 1$ for some $m$. Then, $I_{k + 1} = I_{2m + 2} = \frac{2m + 1}{2m + 2}I_{2m}$. Since $2m < 2m + 1 = k$, by strong induction, $I_{2m} = \frac{(2m - 1)!!}{2m!!}\frac{\pi}{2}$, and so $I_{2m + 2} = \frac{2m + 1}{2m + 2}\frac{(2m - 1)!!}{2m!!}\frac{\pi}{2} = \frac{(2m + 1)!!}{2m + 2!!}\frac{\pi}{2}$, implying $P(k + 1)$. If instead $k = 2m$, the steps are similar, except the strong inductive step gives $c = 1$.
+\end{proof}
+
+\problem{20.6.4}
+\begin{proof}
+  Consider the limit $\lim_{x \rightarrow \infty} \frac{Li x}{\frac{x}{\ln x}}$. As $x \rightarrow \infty$, $Li x \rightarrow \infty$, since it is the integral of a function that is always positive, and $\frac{x}{\ln x} \rightarrow \infty$, (transforming to $\frac{x}{1}$ by L'Hopital's rule). Therefore, the limit is an indeterminate form, and L'Hopital's rule can be applied.
+
+  $\frac{\diff}{\diff x} Li x = \frac{\diff}{\diff x} \int_2^x \frac{\diff t}{\ln t} = \frac{1}{\ln x}$, and $\frac{\diff}{\diff x} \frac{x}{\ln x} = \frac{\ln x - 1}{(\ln x)^2}$. Therefore:
+
+  \begin{align*}
+    \lim_{x \rightarrow \infty} \frac{Li x}{\frac{x}{\ln x}} &= \lim_{x \rightarrow \infty} \frac{1}{\ln x} \frac{(\ln x)^2}{\ln x - 1} \\
+    &= \lim_{x \rightarrow \infty} \frac{\ln x}{\ln x - 1} \\
+    &= \lim_{x \rightarrow \infty} \frac{\ln x + 1 - 1}{\ln x - 1} \\
+    &= \lim_{x \rightarrow \infty} \left(\frac{\ln x + 1}{\ln x - 1} - \frac{1}{\ln x - 1}\right) \\
+    &= 1
+  \end{align*}
+
+  Therefore, $Li x \thicksim \frac{x}{\ln x}$.
+\end{proof}
+
+\end{document}

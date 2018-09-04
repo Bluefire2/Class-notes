@@ -1,0 +1,29 @@
+\input{preamble.tex}
+\begin{document}
+\title{Assignment 5: Prove It!}
+\author{\name}
+\maketitle
+
+\section{Summary}
+The most challenging part was, by far, proving revised equation 8 for two-list queues. We spent a considerable amount of time on that, and it took a few days to work it out in Coq's formal logic. We also ran into some trouble with the fact that Coq's logic is constructive and not classical; an example consequence of this is that, while $\forall\; P, P \implies \neg\neg P$, the other direction does not hold.
+
+\section{Design, implementation and testing}
+
+\subsection{Helper lemmas}
+We wrote quite a few helper lemmas. We implemented three helper lemmas for the revised 8th equation for two-list queues, and a few more for the fourth logic theorem. The lemmas helped us abstract away some of the lower-level logic. In the case of the induction question, the lemmas also helped because Coq simplified too aggressively in the main proof.
+
+\section{Division of labour}
+We pair-programmed for 90\% of the assignment, sitting at one computer. A small portion of the code was written separately, however.
+
+\section{Known problems}
+None, as far as we know.
+
+\section{Difficulties with tactics}
+One thing we had difficulty with are distinctions between certain similar tactics. For example, we didn't quite get the hang of rewrite vs apply, and contradiction vs discriminate.
+
+\section{Comments}
+We found this assignment a nice break from the intensity of A3 and A4, and we felt that it was appropriate to have an easy assignment at this point in the course, when we are busy with the final project and preparing for final exams. Most of the answers were in the notes, which was also very nice. We probably spent a total of 4 hours pair-programming.
+
+This homework was very different to the other four, and we've not managed to find much to put in this overview.
+
+\end{document}

@@ -1,0 +1,81 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Math 3110 homework \#6}
+\author{\name}
+\maketitle
+
+\problem{7.2.5}
+\begin{proof}
+  Define the sequence $\{s_n\}$ as the sequence of partial sums of $\sum_{k = 1}^{\infty} a_k$: $s_n = \sum_{k = 1}^{n} a_k$. Consider the partial sums of $\sum_{k = 1}^{\infty} b_k$:
+
+  \begin{align*}
+    \sum_{k = 1}^{n} b_k = \sum_{k = 1}^{2n} a_k = s_{2n}
+  \end{align*}
+
+  Therefore, the sequence of partial sums of $\sum_{k = 1}^{\infty} b_k$ is just the subsequence of $\{s_n\}$ where $n = 2m$ for some $m \in \mathbb{N}$. By the subsequence theorem, since $\{s_n\}$ converges to $S$, all of its subsequences must also converge to $S$, and so  $\sum_{k = 1}^{\infty} b_k = S$.
+\end{proof}
+
+\problem{7.3.3}
+
+\ppart{a}
+\begin{proof}
+  Define the subsequence $\{b_n\}$ as $b_n = |a_n|$. Since $\sum_{k = 1}^{\infty} a_n$ is absolutely convergent, $\sum_{k = 1}^{\infty} b_n$ is convergent. Define $s_i = \sum_{k = 1}^{i} b_n$ as the partial sum of $\sum_{k = 1}^{\infty} b_n$, and define $t_i = \sum_{k = 1}^{n_i} b_{n_i}$ as the partial sum of $\sum_{k = 1}^{\infty} b_{n_i}$. $t_i \leq s_{n_i}$, since all the terms of both sums are positive, and $s_{n_i}$ includes every term found in $t_i$, and potentially more terms. But $\lim_{n \rightarrow \infty} s_n = L$, where $L$ is finite, so by the limit location theorem, $\lim_{n \rightarrow \infty} t_n \leq L$. Since all the terms in $t_i$ are positive, this also means that $\lim_{n \rightarrow \infty} t_n \geq 0$, and so $t_n$ converges. Therefore, the partial sum of any subsequence of $\{b_n\}$ converges, and so the partial sum of any subsequence of $\{a_n\}$ is absolutely convergent.
+\end{proof}
+
+\ppart{b}
+\begin{proof}
+  Define the sequence $\{a_n\}$ as $\{1, -1, \frac{1}{2}, -\frac{1}{2}, \frac{1}{3}, -\frac{1}{3}, \cdots \}$. $\sum_{k = 1}^{2m} a_n = \sum_{k = 1}^{m} 0$, so $\sum_{k = 1}^{\infty} a_n$ converges to 0. However, if we take the subsequence of $\{a_n\}$ where $n = 2m$ for some $m \in \mathbb{N}$, then the sum of this subsequence is the negative of the sum of the harmonic series, which does not converge.
+\end{proof}
+
+\problem{7.4.1}
+
+\ppart{d}
+Consider the ratio between two consecutive terms of the series:
+
+\begin{align*}
+  \frac{((n + 1)!)^2}{(2(n + 1))!} \cdot \frac{(2n)!}{(n!)^2} &= \left(\frac{(n + 1)!}{n!}\right)^2 \cdot \frac{(2n)!}{(2n + 2)!} \\
+  &= (n + 1)^2 \cdot \frac{1}{(2n + 1)(2n + 2)} \\
+  &= \frac{(n + 1)^2}{(2n + 1)(2n + 2)} \rightarrow \frac{1}{4}
+\end{align*}
+
+The series must therefore converge.
+
+\ppart{e}
+Apply the root test:
+
+\begin{align*}
+  \lim_{n \rightarrow \infty} \sqrt[n]{\left(\frac{n + 1}{2n + 1}\right)^n} &= \lim_{n \rightarrow \infty} \frac{n + 1}{2n + 1} \\
+  &= \frac{1}{2}
+\end{align*}
+
+The series must therefore converge.
+
+\ppart{f}
+The antiderivative of $\frac{1}{n \ln n}$ is $\ln(\ln n)$. Consider the value of $\int_2^{\infty} \frac{1}{n \ln n}$:
+
+\begin{align*}
+  \int_2^{\infty} \frac{1}{n \ln n} \diff n &= \lim_{k \rightarrow \infty} \Big|_2^{k} \ln(\ln n) \\
+  &= \lim_{k \rightarrow \infty} (\ln(\ln k) - \ln(\ln 2)) = \infty
+\end{align*}
+
+The integral diverges, and so the series must also diverge.
+
+\problem{8.1.1}
+
+\ppart{b}
+As shown in (7.4.1)d, the limit of the ratio of two consecutive coefficients for this power series is $\frac{1}{4}$, so the limit of two consecutive terms is $\frac{x}{4}$. To converge, we must have $\Big|\frac{x}{4}\Big| < 1 \implies |x| < 4$.
+
+\ppart{c}
+Consider the ratio between two consecutive terms of the series:
+
+\begin{align*}
+  \lim_{n \rightarrow \infty} \frac{x^{n + 1}}{\sqrt[n + 1]{n + 1}} \cdot \frac{\sqrt[n]{n}}{x^n} &= x \lim_{n \rightarrow \infty} \frac{\sqrt[n]{n}}{\sqrt[n + 1]{n + 1}} \\
+  &= x
+\end{align*}
+
+Therefore, the radius of convergence is simply $|x| < 1$.
+
+\ppart{d}
+
+
+\end{document}

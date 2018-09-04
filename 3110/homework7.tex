@@ -1,0 +1,83 @@
+\input{../preamble.tex}
+\begin{document}
+\title{Math 3110 homework \#7}
+\author{\name}
+\maketitle
+
+\problem{11.1.4}
+\begin{proof}
+  We are given that $e^x$ is continuous at $x = 0$, that is, for any $\epsilon > 0$, there exists $\delta > 0$ such that $|e^y - 1| < \epsilon$ if $|y| < \delta$. Since $|e^x - e^y| = e^y|e^{x - y} - 1|$, pick $\epsilon^{\prime} = \frac{\epsilon}{e^y} > 0$. By continuity at 0, if $|x - y| < \delta$ then $|e^{x - y} - 1| < \epsilon^{\prime}$ for some $\delta$. Therefore, $|e^x - e^y| < e^y \epsilon^{\prime} = e^y \frac{\epsilon}{e^y} = \epsilon$, and so $e^x$ is continuous everywhere.
+\end{proof}
+
+\problem{11.2.2}
+\begin{proof}
+  $\lim_{x \rightarrow 0^+} f(x) = L$ means that for any $\epsilon > 0$, there exists $\delta > 0$ such that $|f(x) - L| < \epsilon$ if $0 < x < \delta$. This implies that $|f(-x) - L| < \epsilon$ if $0 < -x < \delta$. Also, since $f(x)$ is even, $|f(x) - L| = |f(-x) - L|$, and so $|f(x) - L| < \epsilon$ if $0 < -x < \delta$, that is, if $-\delta < x < 0$. So, $\lim_{x \rightarrow 0^-} f(x) = L$, and therefore $\lim_{x \rightarrow 0} f(x) = L$.
+\end{proof}
+
+\problem{11.4.1}
+\begin{proof}
+  Pick $\epsilon > 0$, and consider the value of $|f(x) - f(0)|$. By algebraic manipulation, $|f(x) - f(0)| = |f(x)| = \Big|\sqrt{x} \cos\left(\frac{1}{x}\right)\Big| \leq |\sqrt{x}| = \sqrt{x}$. Set $\delta = \epsilon^2$: if $x < \delta$ then $\sqrt{x} < \epsilon$ (negative value of $x$ need not be considered, as the function is assumed to have a real value).
+\end{proof}
+
+\problem{11.4.4}
+\begin{proof}
+  By 2.4.1, we can write these two functions as follows:
+
+  \begin{align*}
+    \max(f, g) = \frac{f + g + |f - g|}{2} &= \frac{f + g}{2} + \frac{|f - g|}{2} \\
+    \min(f, g) = \frac{f + g - |f - g|}{2} &= \frac{f + g}{2} - \frac{|f - g|}{2}
+  \end{align*}
+
+  Since both $f$ and $g$ are continuous, $f + g$ and $\frac{f + g}{2}$ are also continuous. Also, by Q11.4.3, since $f - g$ is also continuous (due similarly to the continuity of $f$ and $g$), so is $|f - g|$ and in turn $\frac{|f - g|}{2}$. Thus, both $\max(f, g)$ and $\min(f, g)$, being the sum and difference of the functions $\frac{f + g}{2}$ and $\frac{|f - g|}{2}$, respectively, are continuous.
+\end{proof}
+
+\problem{11-1}
+
+\ppart{a}
+Lemma: $f\left(\sum_{i = 1}^k a_i\right) = \sum_{i = 1}^k f(a_i)$.
+\begin{proof}
+  By definition, this is true if $k = 2$. Now, suppose this is the case for $k = K$, that is, $f\left(\sum_{i = 1}^K a_i\right) = \sum_{i = 1}^K f(a_i)$. Proceeding to add another term, we get:
+
+  \begin{align*}
+    f\left(\sum_{i = 1}^{K + 1} a_i\right) &= f\left(a_{K + 1} + \sum_{i = 1}^K a_i\right) \\
+    &= f(a_{K + 1}) + f\left(\sum_{i = 1}^K a_i\right) \\
+    &= f(a_{K + 1}) + \sum_{i = 1}^K f(a_i) \\
+    &= \sum_{i = 1}^{K + 1} f(a_i)
+  \end{align*}
+
+  Thus, by induction, the statement is true for any value of $k$.
+\end{proof}
+
+Suppose $f(1) = C$. The first case, when $x = n \in \mathbb{Z}, n \neq 0$:
+
+\begin{proof}
+  Since $n \in \mathbb{Z}$, $n = \sum_{i = 1}^n 1$. Therefore, $f(n) = f\left(\sum_{i = 1}^n 1\right) = \sum_{i = 1}^n f(1) = \sum_{i = 1}^n C = Cn = Cx$.
+\end{proof}
+
+The second case, when $x = \frac{1}{n}$:
+
+\begin{proof}
+  \begin{align*}
+    C &= f(1) = f(n \cdot \frac{1}{n}) \\
+    &= f\left(\sum_{k = 1}^n \frac{1}{n}\right) \\
+    &= \sum_{k = 1}^n f\left(\frac{1}{n}\right) \\
+    &= n f\left(\frac{1}{n}\right)
+  \end{align*}
+
+  Therefore, $Cx = \frac{C}{n} = f\left(\frac{1}{n}\right) = f(x)$.
+\end{proof}
+
+The third case, when $x = \frac{m}{n}, m \in \mathbb{Z}$:
+
+\begin{proof}
+  Since $m \in \mathbb{Z}$, $m = \sum_{i = 1}^m 1$ and so $\frac{m}{n} = \frac{\sum_{i = 1}^m 1}{n} = \sum_{i = 1}^m \frac{1}{n}$. Therefore, $f(x) = f\left(\sum_{i = 1}^m \frac{1}{n}\right) = \sum_{i = 1}^m f\left(\frac{1}{n}\right) = \sum_{i = 1}^m \frac{C}{n} = C\frac{m}{n} = Cx$.
+\end{proof}
+
+\ppart{b}
+We now know that $f(x) = Cx$ if $x \in \mathbb{Q}$. Now, we can extend this to $\mathbb{R}$.
+
+\begin{proof}
+  By the completeness property, for any $x \in \mathbb{R}$, there exists a sequence $\{a_n\}$ such that $a_n \rightarrow x$ and $a_n \in \mathbb{Q} \;\forall\;n$. Using this sequence, we can write $f(x) = f( a_n)$. We are given that $f$ is continuous everywhere, and so by the sequential continuity theorem, $\lim_{n \rightarrow \infty} f(a_n) = f(x)$. But, using the previous proofs, $f(a_n) = Ca_n$, so $f(x) = \lim_{n \rightarrow \infty} Ca_n = C \lim_{n \rightarrow \infty} a_n = Cx$.
+\end{proof}
+
+\end{document}

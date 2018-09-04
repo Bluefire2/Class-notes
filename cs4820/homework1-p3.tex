@@ -1,0 +1,22 @@
+\input{../preamble.tex}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\begin{document}
+\title{CS 4820 HW \#1 problem \#3}
+\maketitle
+This problem can be reduced to the stable matching problem as follows:
+
+\begin{enumerate}
+	\item Use the list of ships as the list of proposers, with their preferences being the ports in the order of visit. That is, if a ship visits port A before port B, we say it "prefers" port A to port B.
+	\item Similarly, use the list of ports as the list of respondents, with their preferences being the ships in reverse order of visit. That is, if a port is visited by ship A before ship B, we say it "prefers" ship B to ship A.
+	\item Apply the Gale-Shapley algorithm to generate a set of matchings of ships to ports.
+	\item For each matching of ship $s$ to port $p$, stop ship $s$ in port $p$ for maintenance when it arrives there.
+\end{enumerate}
+
+This algorithm will generate a list of truncations that satisfies the condition.
+
+\begin{proof}
+	Suppose the algorithm generates a "bad" solution; that is, there exist both a ship $s_2$ and a matching between ship $s_1$ and port $p_1$ such that $s_2$ stops in $p_1$ after $s_1$. This can be reformulated as follows: there exist two matchings, $(s_1, p_1)$ and $(s_2, p_2)$ such that $s_2$ is set to arrive in $p_1$ after $s_1$, and is only due to stop in $p_2$ after that, causing a conflict as $s_2$ tries to dock in $p_1$ that already contains $s_1$. Since $s_2$ arrives in $p_1$ before $p_2$, in its list of "preferences" as described above, $p_1$ will come before $p_2$; similarly, since $p_1$ is visited first by $s_1$ and then by $s_2$, in its list of "preferences", $s_2$ will come before $s_1$. Since $s_2$ is matched to $p_2$ but prefers $p_1$, and $p_1$ is matched to $s_1$ but prefers $s_2$, this matching is unstable. Since we have assumed nothing else about the ships' schedule, this implies that if the algorithm generates a "bad" solution, the Gale-Shapley algorithm must have generated an unstable matching. Since the latter is impossible, the algorithm must generate a valid solution.
+\end{proof}
+\end{document}
